@@ -1,0 +1,22 @@
+---
+import "./Button.css";
+
+interface Props {
+    href: string;
+    label: string;
+    variant?: "primary" | "secondary";
+}
+
+const {
+    href,
+    label,
+    variant = "primary"
+} = Astro.props;
+---
+
+<a
+    href={href}
+    class={`button button--${variant}`}
+>
+    {label}
+</a>

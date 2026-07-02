@@ -1,0 +1,28 @@
+---
+import logo from "../../../assets/logos/logo.png";
+import Button from "../../ui/Button/Button.astro";
+import "./Header.css";
+---
+
+<header class="site-header">
+  <div class="header-container">
+    <a href="/" class="logo-link" aria-label="Accueil Polymaintenance">
+      <img src={logo.src} alt="Logo Polymaintenance" class="logo" />
+    </a>
+
+    <button class="menu-toggle" aria-label="Ouvrir le menu"> ☰ </button>
+
+    <nav aria-label="Navigation principale">
+      <ul class="nav">
+        <li><a class="nav-link" href="/">Accueil</a></li>
+        <li><a class="nav-link" href="/maintenance">Maintenance</a></li>
+        <li><a class="nav-link" href="/installation">Installation</a></li>
+        <li><a class="nav-link" href="/negoce">Négoce</a></li>
+        <li><a class="nav-link" href="/realisations">Réalisations</a></li>
+        <li>
+          <Button href="/contact" label="Demander un devis" />
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

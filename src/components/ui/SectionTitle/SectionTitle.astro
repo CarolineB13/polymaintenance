@@ -1,0 +1,21 @@
+---
+import "./SectionTitle.css";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+}
+
+const { eyebrow, title, subtitle } = Astro.props;
+---
+
+<div class="section-title">
+  {eyebrow && <p class="section-title__eyebrow">{eyebrow}</p>}
+
+  <h2 class="section-title__title">
+    {title}
+  </h2>
+
+  {subtitle && <p class="section-title__subtitle">{subtitle}</p>}
+</div>

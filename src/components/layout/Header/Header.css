@@ -1,0 +1,63 @@
+.site-header {
+    background: white;
+    border-bottom: 1px solid rgba(31, 45, 77, 0.08);
+}
+
+.header-container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 18px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 260px;
+    height: auto;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-link {
+    font-size: .95rem;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.nav-link:hover {
+    color: var(--secondary);
+}
+
+.menu-toggle {
+    display: none;
+
+    background: none;
+    border: none;
+
+    cursor: pointer;
+
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+@media (max-width:850px){
+
+    .logo{
+        width:200px;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    nav{
+        display:none;
+    }
+
+}

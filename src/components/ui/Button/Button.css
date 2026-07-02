@@ -1,0 +1,48 @@
+.button {
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:12px 20px;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+    transition:.25s;
+
+}
+
+.button--primary{
+
+    background:var(--secondary);
+    color:white;
+
+}
+
+.button--primary:hover{
+
+    background:var(--secondary-dark);
+    color:var(--primary);
+
+    transform:translateY(-2px);
+
+}
+
+.button--secondary{
+
+    background:var(--primary);
+    color:white;
+
+}
+
+.button--secondary:hover{
+
+    background:#17233b;
+
+}

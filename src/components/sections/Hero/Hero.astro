@@ -1,0 +1,38 @@
+---
+import Container from "../../ui/Container/Container.astro";
+import SectionTitle from "../../ui/SectionTitle/SectionTitle.astro";
+import Button from "../../ui/Button/Button.astro";
+
+import "./Hero.css";
+
+import herve from "../../../assets/images/herve.png";
+---
+
+<section class="hero">
+  <Container>
+    <div class="hero__content">
+      <div class="hero__text">
+        <SectionTitle
+          eyebrow="POLYMAINTENANCE"
+          title="Votre partenaire en maintenance industrielle"
+          subtitle="Polymaintenance accompagne les industriels dans la maintenance, l'installation et l'optimisation de leurs équipements afin de garantir la continuité de leur production."
+        />
+        <div class="hero__actions">
+          <Button href="/contact" label="Demander un devis" />
+
+          <Button
+            href="/realisations"
+            label="Nos réalisations"
+            variant="secondary"
+          />
+        </div>
+      </div>
+      <div class="hero__image">
+        <img
+          src={herve.src}
+          alt="Hervé Giaufret en intervention de maintenance industrielle"
+        />
+      </div>
+    </div>
+  </Container>
+</section>
