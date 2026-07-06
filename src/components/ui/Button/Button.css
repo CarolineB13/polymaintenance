@@ -1,21 +1,17 @@
 .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: 2px solid transparent;
 
-    padding:12px 20px;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: none;
 
-    border-radius:999px;
-
-    cursor:pointer;
-
-    font-weight:700;
-
-    text-decoration:none;
-
-    transition:.25s;
-
+  transition: var(--transition);
 }
 
 .button--primary{
@@ -34,15 +30,14 @@
 
 }
 
-.button--secondary{
-
-    background:var(--primary);
-    color:white;
-
+.button--secondary {
+    background: var(--primary);
+    color: white;
+    border: 2px solid var(--primary);
 }
 
-.button--secondary:hover{
-
-    background:#17233b;
-
+.button--secondary:hover {
+  background: transparent;
+  color: var(--primary);
+  transform: translateY(-2px);
 }

@@ -3,9 +3,9 @@ import Container from "../../ui/Container/Container.astro";
 import SectionTitle from "../../ui/SectionTitle/SectionTitle.astro";
 import Button from "../../ui/Button/Button.astro";
 
-import "./Hero.css";
-
 import herve from "../../../assets/images/herve.png";
+
+import "./Hero.css";
 ---
 
 <section class="hero">
@@ -13,20 +13,28 @@ import herve from "../../../assets/images/herve.png";
     <div class="hero__content">
       <div class="hero__text">
         <SectionTitle
-          eyebrow="POLYMAINTENANCE"
-          title="Votre partenaire en maintenance industrielle"
-          subtitle="Polymaintenance accompagne les industriels dans la maintenance, l'installation et l'optimisation de leurs équipements afin de garantir la continuité de leur production."
+          eyebrow="Maintenance • Installation • Négoce"
+          title="À vos côtés pour la maintenance de vos équipements industriels"
+          subtitle="Polymaintenance accompagne les professionnels dans la maintenance, l'installation et le négoce de matériel industriel afin de garantir la performance et la continuité de leurs équipements."
         />
+
         <div class="hero__actions">
           <Button href="/contact" label="Demander un devis" />
 
           <Button
             href="/realisations"
-            label="Nos réalisations"
+            label="Découvrir nos réalisations"
             variant="secondary"
           />
         </div>
+
+        <ul class="hero__benefits">
+          <li>Intervention rapide</li>
+          <li>Solutions sur mesure</li>
+          <li>Accompagnement de proximité</li>
+        </ul>
       </div>
+
       <div class="hero__image">
         <img
           src={herve.src}
