@@ -74,6 +74,47 @@
   box-shadow: var(--shadow-md);
 }
 
+.hero__text {
+  max-width: 650px;
+  animation: fadeInLeft 0.8s ease both;
+}
+
+.hero__image {
+  position: relative;
+  animation: fadeInRight 0.8s ease both;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__text,
+  .hero__image {
+    animation: none;
+  }
+}
+
 @media (max-width: 850px) {
   .hero {
     padding-block: var(--space-lg);
