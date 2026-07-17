@@ -1,0 +1,81 @@
+---
+import Container from "../../ui/Container/Container.astro";
+import SectionTitle from "../../ui/SectionTitle/SectionTitle.astro";
+import Button from "../../ui/Button/Button.astro";
+
+import "./About.css";
+---
+
+<section class="about">
+  <Container>
+    <div class="about__grid">
+      <div class="about__content">
+        <SectionTitle
+          eyebrow="À propos de Polymaintenance"
+          title="Une expertise de terrain au service de votre production"
+        />
+
+        <div class="about__text">
+          <p>
+            Polymaintenance accompagne les entreprises industrielles dans
+            l’entretien, l’installation et l’évolution de leurs équipements.
+          </p>
+
+          <p>
+            À l’écoute de vos contraintes techniques et de vos impératifs de
+            production, Hervé Giaufret vous propose des solutions concrètes,
+            adaptées à votre activité et à vos installations.
+          </p>
+        </div>
+
+        <Button
+          href="/contact"
+          label="Échanger sur votre projet"
+          variant="secondary"
+        />
+      </div>
+
+      <div class="about__panel">
+        <p class="about__panel-eyebrow">Notre engagement</p>
+
+        <h3>Vous permettre de vous concentrer sur votre métier</h3>
+
+        <p class="about__panel-intro">
+          Un accompagnement professionnel fondé sur la proximité, la
+          disponibilité et la recherche de solutions durables.
+        </p>
+
+        <ul class="about__commitments">
+          <li>
+            <span aria-hidden="true">✓</span>
+
+            <div>
+              <strong>Un interlocuteur unique</strong>
+              <p>Un suivi clair et personnalisé pour chaque intervention.</p>
+            </div>
+          </li>
+
+          <li>
+            <span aria-hidden="true">✓</span>
+
+            <div>
+              <strong>Une approche sur mesure</strong>
+              <p>Des solutions pensées selon vos besoins et vos contraintes.</p>
+            </div>
+          </li>
+
+          <li>
+            <span aria-hidden="true">✓</span>
+
+            <div>
+              <strong>Une expertise de proximité</strong>
+              <p>
+                Une connaissance concrète des réalités du terrain industriel.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </Container>
+</section>

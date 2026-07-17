@@ -1,0 +1,126 @@
+.about {
+  padding-block: var(--space-2xl);
+  background: var(--light);
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.about__content {
+  max-width: 650px;
+}
+
+.about__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+
+  margin: var(--space-md) 0 var(--space-lg);
+}
+
+.about__text p {
+  color: var(--text);
+}
+
+.about__panel {
+  padding: 42px;
+
+  color: var(--white);
+  background: var(--primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.about__panel-eyebrow {
+  margin-bottom: var(--space-sm);
+
+  color: var(--secondary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.about__panel h3 {
+  margin-bottom: var(--space-sm);
+
+  color: var(--white);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+.about__panel-intro {
+  margin-bottom: var(--space-lg);
+
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+}
+
+.about__commitments {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.about__commitments li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.about__commitments li > span {
+  width: 28px;
+  height: 28px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--primary);
+  background: var(--secondary);
+  border-radius: 50%;
+  font-weight: 800;
+}
+
+.about__commitments strong {
+  display: block;
+  margin-bottom: 3px;
+
+  color: var(--white);
+  font-family: var(--font-heading);
+}
+
+.about__commitments p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 850px) {
+  .about {
+    padding: var(--space-lg) 0 var(--space-xl);
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .about__content {
+    max-width: none;
+    text-align: center;
+  }
+  .about__text {
+  text-align: left;
+}
+}
+
+@media (max-width: 600px) {
+  .about__panel {
+    padding: 28px;
+  }
+}

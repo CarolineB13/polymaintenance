@@ -1,0 +1,86 @@
+---
+import Container from "../../ui/Container/Container.astro";
+import SectionTitle from "../../ui/SectionTitle/SectionTitle.astro";
+
+import "./Services.css";
+---
+
+<section class="services">
+  <Container>
+    <div class="services__heading">
+      <SectionTitle
+        eyebrow="Nos domaines d’expertise"
+        title="Des solutions adaptées à vos besoins industriels"
+        subtitle="Polymaintenance accompagne les professionnels à chaque étape, de l’entretien de leurs équipements jusqu’à l’installation et la fourniture de matériel."
+      />
+    </div>
+
+    <div class="services__grid">
+      <article class="service-card">
+        <div class="service-card__title">
+          <span aria-hidden="true"></span>
+          <h3>Maintenance</h3>
+        </div>
+
+        <p>
+          Prévention des pannes, diagnostic et réparation de vos équipements
+          afin d’assurer la continuité de votre activité.
+        </p>
+        <ul class="service-card__details">
+          <li>Maintenance préventive et corrective</li>
+          <li>Diagnostic et dépannage</li>
+          <li>Remise en état des équipements</li>
+        </ul>
+
+        <a href="/maintenance" class="service-card__link">
+          Découvrir la maintenance
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-card__title">
+          <span aria-hidden="true"></span>
+          <h3>Installation</h3>
+        </div>
+
+        <p>
+          Installation, déplacement et mise en service de machines et de lignes
+          de production dans vos locaux.
+        </p>
+        <ul class="service-card__details">
+          <li>Montage et mise en service</li>
+          <li>Transfert de machines et d’ateliers</li>
+          <li>Adaptation aux installations existantes</li>
+        </ul>
+
+        <a href="/installation" class="service-card__link">
+          Découvrir l’installation
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-card__title">
+          <span aria-hidden="true"></span>
+          <h3>Négoce</h3>
+        </div>
+
+        <p>
+          Recherche et fourniture de matériel industriel neuf ou d’occasion,
+          adapté à vos contraintes techniques.
+        </p>
+        <ul class="service-card__details">
+          <li>Matériel neuf ou d’occasion</li>
+          <li>Recherche de solutions adaptées</li>
+          <li>Conseil dans le choix des équipements</li>
+        </ul>
+
+        <a href="/negoce" class="service-card__link">
+          Découvrir le négoce
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+    </div>
+  </Container>
+</section>

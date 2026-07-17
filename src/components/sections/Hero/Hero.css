@@ -1,12 +1,12 @@
 .hero {
-  padding-block: var(--space-xl);
+  padding: var(--space-xl) 0 var(--space-lg);
   background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
 }
 
 .hero__content {
   display: flex;
   align-items: center;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
 }
 
 .hero__text,
@@ -116,9 +116,9 @@
 }
 
 @media (max-width: 850px) {
-  .hero {
-    padding-block: var(--space-lg);
-  }
+ .hero {
+  padding: var(--space-lg) 0 var(--space-md);
+}
 
   .hero__content {
     flex-direction: column;
