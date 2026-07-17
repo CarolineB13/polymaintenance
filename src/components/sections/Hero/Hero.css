@@ -18,6 +18,9 @@
   max-width: 650px;
 }
 
+.hero .section-title__title {
+  font-size: clamp(2.4rem, 4vw, 3.7rem);
+}
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
@@ -134,4 +137,7 @@
     right: -20px;
     top: -20px;
   }
+  .hero .section-title__title {
+  font-size: clamp(2.1rem, 10vw, 3rem);
+}
 }

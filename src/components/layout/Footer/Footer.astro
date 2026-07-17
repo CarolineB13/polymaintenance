@@ -1,0 +1,96 @@
+---
+import Container from "../../ui/Container/Container.astro";
+import { site } from "../../../config/site";
+import logoIcon from "../../../assets/logos/logo-icon.png";
+
+import "./Footer.css";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <Container>
+    <div class="footer__main">
+      <div class="footer__brand">
+        <a
+          href="/"
+          class="footer__symbol"
+          aria-label="Retour à l’accueil de Polymaintenance"
+        >
+          <img src={logoIcon.src} alt="Symbole Polymaintenance" />
+        </a>
+
+        <p>
+          Maintenance, installation et fourniture de matériel industriel au
+          service de la performance de vos équipements.
+        </p>
+      </div>
+
+      <nav class="footer__navigation" aria-label="Navigation du pied de page">
+        <div class="footer__column">
+          <h2>Services</h2>
+
+          <ul>
+            <li><a href="/maintenance">Maintenance</a></li>
+            <li><a href="/installation">Installation</a></li>
+            <li><a href="/materiel-industriel">Matériel à vendre</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__column">
+          <h2>Découvrir</h2>
+
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/realisations">Réalisations</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="footer__contact">
+        <h2>Parlons de votre projet</h2>
+
+        <address>
+          <a
+            class="footer__phone"
+            href={`tel:${site.phone.replaceAll(" ", "")}`}
+          >
+            {site.phone}
+          </a>
+
+          <a href={`mailto:${site.email}`}>
+            {site.email}
+          </a>
+
+          <p>
+            Ardèche, Drôme et vallée du Rhône<br />
+            France et international
+          </p>
+        </address>
+
+        <a class="footer__button" href="/contact"> Demander un devis </a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>
+        © {currentYear} Polymaintenance
+      </p>
+
+      <div class="footer__legal">
+        <a href="/mentions-legales">Mentions légales</a>
+
+        <span aria-hidden="true">•</span>
+
+        <a
+          href="https://happyclicks.fr"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Site réalisé par Happyclicks
+        </a>
+      </div>
+    </div>
+  </Container>
+</footer>

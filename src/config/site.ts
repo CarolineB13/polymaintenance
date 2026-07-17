@@ -6,8 +6,8 @@ export const site = {
     title:
         "Polymaintenance | Maintenance industrielle en Ardèche",
 
-    description:
-        "Maintenance industrielle, installation de machines, transfert d'ateliers et négoce de matériel professionnel en Ardèche et dans la Drôme.",
+    ddescription:
+  "Polymaintenance intervient pour la maintenance industrielle, l'installation de machines et la fourniture de matériel professionnel en Ardèche, dans la Drôme, la vallée du Rhône, partout en France et à l'international.",
 
     author: "Happyclicks",
 

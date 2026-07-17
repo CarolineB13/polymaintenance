@@ -5,17 +5,20 @@ interface Props {
   eyebrow?: string;
   title: string;
   subtitle?: string;
+  level?: "h1" | "h2" | "h3";
 }
 
-const { eyebrow, title, subtitle } = Astro.props;
+const { eyebrow, title, subtitle, level = "h2" } = Astro.props;
+
+const Heading = level;
 ---
 
 <div class="section-title">
   {eyebrow && <p class="section-title__eyebrow">{eyebrow}</p>}
 
-  <h2 class="section-title__title">
+  <Heading class="section-title__title">
     {title}
-  </h2>
+  </Heading>
 
   {subtitle && <p class="section-title__subtitle">{subtitle}</p>}
 </div>

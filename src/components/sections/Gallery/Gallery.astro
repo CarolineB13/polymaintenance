@@ -1,0 +1,103 @@
+---
+import Container from "../../ui/Container/Container.astro";
+import SectionTitle from "../../ui/SectionTitle/SectionTitle.astro";
+import Button from "../../ui/Button/Button.astro";
+
+import poly7 from "../../../assets/images/realisations/poly7.png";
+import poly8 from "../../../assets/images/realisations/poly8.png";
+import poly9 from "../../../assets/images/realisations/poly9.png";
+import poly10 from "../../../assets/images/realisations/poly10.png";
+import poly11 from "../../../assets/images/realisations/poly11.png";
+
+import "./Gallery.css";
+---
+
+<section class="gallery">
+  <Container>
+    <div class="gallery__heading">
+      <SectionTitle
+        eyebrow="Notre savoir-faire en images"
+        title="Des interventions au cœur de vos équipements"
+        subtitle="Découvrez un aperçu des opérations de maintenance, d’installation et de mise en service réalisées dans différents environnements industriels."
+      />
+
+      <Button
+        href="/realisations"
+        label="Voir toutes les réalisations"
+        variant="secondary"
+      />
+    </div>
+
+    <p class="gallery__notice">
+      Visuels provisoires d’illustration, en attente des photographies des
+      réalisations Polymaintenance.
+    </p>
+
+    <div class="gallery__grid">
+      <article class="gallery-card gallery-card--large">
+        <img
+          src={poly9.src}
+          alt="Technicien intervenant sur une ligne de production industrielle"
+          loading="lazy"
+        />
+
+        <div class="gallery-card__overlay">
+          <span>Maintenance</span>
+          <h3>Intervention sur ligne de production</h3>
+        </div>
+      </article>
+
+      <article class="gallery-card gallery-card--medium">
+        <img
+          src={poly10.src}
+          alt="Installation d’une machine industrielle"
+          loading="lazy"
+        />
+
+        <div class="gallery-card__overlay">
+          <span>Installation</span>
+          <h3>Mise en place d’un nouvel équipement</h3>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img
+          src={poly11.src}
+          alt="Diagnostic d’une armoire électrique industrielle"
+          loading="lazy"
+        />
+
+        <div class="gallery-card__overlay">
+          <span>Diagnostic</span>
+          <h3>Contrôle d’une installation électrique</h3>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img
+          src={poly7.src}
+          alt="Opération de maintenance sur une pompe industrielle"
+          loading="lazy"
+        />
+
+        <div class="gallery-card__overlay">
+          <span>Maintenance</span>
+          <h3>Entretien d’un ensemble mécanique</h3>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img
+          src={poly8.src}
+          alt="Technicien mettant en service une ligne industrielle"
+          loading="lazy"
+        />
+
+        <div class="gallery-card__overlay">
+          <span>Mise en service</span>
+          <h3>Contrôle d’une nouvelle ligne</h3>
+        </div>
+      </article>
+    </div>
+  </Container>
+</section>
