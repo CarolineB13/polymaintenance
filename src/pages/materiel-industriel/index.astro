@@ -55,29 +55,17 @@ const categories = Object.entries(categoryLabels).filter(([value]) =>
         </div>
 
         <div class="catalog__filters" aria-label="Filtrer les annonces">
-          <div class="catalog__categories" role="group" aria-label="Catégories">
-            <button
-              class="catalog__filter is-active"
-              type="button"
-              data-category-filter="all"
-              aria-pressed="true"
-            >
-              Tout le matériel
-            </button>
-
-            {
-              categories.map(([value, label]) => (
-                <button
-                  class="catalog__filter"
-                  type="button"
-                  data-category-filter={value}
-                  aria-pressed="false"
-                >
-                  {label}
-                </button>
-              ))
-            }
-          </div>
+          <label class="catalog__category-select">
+            <span>Catégorie</span>
+            <select data-category-filter>
+              <option value="all">Tout le matériel</option>
+              {
+                categories.map(([value, label]) => (
+                  <option value={value}>{label}</option>
+                ))
+              }
+            </select>
+          </label>
 
           <label class="catalog__availability">
             <input type="checkbox" data-available-filter />
@@ -107,18 +95,15 @@ const categories = Object.entries(categoryLabels).filter(([value]) =>
   const catalog = document.querySelector<HTMLElement>("[data-catalog]");
 
   if (catalog) {
-    const categoryButtons = Array.from(
-      catalog.querySelectorAll<HTMLButtonElement>("[data-category-filter]"),
-    );
+    const categoryFilter = catalog.querySelector<HTMLSelectElement>("[data-category-filter]");
     const availableFilter = catalog.querySelector<HTMLInputElement>("[data-available-filter]");
     const cards = Array.from(catalog.querySelectorAll<HTMLElement>("[data-product-card]"));
     const count = catalog.querySelector<HTMLElement>("[data-results-count]");
     const label = catalog.querySelector<HTMLElement>("[data-results-label]");
     const emptyState = catalog.querySelector<HTMLElement>("[data-empty-state]");
 
-    let activeCategory = "all";
-
     const updateCatalog = () => {
+      const activeCategory = categoryFilter?.value ?? "all";
       const availableOnly = availableFilter?.checked ?? false;
       let visibleCount = 0;
 
@@ -138,20 +123,7 @@ const categories = Object.entries(categoryLabels).filter(([value]) =>
       if (emptyState) emptyState.hidden = visibleCount !== 0;
     };
 
-    categoryButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        activeCategory = button.dataset.categoryFilter ?? "all";
-
-        categoryButtons.forEach((item) => {
-          const isActive = item === button;
-          item.classList.toggle("is-active", isActive);
-          item.setAttribute("aria-pressed", String(isActive));
-        });
-
-        updateCatalog();
-      });
-    });
-
+    categoryFilter?.addEventListener("change", updateCatalog);
     availableFilter?.addEventListener("change", updateCatalog);
   }
 </script>

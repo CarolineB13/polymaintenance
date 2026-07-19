@@ -160,6 +160,10 @@
 }
 
 @media (max-width: 600px) {
+  .product-card__visual {
+    aspect-ratio: 16 / 10;
+  }
+
   .product-card__content {
     padding: 20px;
   }

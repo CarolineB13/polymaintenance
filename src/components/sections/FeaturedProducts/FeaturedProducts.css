@@ -1,5 +1,5 @@
 .featured-products {
-  padding: var(--space-xl) 0;
+  padding: var(--space-lg) 0;
   background: var(--light);
 }
 
@@ -52,7 +52,7 @@
 
 @media (max-width: 650px) {
   .featured-products {
-    padding: var(--space-lg) 0;
+    padding: var(--space-md) 0;
   }
 
   .featured-products__grid {

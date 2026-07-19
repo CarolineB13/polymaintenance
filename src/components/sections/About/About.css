@@ -1,5 +1,5 @@
 .about {
-  padding-block: var(--space-2xl);
+  padding-block: var(--space-lg);
   background: var(--light);
 }
 
@@ -102,7 +102,7 @@
 
 @media (max-width: 850px) {
   .about {
-    padding: var(--space-lg) 0 var(--space-xl);
+    padding: var(--space-lg) 0 var(--space-lg);
   }
 
   .about__grid {

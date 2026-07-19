@@ -29,6 +29,10 @@
 
 .product-detail__visual {
   overflow: hidden;
+
+  width: 100%;
+  aspect-ratio: 4 / 3;
+
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -37,9 +41,12 @@
 
 .product-detail__visual img {
   display: block;
+
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
+
   object-fit: cover;
+  object-position: center;
 }
 
 .product-detail__summary {
@@ -154,5 +161,9 @@
 @media (max-width: 600px) {
   .product-detail {
     padding: var(--space-md) 0 var(--space-xl);
+  }
+
+  .product-detail__visual {
+    aspect-ratio: 16 / 10;
   }
 }

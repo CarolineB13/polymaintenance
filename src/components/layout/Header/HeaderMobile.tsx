@@ -77,16 +77,14 @@ export default function HeaderMobile({ phone }: Props) {
 })}
 
         <a
-          className="mobile-panel__phone"
-          href={`tel:${phone.replaceAll(" ", "")}`}
-          onClick={() => setIsOpen(false)}
-        >
-          <Phone size={20} />
-          <span>
-            Appeler Hervé
-            <small>{phone}</small>
-          </span>
-        </a>
+  className="mobile-panel__phone"
+  href={`tel:${phone.replaceAll(" ", "")}`}
+  aria-label={`Appeler Hervé au ${phone}`}
+  onClick={() => setIsOpen(false)}
+>
+  <Phone size={20} />
+  <span>{phone}</span>
+</a>
 
         <a
           className="mobile-panel__button"

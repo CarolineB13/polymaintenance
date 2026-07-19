@@ -12,7 +12,7 @@
 .header-container {
   width: min(100% - 48px, var(--max-width));
   margin-inline: auto;
-  padding-block: 24px;
+  padding-block: 18px;
 
   display: flex;
   align-items: center;
@@ -228,7 +228,7 @@
   }
 
   .mobile-panel__button {
-  margin-top: 12px;
+  margin-top: 16px;
 
   display: flex;
   align-items: center;
@@ -247,42 +247,37 @@
   transition: var(--transition);
 }
 
-  .mobile-panel .mobile-panel__phone {
-    justify-content: center;
-    gap: 12px;
+.mobile-panel .mobile-panel__phone {
+  justify-content: center;
+  gap: 10px;
 
-    margin-top: 12px;
-    padding: 14px 16px;
+  margin-top: 14px;
+  padding: 14px 18px;
 
-    color: var(--white);
-    background: var(--primary);
-    border-bottom: 0;
-    border-radius: 999px;
-  }
+  color: var(--white);
+  background: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 999px;
 
-  .mobile-panel__phone svg {
-    color: var(--secondary);
-  }
-
-  .mobile-panel__phone span {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .mobile-panel__phone small {
-    color: rgba(255, 255, 255, 0.78);
-    font-size: 0.78rem;
-  }
-
-  .mobile-panel .mobile-panel__phone:hover {
-    color: var(--white);
-    background: #051d47;
-  }
+  font-size: 1rem;
+  font-weight: 800;
 }
 
+.mobile-panel__phone svg {
+  color: var(--secondary);
+}
+
+.mobile-panel .mobile-panel__phone:hover {
+  color: var(--white);
+  background: #051d47;
+}
+
+.mobile-panel__phone:hover svg {
+  transform: none;
+}
 .mobile-panel__button:hover {
   transform: translateY(-2px);
 
   background: var(--secondary-dark);
+}
 }
