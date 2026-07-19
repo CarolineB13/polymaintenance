@@ -1,0 +1,78 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+import Button from "../../components/ui/Button/Button.astro";
+import Container from "../../components/ui/Container/Container.astro";
+import {
+  categoryLabels,
+  conditionLabels,
+  formatProductPrice,
+  statusLabels,
+} from "../../utils/products";
+
+import "./product-detail.css";
+
+export async function getStaticPaths() {
+  const products = await getCollection("products");
+
+  return products.map((product) => ({
+    params: { id: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const { data } = product;
+const { Content } = await render(product);
+const price = formatProductPrice(data.priceType, data.price);
+---
+
+<Layout title={data.title} description={data.description}>
+  <main class="product-detail">
+    <Container>
+      <a href="/materiel-industriel" class="product-detail__back">← Retour au matériel</a>
+
+      {data.demo && (
+        <div class="product-detail__demo" role="note">
+          Annonce de démonstration : les caractéristiques seront remplacées par les informations du matériel réel.
+        </div>
+      )}
+
+      <div class="product-detail__hero">
+        <div class="product-detail__visual">
+          <Image src={data.image} alt={data.imageAlt} widths={[640, 1000, 1400]} sizes="(max-width: 900px) 100vw, 58vw" />
+        </div>
+
+        <div class="product-detail__summary">
+          <div class="product-detail__badges">
+            <span>{categoryLabels[data.category]}</span>
+            <span class={`product-detail__status product-detail__status--${data.status}`}>
+              {statusLabels[data.status]}
+            </span>
+          </div>
+
+          <h1>{data.title}</h1>
+          <p class="product-detail__description">{data.description}</p>
+          <p class="product-detail__price">{price}</p>
+
+          <dl class="product-detail__facts">
+            <div><dt>État</dt><dd>{conditionLabels[data.condition]}</dd></div>
+            {data.brand && <div><dt>Marque</dt><dd>{data.brand}</dd></div>}
+            {data.model && <div><dt>Modèle</dt><dd>{data.model}</dd></div>}
+            {data.year && <div><dt>Année</dt><dd>{data.year}</dd></div>}
+            {data.location && <div><dt>Localisation</dt><dd>{data.location}</dd></div>}
+          </dl>
+
+          <Button href="/contact" label="Demander des renseignements" variant="primary" />
+        </div>
+      </div>
+
+      <div class="product-detail__content">
+        <h2>À propos de ce matériel</h2>
+        <Content />
+      </div>
+    </Container>
+  </main>
+</Layout>

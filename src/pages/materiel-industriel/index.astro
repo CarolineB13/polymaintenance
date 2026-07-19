@@ -1,0 +1,157 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/ui/Container/Container.astro";
+import ProductCard from "../../components/ui/ProductCard/ProductCard.astro";
+import { categoryLabels } from "../../utils/products";
+
+import "./materiel-industriel.css";
+
+const statusOrder = {
+  available: 0,
+  reserved: 1,
+  sold: 2,
+};
+
+const products = (await getCollection("products")).sort((a, b) => {
+  const statusDifference = statusOrder[a.data.status] - statusOrder[b.data.status];
+
+  if (statusDifference !== 0) return statusDifference;
+
+  return b.data.publishedAt.getTime() - a.data.publishedAt.getTime();
+});
+
+const usedCategories = new Set(products.map((product) => product.data.category));
+const categories = Object.entries(categoryLabels).filter(([value]) =>
+  usedCategories.has(value as keyof typeof categoryLabels),
+);
+---
+
+<Layout
+  title="Matériel industriel neuf et d’occasion"
+  description="Découvrez le matériel professionnel proposé par Polymaintenance : manutention, air comprimé, machines à bois, ferronnerie, soudage et fournitures d’emballage."
+>
+  <main>
+    <header class="catalog-hero">
+      <Container>
+        <p class="catalog-hero__eyebrow">Négoce et vente de matériel professionnel</p>
+        <h1>Matériel industriel neuf et d’occasion</h1>
+        <p class="catalog-hero__intro">
+          Machines, équipements et consommables pour les professionnels. Polymaintenance
+          vous conseille dans le choix du matériel et peut assurer son installation et sa
+          mise en service.
+        </p>
+      </Container>
+    </header>
+
+    <section class="catalog" data-catalog aria-labelledby="catalog-title">
+      <Container>
+        <h2 id="catalog-title" class="sr-only">Toutes les annonces</h2>
+
+        <div class="catalog__demo-notice" role="note">
+          <strong>Maquette de démonstration :</strong> les produits et caractéristiques
+          affichés sur cette page sont fictifs et seront remplacés par les véritables annonces.
+        </div>
+
+        <div class="catalog__filters" aria-label="Filtrer les annonces">
+          <div class="catalog__categories" role="group" aria-label="Catégories">
+            <button
+              class="catalog__filter is-active"
+              type="button"
+              data-category-filter="all"
+              aria-pressed="true"
+            >
+              Tout le matériel
+            </button>
+
+            {
+              categories.map(([value, label]) => (
+                <button
+                  class="catalog__filter"
+                  type="button"
+                  data-category-filter={value}
+                  aria-pressed="false"
+                >
+                  {label}
+                </button>
+              ))
+            }
+          </div>
+
+          <label class="catalog__availability">
+            <input type="checkbox" data-available-filter />
+            <span>Afficher uniquement le matériel disponible</span>
+          </label>
+        </div>
+
+        <div class="catalog__summary" aria-live="polite">
+          <strong data-results-count>{products.length}</strong>
+          <span data-results-label>{products.length > 1 ? "annonces affichées" : "annonce affichée"}</span>
+        </div>
+
+        <div class="catalog__grid">
+          {products.map((product) => <ProductCard product={product} />)}
+        </div>
+
+        <div class="catalog__empty" data-empty-state hidden>
+          <h2>Aucun matériel ne correspond à ces critères</h2>
+          <p>Modifiez la catégorie sélectionnée ou désactivez le filtre de disponibilité.</p>
+        </div>
+      </Container>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  const catalog = document.querySelector<HTMLElement>("[data-catalog]");
+
+  if (catalog) {
+    const categoryButtons = Array.from(
+      catalog.querySelectorAll<HTMLButtonElement>("[data-category-filter]"),
+    );
+    const availableFilter = catalog.querySelector<HTMLInputElement>("[data-available-filter]");
+    const cards = Array.from(catalog.querySelectorAll<HTMLElement>("[data-product-card]"));
+    const count = catalog.querySelector<HTMLElement>("[data-results-count]");
+    const label = catalog.querySelector<HTMLElement>("[data-results-label]");
+    const emptyState = catalog.querySelector<HTMLElement>("[data-empty-state]");
+
+    let activeCategory = "all";
+
+    const updateCatalog = () => {
+      const availableOnly = availableFilter?.checked ?? false;
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const matchesCategory =
+          activeCategory === "all" || card.dataset.category === activeCategory;
+        const matchesAvailability =
+          !availableOnly || card.dataset.status === "available";
+        const isVisible = matchesCategory && matchesAvailability;
+
+        card.hidden = !isVisible;
+        if (isVisible) visibleCount += 1;
+      });
+
+      if (count) count.textContent = String(visibleCount);
+      if (label) label.textContent = visibleCount > 1 ? "annonces affichées" : "annonce affichée";
+      if (emptyState) emptyState.hidden = visibleCount !== 0;
+    };
+
+    categoryButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeCategory = button.dataset.categoryFilter ?? "all";
+
+        categoryButtons.forEach((item) => {
+          const isActive = item === button;
+          item.classList.toggle("is-active", isActive);
+          item.setAttribute("aria-pressed", String(isActive));
+        });
+
+        updateCatalog();
+      });
+    });
+
+    availableFilter?.addEventListener("change", updateCatalog);
+  }
+</script>

@@ -4,7 +4,8 @@ import {
   Wrench,
   Settings,
   Package,
-  Images
+  ShoppingBag,
+  Phone
 } from "lucide-react";
 
 const links = [
@@ -29,13 +30,17 @@ const links = [
     icon: Package
   },
   {
-    href: "/realisations",
-    label: "Réalisations",
-    icon: Images
+    href: "/materiel-industriel",
+    label: "Matériel à vendre",
+    icon: ShoppingBag
   }
 ];
 
-export default function HeaderMobile() {
+interface Props {
+  phone: string;
+}
+
+export default function HeaderMobile({ phone }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -70,6 +75,18 @@ export default function HeaderMobile() {
   );
 
 })}
+
+        <a
+          className="mobile-panel__phone"
+          href={`tel:${phone.replaceAll(" ", "")}`}
+          onClick={() => setIsOpen(false)}
+        >
+          <Phone size={20} />
+          <span>
+            Appeler Hervé
+            <small>{phone}</small>
+          </span>
+        </a>
 
         <a
           className="mobile-panel__button"

@@ -4,8 +4,11 @@
   justify-content: center;
 
   padding: 12px 20px;
-  border-radius: 999px;
+
+  color: inherit;
+  background: transparent;
   border: 2px solid transparent;
+  border-radius: 999px;
 
   cursor: pointer;
   font-weight: 700;
@@ -14,30 +17,36 @@
   transition: var(--transition);
 }
 
-.button--primary{
+/* Bouton vert */
 
-    background:var(--secondary);
-    color:white;
-
+.button--primary {
+  color: var(--white);
+  background: var(--secondary-action);
 }
 
-.button--primary:hover{
+.button--primary:hover {
+  color: var(--white);
+  background: var(--secondary-dark);
 
-    background:var(--secondary-dark);
-    color:var(--primary);
-
-    transform:translateY(-2px);
-
+  transform: translateY(-2px);
 }
+
+/* Bouton bleu */
 
 .button--secondary {
-    background: var(--primary);
-    color: white;
-    border: 2px solid var(--primary);
+  color: var(--white);
+  background: var(--primary);
+  border-color: var(--primary);
 }
 
 .button--secondary:hover {
-  background: transparent;
   color: var(--primary);
+  background: transparent;
+
   transform: translateY(-2px);
+}
+
+.button:focus-visible {
+  outline: 3px solid rgba(80, 149, 52, 0.35);
+  outline-offset: 3px;
 }

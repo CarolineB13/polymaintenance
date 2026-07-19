@@ -1,43 +1,49 @@
 :root {
+  /* Couleurs principales du logo */
 
-    /* Couleurs */
+  --primary: #07275D;
 
-    --primary: #1F2D4D;
-    --secondary: #76B82A;
-    --secondary-dark: #5FA11F;
+  --secondary: #509534;
+  --secondary-dark: #3F7629;
+  --secondary-action: #467F2E;
 
-    --white: #FFFFFF;
-    --light: #F8FAFC;
+  --accent: #BA0000;
+  --brand-gray: #919191;
 
-    --text: #334155;
-    --border: #E2E8F0;
+  /* Couleurs d’interface */
 
-    /* Espacements */
+  --white: #FFFFFF;
+  --light: #F8FAFC;
 
-    --space-xs: .5rem;
-    --space-sm: 1rem;
-    --space-md: 1.5rem;
-    --space-lg: 3rem;
-    --space-xl: 5rem;
-    --space-2xl: 7rem;
+  --text: #334155;
+  --muted: #64748B;
+  --border: #E2E8F0;
 
-    /* Layout */
+  /* Espacements */
 
-    --max-width: 1200px;
+  --space-xs: .5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 3rem;
+  --space-xl: 5rem;
+  --space-2xl: 7rem;
 
-    /* Radius */
+  /* Layout */
 
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 20px;
+  --max-width: 1200px;
 
-    /* Ombres */
+  /* Radius */
 
-    --shadow-sm: 0 4px 12px rgba(0,0,0,.08);
-    --shadow-md: 0 8px 30px rgba(0,0,0,.12);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
 
-    /* Transitions */
+  /* Ombres */
 
-    --transition: .25s ease;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, .08);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, .12);
 
+  /* Transitions */
+
+  --transition: .25s ease;
 }

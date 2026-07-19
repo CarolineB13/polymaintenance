@@ -28,6 +28,33 @@
   margin-top: var(--space-lg);
 }
 
+.hero__phone {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+
+  margin: var(--space-md) 0 0;
+
+  color: var(--text);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.hero__phone a {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.hero__phone a:hover {
+  color: var(--secondary-dark);
+}
+
+.hero__phone strong {
+  white-space: nowrap;
+}
+
 .hero__benefits {
   display: flex;
   flex-wrap: wrap;
@@ -130,6 +157,10 @@
 
   .hero__actions,
   .hero__benefits {
+    justify-content: center;
+  }
+
+  .hero__phone {
     justify-content: center;
   }
 

@@ -2,6 +2,7 @@
 import logo from "../../../assets/logos/logo.png";
 import Button from "../../ui/Button/Button.astro";
 import HeaderMobile from "./HeaderMobile";
+import { site } from "../../../config/site";
 import "./Header.css";
 ---
 
@@ -13,17 +14,28 @@ import "./Header.css";
 
     <nav class="desktop-nav" aria-label="Navigation principale">
       <ul class="nav">
-        <li><a class="nav-link" href="/">Accueil</a></li>
         <li><a class="nav-link" href="/maintenance">Maintenance</a></li>
         <li><a class="nav-link" href="/installation">Installation</a></li>
         <li><a class="nav-link" href="/negoce">Négoce</a></li>
-        <li><a class="nav-link" href="/realisations">Réalisations</a></li>
+        <li>
+          <a class="nav-link" href="/materiel-industriel">Matériel à vendre</a>
+        </li>
+        <li>
+          <a
+            class="header-phone"
+            href={`tel:${site.phone.replaceAll(" ", "")}`}
+            aria-label={`Appeler Hervé au ${site.phone}`}
+          >
+            <span>Appeler Hervé</span>
+            <strong>{site.phone}</strong>
+          </a>
+        </li>
         <li>
           <Button href="/contact" label="Demander un devis" />
         </li>
       </ul>
     </nav>
 
-    <HeaderMobile client:load />
+    <HeaderMobile client:load phone={site.phone} />
   </div>
 </header>

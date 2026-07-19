@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+
+import Container from "../../ui/Container/Container.astro";
+import Button from "../../ui/Button/Button.astro";
+import ProductCard from "../../ui/ProductCard/ProductCard.astro";
+import SectionTitle from "../../ui/SectionTitle/SectionTitle.astro";
+
+import "./FeaturedProducts.css";
+
+const products = (
+  await getCollection(
+    "products",
+    ({ data }) => data.featured && data.status === "available",
+  )
+)
+  .sort((a, b) => a.data.featuredOrder - b.data.featuredOrder)
+  .slice(0, 3);
+---
+
+{
+  products.length > 0 && (
+    <section class="featured-products" aria-labelledby="featured-products-title">
+      <Container>
+        <div class="featured-products__heading" id="featured-products-title">
+          <SectionTitle
+            eyebrow="Matériel professionnel"
+            title="Du matériel industriel sélectionné pour vos besoins"
+            subtitle="Découvrez une sélection de machines, d’équipements et de fournitures disponibles à la vente."
+          />
+        </div>
+
+        <div class="featured-products__notice" role="note">
+          Les annonces présentées ci-dessous sont des exemples destinés à valider le futur catalogue.
+        </div>
+
+        <div class="featured-products__grid">
+          {products.map((product) => <ProductCard product={product} />)}
+        </div>
+
+        <div class="featured-products__actions">
+          <Button
+            href="/materiel-industriel"
+            label="Voir tout le matériel"
+            variant="secondary"
+          />
+        </div>
+      </Container>
+    </section>
+  )
+}

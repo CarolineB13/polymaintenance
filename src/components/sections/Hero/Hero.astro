@@ -2,6 +2,7 @@
 import Container from "../../ui/Container/Container.astro";
 import SectionTitle from "../../ui/SectionTitle/SectionTitle.astro";
 import Button from "../../ui/Button/Button.astro";
+import { site } from "../../../config/site";
 
 import herve from "../../../assets/images/herve.png";
 
@@ -23,11 +24,21 @@ import "./Hero.css";
           <Button href="/contact" label="Demander un devis" />
 
           <Button
-            href="/realisations"
-            label="Découvrir nos réalisations"
+            href="/materiel-industriel"
+            label="Voir le matériel disponible"
             variant="secondary"
           />
         </div>
+
+        <p class="hero__phone">
+          Une question technique ou un besoin précis ?
+          <a
+            href={`tel:${site.phone.replaceAll(" ", "")}`}
+            aria-label={`Appeler Hervé au ${site.phone}`}
+          >
+            Appelez directement Hervé au <strong>{site.phone}</strong>
+          </a>
+        </p>
 
         <ul class="hero__benefits">
           <li>Intervention rapide</li>

@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+import {
+  categoryLabels,
+  conditionLabels,
+  formatProductPrice,
+  statusLabels,
+} from "../../../utils/products";
+
+import "./ProductCard.css";
+
+interface Props {
+  product: CollectionEntry<"products">;
+}
+
+const { product } = Astro.props;
+const { data } = product;
+
+const url = `/materiel-industriel/${product.id}`;
+const price = formatProductPrice(data.priceType, data.price);
+---
+
+<article
+  class={`product-card product-card--${data.status}`}
+  data-product-card
+  data-category={data.category}
+  data-status={data.status}
+>
+  <a href={url} class="product-card__visual" aria-label={`Voir ${data.title}`}>
+    <Image
+      src={data.image}
+      alt={data.imageAlt}
+      widths={[420, 720]}
+      sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 33vw"
+      loading="lazy"
+    />
+
+    <div class="product-card__badges">
+      {data.demo && <span class="product-card__badge product-card__badge--demo">Exemple</span>}
+      <span class={`product-card__badge product-card__badge--${data.status}`}>
+        {statusLabels[data.status]}
+      </span>
+    </div>
+  </a>
+
+  <div class="product-card__content">
+    <div class="product-card__meta">
+      <span>{categoryLabels[data.category]}</span>
+      <span aria-hidden="true">•</span>
+      <span>{conditionLabels[data.condition]}</span>
+    </div>
+
+    <h3 class="product-card__title">
+      <a href={url}>{data.title}</a>
+    </h3>
+
+    <p class="product-card__description">{data.description}</p>
+
+    <div class="product-card__footer">
+      <strong class="product-card__price">{price}</strong>
+
+      <a href={url} class="product-card__link">
+        Voir l’annonce <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</article>
