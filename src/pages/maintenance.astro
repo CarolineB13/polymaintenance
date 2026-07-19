@@ -1,0 +1,193 @@
+---
+import { Image } from "astro:assets";
+
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/ui/Container/Container.astro";
+import Button from "../components/ui/Button/Button.astro";
+
+import maintenanceImage from "../assets/images/maintenance-industrielle.png";
+
+import "../styles/maintenance.css";
+
+const phoneDisplay = "06 32 94 23 50";
+const phoneHref = "tel:+33632942350";
+---
+
+<Layout
+  title="Maintenance industrielle en Drôme et Ardèche | Polymaintenance"
+  description="Polymaintenance intervient pour la maintenance préventive, corrective et le dépannage de machines industrielles en Drôme, Ardèche et dans la vallée du Rhône."
+>
+  <section class="maintenance-hero">
+    <Container>
+      <div class="maintenance-hero__grid">
+        <div class="maintenance-hero__content">
+          <p class="maintenance-eyebrow">
+            Maintenance préventive · Dépannage · Pièces d’usure
+          </p>
+
+          <h1>Maintenance industrielle en Drôme, Ardèche et vallée du Rhône</h1>
+
+          <p class="maintenance-hero__intro">
+            Polymaintenance accompagne les professionnels pour préserver la
+            disponibilité de leurs machines, limiter les arrêts de production et
+            maintenir leurs équipements en bon état de fonctionnement.
+          </p>
+
+          <div class="maintenance-hero__actions">
+            <Button
+              href="/contact"
+              label="Demander un devis"
+              variant="primary"
+            />
+            <a class="maintenance-hero__phone" href="tel:+33632942350">
+              Appeler Hervé : 06 32 94 23 50
+            </a>
+          </div>
+
+          <p class="maintenance-hero__area">
+            Intervention de proximité en Drôme, Ardèche et vallée du Rhône, avec
+            déplacements possibles partout en France et à l’international.
+          </p>
+        </div>
+
+        <div class="maintenance-hero__visual">
+          <Image
+            src={maintenanceImage}
+            alt="Technicien réalisant une opération de maintenance sur une machine industrielle"
+            widths={[480, 720, 960]}
+            sizes="(max-width: 900px) 100vw, 48vw"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section
+    class="maintenance-services"
+    aria-labelledby="maintenance-services-title"
+  >
+    <Container>
+      <div class="maintenance-heading">
+        <p class="maintenance-eyebrow">Nos interventions</p>
+        <h2 id="maintenance-services-title">
+          Des solutions pour assurer la continuité de votre production
+        </h2>
+        <p>
+          Chaque intervention est adaptée à l’état de la machine, à vos
+          contraintes techniques et aux impératifs de votre activité.
+        </p>
+      </div>
+
+      <div class="maintenance-services__grid">
+        <article class="maintenance-card">
+          <p class="maintenance-card__label">Anticiper</p>
+          <h3>Maintenance préventive</h3>
+          <p>
+            Des contrôles et des interventions planifiés pour repérer l’usure,
+            prévenir les défaillances et réduire les arrêts imprévus.
+          </p>
+          <ul>
+            <li>Contrôle de l’état des équipements</li>
+            <li>Repérage des pièces usées</li>
+            <li>Interventions adaptées à votre production</li>
+          </ul>
+        </article>
+
+        <article class="maintenance-card">
+          <p class="maintenance-card__label">Diagnostiquer et réparer</p>
+          <h3>Maintenance corrective et curative</h3>
+          <p>
+            En cas de panne ou de fonctionnement anormal, Polymaintenance
+            recherche l’origine du problème et propose une solution adaptée.
+          </p>
+          <ul>
+            <li>Diagnostic de panne</li>
+            <li>Réparation des équipements</li>
+            <li>Remise en fonctionnement</li>
+          </ul>
+        </article>
+
+        <article class="maintenance-card">
+          <p class="maintenance-card__label">Remplacer</p>
+          <h3>Pièces d’usure et intervention sur site</h3>
+          <p>
+            Fourniture et remplacement des pièces nécessaires à l’entretien ou à
+            la réparation de vos équipements industriels.
+          </p>
+          <ul>
+            <li>Recherche des pièces adaptées</li>
+            <li>Fourniture des pièces d’usure</li>
+            <li>Remplacement directement sur site</li>
+          </ul>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <section class="maintenance-approach">
+    <Container>
+      <div class="maintenance-approach__panel">
+        <div class="maintenance-approach__content">
+          <p class="maintenance-eyebrow">Une expertise de terrain</p>
+          <h2>Une intervention adaptée à vos contraintes industrielles</h2>
+          <p>
+            L’objectif est de préserver la fiabilité de vos équipements tout en
+            tenant compte de vos impératifs de sécurité, de production et de
+            disponibilité.
+          </p>
+        </div>
+
+        <ul class="maintenance-approach__list">
+          <li>
+            <span aria-hidden="true">✓</span>
+            <div>
+              <strong>Un interlocuteur unique</strong>
+              <p>Hervé suit votre demande et échange directement avec vous.</p>
+            </div>
+          </li>
+          <li>
+            <span aria-hidden="true">✓</span>
+            <div>
+              <strong>Une solution sur mesure</strong>
+              <p>L’intervention est définie selon la machine et son usage.</p>
+            </div>
+          </li>
+          <li>
+            <span aria-hidden="true">✓</span>
+            <div>
+              <strong>Une approche orientée production</strong>
+              <p>
+                Les contraintes de votre activité restent au centre du projet.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="maintenance-contact">
+    <Container>
+      <div class="maintenance-contact__box">
+        <div>
+          <p class="maintenance-eyebrow">Parlons de votre équipement</p>
+          <h2>
+            Une panne, un besoin d’entretien ou une pièce à remplacer&nbsp;?
+          </h2>
+          <p>
+            Présentez votre besoin directement à Hervé pour étudier
+            l’intervention la plus adaptée.
+          </p>
+        </div>
+
+        <div class="maintenance-contact__actions">
+          <a class="maintenance-contact__phone" href={phoneHref}>
+            <span>Appeler Hervé</span>
+            <strong>{phoneDisplay}</strong>
+          </a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>
