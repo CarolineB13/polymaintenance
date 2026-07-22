@@ -1,0 +1,193 @@
+---
+import { Image } from "astro:assets";
+
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/ui/Container/Container.astro";
+import Button from "../components/ui/Button/Button.astro";
+
+import installationImage from "../assets/images/installation-process-production.png";
+
+import "../styles/installation.css";
+
+const phoneDisplay = "06 32 94 23 50";
+const phoneHref = "tel:+33632942350";
+---
+
+<Layout
+  title="Installation de machines industrielles en Drôme et Ardèche | Polymaintenance"
+  description="Polymaintenance installe et adapte vos machines, réseaux d’air comprimé, fluides et aspiration, et accompagne vos transferts d’atelier en Drôme, Ardèche et vallée du Rhône."
+>
+  <section class="installation-hero">
+    <Container>
+      <div class="installation-hero__grid">
+        <div class="installation-hero__content">
+          <p class="installation-eyebrow">
+            Machines · Réseaux · Transferts d’atelier
+          </p>
+
+          <h1>Installation et amélioration de vos process de production</h1>
+
+          <p class="installation-hero__intro">
+            Polymaintenance accompagne les professionnels dans la mise en place
+            de nouveaux équipements et l’adaptation de leur environnement de
+            production, selon les besoins de leur atelier et de leur parc machines.
+          </p>
+
+          <div class="installation-hero__actions">
+            <Button
+              href="/contact"
+              label="Demander un devis"
+              variant="primary"
+            />
+          </div>
+
+          <a class="installation-hero__phone" href={phoneHref}>
+            Appeler Hervé : {phoneDisplay}
+          </a>
+        </div>
+
+        <div class="installation-hero__visual">
+          <Image
+            src={installationImage}
+            alt="Installation d’une machine dans un atelier de production industrielle"
+            widths={[480, 720, 960]}
+            sizes="(max-width: 900px) 100vw, 48vw"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="installation-services" aria-labelledby="installation-services-title">
+    <Container>
+      <div class="installation-heading">
+        <p class="installation-eyebrow">Nos interventions</p>
+        <h2 id="installation-services-title">
+          Des installations pensées pour votre outil de production
+        </h2>
+        <p>
+          Chaque projet est étudié en fonction de vos équipements, de la
+          configuration de vos locaux et des contraintes propres à votre activité.
+        </p>
+      </div>
+
+      <div class="installation-services__grid">
+        <article class="installation-card">
+          <p class="installation-card__number">01</p>
+          <h3>Machines et moyens de production</h3>
+          <p>
+            Mise en place de nouvelles machines ou d’un ensemble de moyens de
+            production au sein de votre atelier.
+          </p>
+          <ul>
+            <li>Nouvel équipement industriel</li>
+            <li>Ensemble de machines</li>
+            <li>Adaptation à l’environnement existant</li>
+          </ul>
+        </article>
+
+        <article class="installation-card">
+          <p class="installation-card__number">02</p>
+          <h3>Réseaux d’air comprimé et de fluides</h3>
+          <p>
+            Création ou adaptation des réseaux nécessaires au fonctionnement
+            de vos équipements et de votre process.
+          </p>
+          <ul>
+            <li>Réseau d’air comprimé</li>
+            <li>Circulation de fluides</li>
+            <li>Évolution d’une installation existante</li>
+          </ul>
+        </article>
+
+        <article class="installation-card">
+          <p class="installation-card__number">03</p>
+          <h3>Réseaux d’aspiration</h3>
+          <p>
+            Mise en place d’un réseau d’aspiration adapté aux besoins de votre
+            parc machines et à l’organisation de votre atelier.
+          </p>
+          <ul>
+            <li>Étude du besoin de l’atelier</li>
+            <li>Adaptation au parc machines</li>
+            <li>Modification ou extension du réseau</li>
+          </ul>
+        </article>
+
+        <article class="installation-card">
+          <p class="installation-card__number">04</p>
+          <h3>Transfert et emménagement d’atelier</h3>
+          <p>
+            Accompagnement lors d’un déplacement d’atelier ou de l’emménagement
+            dans de nouveaux locaux de production.
+          </p>
+          <ul>
+            <li>Déplacement des moyens de production</li>
+            <li>Nouvelle implantation</li>
+            <li>Réinstallation dans les locaux</li>
+          </ul>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <section class="installation-method">
+    <Container>
+      <div class="installation-method__panel">
+        <div class="installation-method__intro">
+          <p class="installation-eyebrow">Une approche adaptée</p>
+          <h2>Un projet intégré à votre environnement de travail</h2>
+          <p>
+            L’objectif est de mettre en place une solution cohérente avec votre
+            production, vos locaux et les équipements déjà présents.
+          </p>
+        </div>
+
+        <ol class="installation-method__steps">
+          <li>
+            <span>1</span>
+            <div>
+              <strong>Comprendre le besoin</strong>
+              <p>Échanger sur vos machines, votre atelier et vos contraintes.</p>
+            </div>
+          </li>
+          <li>
+            <span>2</span>
+            <div>
+              <strong>Préparer l’installation</strong>
+              <p>Définir l’implantation et les adaptations nécessaires.</p>
+            </div>
+          </li>
+          <li>
+            <span>3</span>
+            <div>
+              <strong>Installer et adapter</strong>
+              <p>Mettre en place les équipements dans leur environnement.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </Container>
+  </section>
+
+  <section class="installation-area">
+    <Container>
+      <div class="installation-area__grid">
+        <div>
+          <p class="installation-eyebrow">Zone d’intervention</p>
+          <h2>Au plus près de vos ateliers</h2>
+        </div>
+        <div class="installation-area__content">
+          <p>
+            Polymaintenance intervient principalement en Ardèche, dans la Drôme
+            et dans la vallée du Rhône. Selon la nature du projet, des
+            déplacements sont également possibles partout en France et à
+            l’international.
+          </p>
+          <a href={phoneHref}>Parler de votre projet avec Hervé : {phoneDisplay}</a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>

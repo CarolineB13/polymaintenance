@@ -1,0 +1,362 @@
+.negoce-hero,
+.negoce-offer,
+.negoce-choice,
+.negoce-catalogue {
+  padding-block: var(--space-xl);
+}
+
+.negoce-hero {
+  background:
+    radial-gradient(circle at 82% 34%, rgba(80, 149, 52, 0.1), transparent 25%),
+    linear-gradient(180deg, var(--light) 0%, var(--white) 100%);
+}
+
+.negoce-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+.negoce-eyebrow {
+  margin-bottom: var(--space-sm);
+  color: var(--secondary);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.negoce-hero h1 {
+  max-width: 760px;
+  color: var(--primary);
+  font-size: clamp(2.4rem, 4.3vw, 3.8rem);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.negoce-hero__intro {
+  max-width: 680px;
+  margin-top: var(--space-md);
+  color: var(--text);
+  font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+  line-height: 1.7;
+}
+
+.negoce-hero__actions {
+  display: flex;
+  margin-top: var(--space-lg);
+}
+
+.negoce-hero__phone {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  color: var(--primary);
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.negoce-hero__phone:hover {
+  color: var(--secondary-dark);
+  text-decoration: underline;
+}
+
+.negoce-hero__visual {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.negoce-hero__visual::after {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(7, 39, 93, 0.08);
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+}
+
+.negoce-hero__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.negoce-offer {
+  background: var(--white);
+}
+
+.negoce-heading {
+  max-width: 820px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.negoce-heading h2,
+.negoce-choice h2,
+.negoce-catalogue h2 {
+  color: var(--primary);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.negoce-heading > p:last-child {
+  max-width: 700px;
+  margin: var(--space-md) auto 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.negoce-offer__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.negoce-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--light);
+}
+
+.negoce-card::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: var(--secondary);
+  content: "";
+}
+
+.negoce-card__number {
+  margin-bottom: var(--space-sm);
+  color: var(--secondary-dark);
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.negoce-card h3 {
+  color: var(--primary);
+  font-size: 1.45rem;
+  line-height: 1.25;
+}
+
+.negoce-card > p:not(.negoce-card__number) {
+  margin-top: var(--space-sm);
+  line-height: 1.65;
+}
+
+.negoce-card ul {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: var(--space-md);
+}
+
+.negoce-card li {
+  position: relative;
+  padding-left: 1.15rem;
+  line-height: 1.5;
+}
+
+.negoce-card li::before {
+  position: absolute;
+  top: 0.58em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--secondary);
+  content: "";
+}
+
+.negoce-choice {
+  background: var(--light);
+}
+
+.negoce-choice__panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  padding: clamp(2rem, 5vw, 4.5rem);
+  border-radius: var(--radius-lg);
+  background: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+.negoce-choice h2 {
+  color: var(--white);
+}
+
+.negoce-choice__intro > p:last-child {
+  margin-top: var(--space-md);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.negoce-choice__steps {
+  display: grid;
+  align-content: center;
+  gap: var(--space-md);
+  list-style: none;
+}
+
+.negoce-choice__steps li {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: var(--space-sm);
+  align-items: start;
+}
+
+.negoce-choice__steps li > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--primary);
+  background: var(--secondary);
+  font-weight: 900;
+}
+
+.negoce-choice__steps strong {
+  color: var(--white);
+  font-size: 1.05rem;
+}
+
+.negoce-choice__steps p {
+  margin-top: 0.3rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.55;
+}
+
+.negoce-catalogue {
+  background: var(--white);
+}
+
+.negoce-catalogue__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+  padding: clamp(1.75rem, 4vw, 3.5rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--light);
+}
+
+.negoce-catalogue__content p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.negoce-catalogue__content a {
+  display: inline-flex;
+  gap: 0.65rem;
+  align-items: center;
+  margin-top: var(--space-md);
+  color: var(--primary);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: var(--secondary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+.negoce-catalogue__content a:hover {
+  color: var(--secondary-dark);
+}
+
+.negoce-catalogue__content a span {
+  color: var(--secondary);
+  font-size: 1.35rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.negoce-catalogue__content a:hover span {
+  transform: translateX(4px);
+}
+
+@media (max-width: 900px) {
+  .negoce-hero__grid,
+  .negoce-choice__panel,
+  .negoce-catalogue__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .negoce-hero__visual {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 700px) {
+  .negoce-offer__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .negoce-hero,
+  .negoce-offer,
+  .negoce-choice,
+  .negoce-catalogue {
+    padding-block: var(--space-lg);
+  }
+
+  .negoce-hero__grid {
+    gap: var(--space-lg);
+  }
+
+  .negoce-hero h1 {
+    font-size: clamp(2.15rem, 11vw, 3rem);
+  }
+
+  .negoce-hero__actions,
+  .negoce-hero__actions .button {
+    width: 100%;
+  }
+
+  .negoce-hero__phone {
+    display: block;
+    width: 100%;
+    font-size: 0.95rem;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .negoce-hero__visual {
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-md);
+  }
+
+  .negoce-heading {
+    text-align: left;
+  }
+
+  .negoce-offer__grid {
+    gap: var(--space-sm);
+  }
+
+  .negoce-card,
+  .negoce-choice__panel,
+  .negoce-catalogue__grid {
+    border-radius: var(--radius-md);
+  }
+
+  .negoce-choice__panel,
+  .negoce-catalogue__grid {
+    padding: var(--space-md);
+  }
+}

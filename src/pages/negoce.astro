@@ -1,0 +1,193 @@
+---
+import { Image } from "astro:assets";
+
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/ui/Container/Container.astro";
+import Button from "../components/ui/Button/Button.astro";
+
+import negoceImage from "../assets/images/negoce-materiel-professionnel.png";
+
+import "../styles/negoce.css";
+
+const phoneDisplay = "06 32 94 23 50";
+const phoneHref = "tel:+33632942350";
+---
+
+<Layout
+  title="Négoce de matériel industriel en Drôme et Ardèche | Polymaintenance"
+  description="Polymaintenance accompagne les professionnels pour la fourniture de machines neuves ou d’occasion, équipements d’atelier et consommables en Drôme, Ardèche et vallée du Rhône."
+>
+  <section class="negoce-hero">
+    <Container>
+      <div class="negoce-hero__grid">
+        <div class="negoce-hero__content">
+          <p class="negoce-eyebrow">Machines · Équipements · Consommables</p>
+
+          <h1>Négoce et fourniture de matériel professionnel</h1>
+
+          <p class="negoce-hero__intro">
+            Polymaintenance accompagne les professionnels dans la recherche de
+            machines neuves ou d’occasion, d’équipements d’atelier et de
+            consommables adaptés à leur activité.
+          </p>
+
+          <div class="negoce-hero__actions">
+            <Button
+              href="/contact"
+              label="Présenter mon besoin"
+              variant="primary"
+            />
+          </div>
+
+          <a class="negoce-hero__phone" href={phoneHref}>
+            Appeler Hervé : {phoneDisplay}
+          </a>
+        </div>
+
+        <div class="negoce-hero__visual">
+          <Image
+            src={negoceImage}
+            alt="Matériel et consommables professionnels dans un atelier industriel"
+            widths={[480, 720, 960]}
+            sizes="(max-width: 900px) 100vw, 48vw"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="negoce-offer" aria-labelledby="negoce-offer-title">
+    <Container>
+      <div class="negoce-heading">
+        <p class="negoce-eyebrow">Une offre pour les professionnels</p>
+        <h2 id="negoce-offer-title">Du matériel adapté à votre métier</h2>
+        <p>
+          La recherche s’effectue selon votre besoin, votre environnement de
+          production et les caractéristiques attendues de l’équipement.
+        </p>
+      </div>
+
+      <div class="negoce-offer__grid">
+        <article class="negoce-card">
+          <p class="negoce-card__number">01</p>
+          <h3>Machines pour le travail du bois</h3>
+          <p>
+            Équipements neufs ou d’occasion destinés aux menuisiers,
+            ébénistes et ateliers de transformation du bois.
+          </p>
+          <ul>
+            <li>Toupies et dégauchisseuses-raboteuses</li>
+            <li>Tenonneuses et mortaiseuses</li>
+            <li>Autres machines selon le besoin</li>
+          </ul>
+        </article>
+
+        <article class="negoce-card">
+          <p class="negoce-card__number">02</p>
+          <h3>Machines pour la ferronnerie</h3>
+          <p>
+            Matériel professionnel pour équiper, compléter ou renouveler un
+            atelier de travail du métal.
+          </p>
+          <ul>
+            <li>Plieuses et rouleuses</li>
+            <li>Cisailles</li>
+            <li>Équipements d’atelier</li>
+          </ul>
+        </article>
+
+        <article class="negoce-card">
+          <p class="negoce-card__number">03</p>
+          <h3>Soudage et air comprimé</h3>
+          <p>
+            Fourniture de solutions professionnelles pour le soudage et la
+            production d’air comprimé.
+          </p>
+          <ul>
+            <li>Postes à souder</li>
+            <li>Compresseurs</li>
+            <li>Sécheurs d’air</li>
+          </ul>
+        </article>
+
+        <article class="negoce-card">
+          <p class="negoce-card__number">04</p>
+          <h3>Fournitures d’emballage</h3>
+          <p>
+            Consommables pour protéger, maintenir et préparer vos produits
+            avant leur stockage ou leur expédition.
+          </p>
+          <ul>
+            <li>Film d’emballage</li>
+            <li>Cerclage</li>
+            <li>Consommables selon votre usage</li>
+          </ul>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <section class="negoce-choice">
+    <Container>
+      <div class="negoce-choice__panel">
+        <div class="negoce-choice__intro">
+          <p class="negoce-eyebrow">Neuf ou occasion</p>
+          <h2>Une réponse définie à partir de votre besoin</h2>
+          <p>
+            Plutôt que de proposer une solution standard, Polymaintenance
+            recherche un équipement cohérent avec votre activité, vos
+            contraintes techniques et votre budget.
+          </p>
+        </div>
+
+        <ol class="negoce-choice__steps">
+          <li>
+            <span>1</span>
+            <div>
+              <strong>Définir le besoin</strong>
+              <p>Préciser l’usage, les capacités attendues et les contraintes.</p>
+            </div>
+          </li>
+          <li>
+            <span>2</span>
+            <div>
+              <strong>Identifier le matériel adapté</strong>
+              <p>Rechercher une solution neuve ou d’occasion selon le projet.</p>
+            </div>
+          </li>
+          <li>
+            <span>3</span>
+            <div>
+              <strong>Accompagner le projet</strong>
+              <p>Associer si nécessaire la fourniture à l’installation.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </Container>
+  </section>
+
+  <section class="negoce-catalogue">
+    <Container>
+      <div class="negoce-catalogue__grid">
+        <div>
+          <p class="negoce-eyebrow">Matériel disponible</p>
+          <h2>Consultez les annonces en cours</h2>
+        </div>
+
+        <div class="negoce-catalogue__content">
+          <p>
+            Retrouvez séparément les machines et équipements actuellement
+            proposés à la vente par Polymaintenance, avec leur état et leur
+            disponibilité.
+          </p>
+          <a href="/materiel-industriel">
+            Voir tout le matériel disponible
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>
