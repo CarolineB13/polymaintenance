@@ -31,7 +31,7 @@
 .maintenance-hero h1 {
   max-width: 760px;
   color: var(--primary);
-  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-size: clamp(2.4rem, 4.3vw, 3.8rem);
   line-height: 1.05;
   text-wrap: balance;
 }
@@ -46,8 +46,6 @@
 
 .maintenance-hero__actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
   margin-top: var(--space-lg);
 }
 
@@ -85,8 +83,11 @@
   object-position: center;
 }
 .maintenance-hero__phone {
+  display: inline-block;
+  margin-top: var(--space-sm);
   color: var(--primary);
-  font-weight: 600;
+  font-weight: 650;
+  line-height: 1.5;
 }
 
 .maintenance-hero__phone:hover {

@@ -12,12 +12,10 @@ html{
     scroll-behavior:smooth;
 }
 
-body{
-
-    font-family:Arial, Helvetica, sans-serif;
-    color:var(--text);
-    background:white;
-
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--white);
 }
 
 img{
@@ -36,4 +34,118 @@ ul{
 
     list-style:none;
 
+}
+
+/* Animation commune aux pages intérieures */
+
+@keyframes pageFadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pageFadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Texte des Hero */
+
+.maintenance-hero__content,
+.installation-hero__content,
+.negoce-hero__content,
+.contact-page__heading,
+.catalog-hero .container {
+  animation: pageFadeInLeft 0.8s ease both;
+}
+
+/* Images et contenu secondaire */
+
+.maintenance-hero__visual,
+.installation-hero__visual,
+.negoce-hero__visual,
+.contact-page__grid {
+  animation: pageFadeInRight 0.8s ease both;
+}
+
+/* Centrage lorsque les Hero passent sur une colonne */
+
+@media (max-width: 900px) {
+  .maintenance-hero__content,
+  .installation-hero__content,
+  .negoce-hero__content {
+    text-align: center;
+  }
+
+  .maintenance-hero__intro,
+  .installation-hero__intro,
+  .negoce-hero__intro {
+    margin-inline: auto;
+  }
+
+  .maintenance-hero__actions,
+  .installation-hero__actions,
+  .negoce-hero__actions {
+    justify-content: center;
+  }
+
+  .maintenance-hero__area {
+    margin-inline: auto;
+    padding: var(--space-sm) 0 0;
+    border-top: 3px solid var(--secondary);
+    border-left: 0;
+  }
+}
+
+/* Page Matériel */
+
+@media (max-width: 650px) {
+  .catalog-hero {
+    text-align: center;
+  }
+
+  .catalog-hero h1 {
+    margin: 0 auto var(--space-md);
+  }
+
+  .catalog-hero__intro {
+    margin-inline: auto;
+  }
+}
+
+/* Page Contact */
+
+@media (max-width: 600px) {
+  .contact-page .contact-page__heading {
+    text-align: center;
+  }
+}
+
+/* Accessibilité */
+
+@media (prefers-reduced-motion: reduce) {
+  .maintenance-hero__content,
+  .maintenance-hero__visual,
+  .installation-hero__content,
+  .installation-hero__visual,
+  .negoce-hero__content,
+  .negoce-hero__visual,
+  .contact-page__heading,
+  .contact-page__grid,
+  .catalog-hero .container {
+    animation: none;
+  }
 }

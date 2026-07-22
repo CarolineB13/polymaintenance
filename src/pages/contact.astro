@@ -1,0 +1,169 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/ui/Container/Container.astro";
+import { site } from "../config/site";
+
+import "../styles/contact.css";
+
+const phoneHref = `tel:${site.phone.replaceAll(" ", "")}`;
+---
+
+<Layout
+  title="Contact et demande de devis | Polymaintenance"
+  description="Contactez Polymaintenance pour un besoin de maintenance industrielle, d’installation de machines, de négoce ou de matériel professionnel en Ardèche, Drôme et vallée du Rhône."
+>
+  <section class="contact-page">
+    <Container>
+      <div class="contact-page__heading">
+        <p class="contact-eyebrow">Contact et demande de devis</p>
+        <h1>Parlons de votre projet industriel</h1>
+        <p>
+          Une panne, une installation à préparer ou un besoin de matériel&nbsp;?
+          Décrivez votre demande à Hervé afin d’étudier la solution la plus
+          adaptée à votre activité.
+        </p>
+      </div>
+
+      <div class="contact-page__grid">
+        <aside class="contact-details" aria-labelledby="contact-details-title">
+          <div>
+            <p class="contact-eyebrow">Contact direct</p>
+            <h2 id="contact-details-title">Échangez avec Hervé</h2>
+            <p class="contact-details__intro">
+              Pour une demande urgente ou un premier échange, vous pouvez le
+              joindre directement par téléphone ou par e-mail.
+            </p>
+          </div>
+
+          <address class="contact-details__list">
+            <a class="contact-details__item" href={phoneHref}>
+              <span class="contact-details__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </span>
+              <span>
+                <small>Téléphone</small>
+                <strong>{site.phone}</strong>
+              </span>
+            </a>
+
+            <a class="contact-details__item" href={`mailto:${site.email}`}>
+              <span class="contact-details__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                  <path d="m3 7 9 6 9-6"></path>
+                </svg>
+              </span>
+              <span>
+                <small>Adresse e-mail</small>
+                <strong>{site.email}</strong>
+              </span>
+            </a>
+
+            <div class="contact-details__item">
+              <span class="contact-details__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="2.5"></circle>
+                </svg>
+              </span>
+              <span>
+                <small>Zone d’intervention</small>
+                <strong>Ardèche, Drôme et vallée du Rhône</strong>
+                <p>Déplacements possibles en France et à l’international.</p>
+              </span>
+            </div>
+          </address>
+        </aside>
+
+        <div class="contact-form-card">
+          <div class="contact-form-card__heading">
+            <h2>Décrivez votre besoin</h2>
+            <p>Les champs marqués d’un astérisque sont obligatoires.</p>
+          </div>
+
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="contact-form__row">
+              <div class="contact-form__field">
+                <label for="name">Nom et prénom <span aria-hidden="true">*</span></label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+              </div>
+
+              <div class="contact-form__field">
+                <label for="company">Société <small>(facultatif)</small></label>
+                <input id="company" name="company" type="text" autocomplete="organization" />
+              </div>
+            </div>
+
+            <div class="contact-form__row">
+              <div class="contact-form__field">
+                <label for="email">Adresse e-mail <span aria-hidden="true">*</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+
+              <div class="contact-form__field">
+                <label for="phone">Téléphone <small>(facultatif)</small></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" />
+              </div>
+            </div>
+
+            <div class="contact-form__field">
+              <label for="subject">Objet de la demande <span aria-hidden="true">*</span></label>
+              <select id="subject" name="subject" required>
+                <option value="" selected disabled>Sélectionnez un sujet</option>
+                <option value="maintenance">Maintenance ou dépannage</option>
+                <option value="installation">Installation ou transfert</option>
+                <option value="negoce">Recherche de matériel</option>
+                <option value="annonce">Matériel proposé à la vente</option>
+                <option value="autre">Autre demande</option>
+              </select>
+            </div>
+
+            <div class="contact-form__field">
+              <label for="message">Votre message <span aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" rows="7" required></textarea>
+            </div>
+
+            <label class="contact-form__consent" for="consent">
+              <input id="consent" name="consent" type="checkbox" required />
+              <span>
+                J’accepte que les informations saisies soient utilisées pour
+                répondre à ma demande. <a href="/politique-confidentialite">En savoir plus</a>.
+              </span>
+            </label>
+
+            <button class="contact-form__submit" type="submit">
+              Envoyer ma demande
+            </button>
+
+            <p class="contact-form__status" id="contact-form-status" role="status" hidden>
+              L’envoi du formulaire doit encore être activé. En attendant,
+              écrivez directement à
+              <a href={`mailto:${site.email}`}>{site.email}</a>.
+            </p>
+          </form>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>("#contact-form");
+    const status = document.querySelector<HTMLElement>("#contact-form-status");
+
+    form?.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (status) {
+        status.hidden = false;
+        status.focus();
+      }
+    });
+  </script>
+</Layout>

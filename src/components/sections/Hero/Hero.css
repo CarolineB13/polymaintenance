@@ -1,6 +1,17 @@
 .hero {
-  padding: var(--space-xl) 0 var(--space-lg);
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  padding-block: var(--space-xl);
+
+  background:
+    radial-gradient(
+      circle at 82% 34%,
+      rgba(80, 149, 52, 0.1),
+      transparent 25%
+    ),
+    linear-gradient(
+      180deg,
+      var(--light) 0%,
+      var(--white) 100%
+    );
 }
 
 .hero__content {
