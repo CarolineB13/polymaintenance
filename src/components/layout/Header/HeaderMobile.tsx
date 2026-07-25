@@ -5,7 +5,8 @@ import {
   Settings,
   Package,
   ShoppingBag,
-  Phone
+  Phone,
+  GraduationCap
 } from "lucide-react";
 
 const links = [
@@ -33,7 +34,12 @@ const links = [
     href: "/materiel-industriel",
     label: "Matériel à vendre",
     icon: ShoppingBag
-  }
+  },
+  {
+  href: "/formation",
+  label: "Formation",
+  icon: GraduationCap
+}
 ];
 
 interface Props {
