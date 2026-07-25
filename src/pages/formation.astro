@@ -1,0 +1,235 @@
+---
+import { Image } from "astro:assets";
+
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/ui/Container/Container.astro";
+import Button from "../components/ui/Button/Button.astro";
+
+import formationImage from "../assets/images/formation-industrielle.png";
+
+import "../styles/formation.css";
+
+const phoneDisplay = "06 32 94 23 50";
+const phoneHref = "tel:+33632942350";
+---
+
+<Layout
+  title="Formation industrielle en Drôme et Ardèche | Polymaintenance"
+  description="Polymaintenance propose des formations industrielles adaptées aux opérateurs et techniciens : utilisation des machines, maintenance de premier niveau, diagnostic et perfectionnement."
+>
+  <section class="formation-hero">
+    <Container>
+      <div class="formation-hero__grid">
+        <div class="formation-hero__content">
+          <p class="formation-eyebrow">
+            Utilisation · Maintenance · Perfectionnement
+          </p>
+
+          <h1>
+            Formation industrielle adaptée à vos machines et à vos équipes
+          </h1>
+
+          <p class="formation-hero__intro">
+            Polymaintenance accompagne les opérateurs et techniciens afin de
+            développer leurs connaissances, améliorer leur autonomie et
+            favoriser une utilisation fiable et sécurisée des équipements.
+          </p>
+
+          <div class="formation-hero__actions">
+            <Button
+              href="/contact"
+              label="Demander une formation"
+              variant="primary"
+            />
+          </div>
+
+          <a class="formation-hero__phone" href={phoneHref}>
+            Appeler Hervé : {phoneDisplay}
+          </a>
+
+          <p class="formation-hero__area">
+            Les formations sont adaptées à votre parc machines, au niveau des
+            participants et aux besoins spécifiques de votre activité.
+          </p>
+        </div>
+
+        <div class="formation-hero__visual">
+          <Image
+            src={formationImage}
+            alt="Formation d’opérateurs sur une machine industrielle"
+            widths={[480, 720, 960]}
+            sizes="(max-width: 900px) 100vw, 48vw"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section
+    class="formation-services"
+    aria-labelledby="formation-services-title"
+  >
+    <Container>
+      <div class="formation-heading">
+        <p class="formation-eyebrow">Nos niveaux de formation</p>
+
+        <h2 id="formation-services-title">
+          Des formations adaptées aux compétences de chaque participant
+        </h2>
+
+        <p>
+          Le contenu est défini en fonction des équipements utilisés, des
+          missions confiées aux participants et du niveau d’autonomie recherché.
+        </p>
+      </div>
+
+      <div class="formation-services__grid">
+        <article class="formation-card">
+          <p class="formation-card__label">Niveau 1</p>
+
+          <h3>Utilisation et entretien courant</h3>
+
+          <p>
+            Une formation destinée aux opérateurs qui utilisent quotidiennement
+            les machines et réalisent les premières vérifications.
+          </p>
+
+          <ul>
+            <li>Mise en route et arrêt des équipements</li>
+            <li>Utilisation normale de la machine</li>
+            <li>Contrôles visuels et entretien courant</li>
+            <li>Identification des premières anomalies</li>
+            <li>Consignes essentielles de sécurité</li>
+          </ul>
+        </article>
+
+        <article class="formation-card">
+          <p class="formation-card__label">Niveau 2</p>
+
+          <h3>Maintenance et diagnostic</h3>
+
+          <p>
+            Une formation pour les techniciens amenés à rechercher une panne,
+            effectuer des réglages et réaliser des interventions courantes.
+          </p>
+
+          <ul>
+            <li>Compréhension du fonctionnement de la machine</li>
+            <li>Recherche méthodique de panne</li>
+            <li>Maintenance préventive et curative</li>
+            <li>Réglages mécaniques courants</li>
+            <li>Remplacement des composants d’usure</li>
+          </ul>
+        </article>
+
+        <article class="formation-card">
+          <p class="formation-card__label">Niveau 3</p>
+
+          <h3>Perfectionnement technique</h3>
+
+          <p>
+            Une formation destinée aux techniciens expérimentés souhaitant
+            approfondir leur connaissance des équipements et gagner en
+            autonomie.
+          </p>
+
+          <ul>
+            <li>Diagnostic de pannes complexes</li>
+            <li>Analyse des défauts récurrents</li>
+            <li>Réglages et paramétrages avancés</li>
+            <li>Optimisation du fonctionnement</li>
+            <li>Développement de l’expertise technique</li>
+          </ul>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <section class="formation-approach">
+    <Container>
+      <div class="formation-approach__panel">
+        <div class="formation-approach__content">
+          <p class="formation-eyebrow">Une formation sur mesure</p>
+
+          <h2>Un contenu construit autour de votre environnement industriel</h2>
+
+          <p>
+            La formation s’appuie sur vos machines, vos contraintes de
+            production et les situations réellement rencontrées par vos équipes.
+            L’objectif est de transmettre des connaissances directement
+            applicables dans l’atelier.
+          </p>
+        </div>
+
+        <ul class="formation-approach__list">
+          <li>
+            <span aria-hidden="true">✓</span>
+
+            <div>
+              <strong>Une formation adaptée aux participants</strong>
+
+              <p>
+                Le programme tient compte de leur expérience, de leur poste et
+                de leur niveau de responsabilité.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <span aria-hidden="true">✓</span>
+
+            <div>
+              <strong>Une approche pratique</strong>
+
+              <p>
+                Les explications peuvent être réalisées directement sur les
+                équipements utilisés dans l’entreprise.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <span aria-hidden="true">✓</span>
+
+            <div>
+              <strong>Des compétences immédiatement utiles</strong>
+
+              <p>
+                Les participants développent leur autonomie face aux opérations
+                courantes et aux premiers dysfonctionnements.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="formation-contact">
+    <Container>
+      <div class="formation-contact__box">
+        <div>
+          <p class="formation-eyebrow">Parlons de vos besoins</p>
+
+          <h2>
+            Vous souhaitez former vos opérateurs ou vos techniciens&nbsp;?
+          </h2>
+
+          <p>
+            Présentez vos équipements, le niveau des participants et les
+            compétences que vous souhaitez développer afin de définir une
+            formation adaptée.
+          </p>
+        </div>
+
+        <div class="formation-contact__actions">
+          <a class="formation-contact__phone" href={phoneHref}>
+            <span>Appeler Hervé</span>
+            <strong>{phoneDisplay}</strong>
+          </a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>
