@@ -7,10 +7,255 @@ import Button from "../components/ui/Button/Button.astro";
 
 import negoceImage from "../assets/images/negoce-materiel-professionnel.png";
 
+import imerLogo from "../assets/logos/fournisseurs/imer.png";
+import haemmerlinLogo from "../assets/logos/fournisseurs/haemmerlin.png";
+import gysLogo from "../assets/logos/fournisseurs/gys.jpg";
+import abacLogo from "../assets/logos/fournisseurs/abac.webp";
+import decapowerLogo from "../assets/logos/fournisseurs/decapower.png";
+import ayerbeLogo from "../assets/logos/fournisseurs/ayerbe.svg";
+import pramacLogo from "../assets/logos/fournisseurs/pramac.jpg";
+import elumatecLogo from "../assets/logos/fournisseurs/elumatec.svg";
+import hangchaLogo from "../assets/logos/fournisseurs/hangcha.png";
+import altendorfLogo from "../assets/logos/fournisseurs/altendorf.jpg";
+import comaferLogo from "../assets/logos/fournisseurs/comafer.jpg";
+import centauroLogo from "../assets/logos/fournisseurs/centauro.webp";
+import porLogo from "../assets/logos/fournisseurs/por-micucci.webp";
+import bukMachinesLogo from "../assets/logos/fournisseurs/buk-machines.jpg";
+import ohraLogo from "../assets/logos/fournisseurs/ohra.svg";
+import cometLogo from "../assets/logos/fournisseurs/comet.png";
+import hifiFilterLogo from "../assets/logos/fournisseurs/hifi-filter.png";
+import akeLogo from "../assets/logos/fournisseurs/ake.png";
+import prevostLogo from "../assets/logos/fournisseurs/prevost.jpg";
+import roblandLogo from "../assets/logos/fournisseurs/robland.jpg";
+import asticLogo from "../assets/logos/fournisseurs/astic-groupe.png";
+import felderLogo from "../assets/logos/fournisseurs/felder.webp";
+import kraftwerkLogo from "../assets/logos/fournisseurs/kraftwerk.jpg";
+
+import mauguiereLogo from "../assets/logos/fournisseurs/autres/mauguiere.jpg";
+import scmLogo from "../assets/logos/fournisseurs/autres/scm-group.jpg";
+import chambonLogo from "../assets/logos/fournisseurs/autres/chambon.jpg";
+import forezienneLogo from "../assets/logos/fournisseurs/autres/forezienne.jpg";
+import levacLogo from "../assets/logos/fournisseurs/autres/levac.jpg";
+import holzprofiLogo from "../assets/logos/fournisseurs/autres/holzprofi.jpg";
+import filtLogo from "../assets/logos/fournisseurs/autres/filt.jpg";
+import manutLmLogo from "../assets/logos/fournisseurs/autres/manut-lm.jpg";
+import italpresseLogo from "../assets/logos/fournisseurs/autres/italpresse.jpg";
+import acfLogo from "../assets/logos/fournisseurs/autres/acf.jpg";
+import acmLogo from "../assets/logos/fournisseurs/autres/acm.jpg";
+import altradLogo from "../assets/logos/fournisseurs/autres/altrad.jpg";
+import arundaLogo from "../assets/logos/fournisseurs/autres/arunda.jpg";
+import finitureLogo from "../assets/logos/fournisseurs/autres/finiture.jpg";
+import putschLogo from "../assets/logos/fournisseurs/autres/putsch-meniconi.jpg";
+import icaLogo from "../assets/logos/fournisseurs/autres/ica.jpg";
+import golzLogo from "../assets/logos/fournisseurs/autres/golz.jpg";
+import jetLogo from "../assets/logos/fournisseurs/autres/jet.jpg";
+import goubardLogo from "../assets/logos/fournisseurs/autres/goubard.jpg";
+import elcaLogo from "../assets/logos/fournisseurs/autres/elca.jpg";
+import aroLogo from "../assets/logos/fournisseurs/autres/aro.jpg";
+import pressolLogo from "../assets/logos/fournisseurs/autres/pressol.jpg";
+import tigerstopLogo from "../assets/logos/fournisseurs/autres/tigerstop.jpg";
+import jouanelLogo from "../assets/logos/fournisseurs/autres/jouanel.jpg";
+import maggiLogo from "../assets/logos/fournisseurs/autres/maggi.jpg";
+import ormaLogo from "../assets/logos/fournisseurs/autres/orma.jpg";
+import stromabLogo from "../assets/logos/fournisseurs/autres/stromab.jpg";
+import terexLogo from "../assets/logos/fournisseurs/autres/terex.jpg";
+import vibraLogo from "../assets/logos/fournisseurs/autres/vibra-france.jpg";
+import tubescaLogo from "../assets/logos/fournisseurs/autres/tubesca-comabi.jpg";
+import makitaLogo from "../assets/logos/fournisseurs/autres/makita.jpg";
+import lemanLogo from "../assets/logos/fournisseurs/autres/leman.jpg";
+
 import "../styles/negoce.css";
 
 const phoneDisplay = "06 32 94 23 50";
 const phoneHref = "tel:+33632942350";
+
+const suppliers = [
+  {
+    name: "IMER",
+    logo: imerLogo,
+    description: "Malaxeurs, bétonnières et matériel de chantier",
+    categories: ["chantier"],
+  },
+  {
+    name: "Haemmerlin",
+    logo: haemmerlinLogo,
+    description: "Brouettes et équipements de chantier",
+    categories: ["chantier"],
+  },
+  {
+    name: "GYS",
+    logo: gysLogo,
+    description: "Soudage, chargeurs et équipements d’atelier",
+    categories: ["metal", "atelier"],
+  },
+  {
+    name: "ABAC",
+    logo: abacLogo,
+    description: "Compresseurs et solutions d’air comprimé",
+    categories: ["atelier"],
+    dark: true,
+  },
+  {
+    name: "Decapower",
+    logo: decapowerLogo,
+    description: "Postes à souder et découpe plasma",
+    categories: ["metal"],
+    red: true,
+  },
+  {
+    name: "Ayerbe",
+    logo: ayerbeLogo,
+    description: "Groupes électrogènes et matériel de chantier",
+    categories: ["chantier"],
+  },
+  {
+    name: "Pramac",
+    logo: pramacLogo,
+    description: "Groupes électrogènes et solutions de manutention",
+    categories: ["chantier", "manutention"],
+  },
+  {
+    name: "Elumatec",
+    logo: elumatecLogo,
+    description: "Machines pour profils aluminium et PVC",
+    categories: ["metal"],
+  },
+  {
+    name: "Hangcha",
+    logo: hangchaLogo,
+    description: "Chariots élévateurs et manutention",
+    categories: ["manutention"],
+  },
+  {
+    name: "Altendorf",
+    logo: altendorfLogo,
+    description: "Scies à format pour le travail du bois",
+    categories: ["bois"],
+  },
+  {
+    name: "Comafer",
+    logo: comaferLogo,
+    description: "Broyeurs et presses à briquettes",
+    categories: ["bois", "dechets"],
+  },
+  {
+    name: "Centauro",
+    logo: centauroLogo,
+    description: "Machines pour le travail du bois",
+    categories: ["bois"],
+  },
+  {
+    name: "POR Micucci System",
+    logo: porLogo,
+    description: "Presses à briquettes et valorisation des déchets",
+    categories: ["bois", "dechets"],
+  },
+  {
+    name: "BUK Machines",
+    logo: bukMachinesLogo,
+    description: "Machines neuves et d’occasion pour le bois et le métal",
+    categories: ["bois", "metal"],
+  },
+  {
+    name: "OHRA",
+    logo: ohraLogo,
+    description: "Rayonnages et stockage industriel",
+    categories: ["manutention"],
+  },
+  {
+    name: "Comet",
+    logo: cometLogo,
+    description: "Nettoyage haute pression et pompes",
+    categories: ["atelier"],
+  },
+  {
+    name: "HIFI FILTER",
+    logo: hifiFilterLogo,
+    description: "Filtres pour machines et équipements",
+    categories: ["atelier"],
+  },
+  {
+    name: "AKE",
+    logo: akeLogo,
+    description: "Outils de coupe pour le bois et les matériaux",
+    categories: ["bois", "atelier"],
+  },
+  {
+    name: "Prévost",
+    logo: prevostLogo,
+    description: "Réseaux d’air comprimé et raccords",
+    categories: ["atelier"],
+  },
+  {
+    name: "Robland",
+    logo: roblandLogo,
+    description: "Machines pour le travail du bois",
+    categories: ["bois"],
+  },
+  {
+    name: "Astic Groupe",
+    logo: asticLogo,
+    description: "Emballages et solutions de conditionnement",
+    categories: ["dechets"],
+  },
+  {
+    name: "Felder",
+    logo: felderLogo,
+    description: "Machines pour le travail du bois",
+    categories: ["bois"],
+  },
+  {
+    name: "Kraftwerk",
+    logo: kraftwerkLogo,
+    description: "Outillage et équipements d’atelier",
+    categories: ["atelier"],
+  },
+];
+
+const supplierCategories = [
+  { value: "all", label: "Toutes les marques" },
+  { value: "bois", label: "Bois" },
+  { value: "metal", label: "Métal & soudage" },
+  { value: "atelier", label: "Air & atelier" },
+  { value: "manutention", label: "Manutention & stockage" },
+  { value: "chantier", label: "Chantier & énergie" },
+  { value: "dechets", label: "Déchets & emballage" },
+];
+
+const otherSuppliers = [
+  { name: "Mauguière", logo: mauguiereLogo },
+  { name: "SCM Group", logo: scmLogo },
+  { name: "Chambon", logo: chambonLogo },
+  { name: "Forézienne", logo: forezienneLogo },
+  { name: "Levac", logo: levacLogo },
+  { name: "Holzprofi", logo: holzprofiLogo },
+  { name: "Filt", logo: filtLogo },
+  { name: "Manut-LM", logo: manutLmLogo },
+  { name: "Italpresse", logo: italpresseLogo },
+  { name: "ACF", logo: acfLogo },
+  { name: "ACM", logo: acmLogo },
+  { name: "Altrad", logo: altradLogo },
+  { name: "Arunda", logo: arundaLogo },
+  { name: "Finiture", logo: finitureLogo },
+  { name: "Putsch Meniconi", logo: putschLogo },
+  { name: "ICA", logo: icaLogo },
+  { name: "Gölz", logo: golzLogo },
+  { name: "JET", logo: jetLogo },
+  { name: "Goubard", logo: goubardLogo },
+  { name: "ELCA Radiocontrols", logo: elcaLogo },
+  { name: "ARO", logo: aroLogo },
+  { name: "Pressol", logo: pressolLogo },
+  { name: "TigerStop", logo: tigerstopLogo },
+  { name: "Jouanel", logo: jouanelLogo },
+  { name: "Maggi", logo: maggiLogo },
+  { name: "ORMA Macchine", logo: ormaLogo },
+  { name: "Stromab", logo: stromabLogo },
+  { name: "Terex", logo: terexLogo },
+  { name: "Vibra France", logo: vibraLogo },
+  { name: "Tubesca-Comabi", logo: tubescaLogo },
+  { name: "Makita", logo: makitaLogo },
+  { name: "Leman", logo: lemanLogo },
+];
 ---
 
 <Layout
@@ -123,6 +368,178 @@ const phoneHref = "tel:+33632942350";
       </div>
     </Container>
   </section>
+
+  <section class="negoce-suppliers" aria-labelledby="negoce-suppliers-title">
+    <Container>
+      <div class="negoce-heading">
+        <p class="negoce-eyebrow">Fournisseurs et marques</p>
+        <h2 id="negoce-suppliers-title">
+          Des marques professionnelles reconnues
+        </h2>
+        <p>
+          Polymaintenance s’appuie sur un réseau de fournisseurs spécialisés
+          pour rechercher les machines, équipements, pièces et consommables
+          adaptés à chaque besoin.
+        </p>
+      </div>
+
+      <div class="negoce-suppliers__grid">
+        <label class="negoce-suppliers__category-select">
+          <span>Catégorie</span>
+          <select data-supplier-select>
+            {
+              supplierCategories.map((category) => (
+                <option value={category.value}>{category.label}</option>
+              ))
+            }
+          </select>
+        </label>
+
+        <div
+          class="negoce-suppliers__filters"
+          role="group"
+          aria-label="Filtrer les fournisseurs par catégorie"
+        >
+          {
+            supplierCategories.map((category) => (
+              <button
+                class:list={[
+                  "negoce-suppliers__filter",
+                  { "is-active": category.value === "all" },
+                ]}
+                type="button"
+                data-supplier-filter={category.value}
+                aria-pressed={category.value === "all" ? "true" : "false"}
+              >
+                {category.label}
+              </button>
+            ))
+          }
+        </div>
+
+        <p class="negoce-suppliers__count" aria-live="polite">
+          {suppliers.length} marques affichées
+        </p>
+
+        <div class="negoce-suppliers__cards">
+          {
+            suppliers.map((supplier) => (
+              <article
+                class:list={[
+                  "negoce-supplier",
+                  { "negoce-supplier--dark": supplier.dark },
+                  { "negoce-supplier--red": supplier.red },
+                ]}
+                data-supplier-card
+                data-categories={supplier.categories.join(" ")}
+              >
+                <div class="negoce-supplier__logo">
+                  <img
+                    src={supplier.logo.src}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+
+                <div class="negoce-supplier__content">
+                  <h3>{supplier.name}</h3>
+                  <p>{supplier.description}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="negoce-suppliers__other">
+        <h3>Également disponibles selon vos besoins</h3>
+
+        <div class="negoce-suppliers__secondary-grid">
+          {
+            otherSuppliers.map((supplier) => (
+              <article class="negoce-supplier negoce-supplier--secondary">
+                <img
+                  src={supplier.logo.src}
+                  alt={`Logo ${supplier.name}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="negoce-suppliers__cta">
+        <p>
+          Vous recherchez une marque, une machine ou un consommable précis ?
+        </p>
+        <Button
+          href="/contact"
+          label="Rechercher un équipement"
+          variant="primary"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const section = document.querySelector(".negoce-suppliers");
+
+      if (!section) return;
+
+      const filters = Array.from(
+        section.querySelectorAll("[data-supplier-filter]"),
+      );
+      const categorySelect = section.querySelector("[data-supplier-select]");
+      const cards = Array.from(
+        section.querySelectorAll("[data-supplier-card]"),
+      );
+      const count = section.querySelector(".negoce-suppliers__count");
+
+      const updateSuppliers = (selectedCategory) => {
+        let visibleCount = 0;
+
+        filters.forEach((button) => {
+          const isActive = button.dataset.supplierFilter === selectedCategory;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+
+        if (categorySelect) {
+          categorySelect.value = selectedCategory;
+        }
+
+        cards.forEach((card) => {
+          const categories = card.dataset.categories?.split(" ") ?? [];
+          const isVisible =
+            selectedCategory === "all" || categories.includes(selectedCategory);
+
+          card.hidden = !isVisible;
+
+          if (isVisible) visibleCount += 1;
+        });
+
+        if (count) {
+          count.textContent = `${visibleCount} ${
+            visibleCount > 1 ? "marques affichées" : "marque affichée"
+          }`;
+        }
+      };
+
+      filters.forEach((filter) => {
+        filter.addEventListener("click", () => {
+          updateSuppliers(filter.dataset.supplierFilter ?? "all");
+        });
+      });
+
+      categorySelect?.addEventListener("change", () => {
+        updateSuppliers(categorySelect.value);
+      });
+    })();
+  </script>
 
   <section class="negoce-choice">
     <Container>

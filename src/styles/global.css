@@ -67,6 +67,7 @@ ul{
 .maintenance-hero__content,
 .installation-hero__content,
 .negoce-hero__content,
+.formation-hero__content,
 .contact-page__heading,
 .catalog-hero .container {
   animation: pageFadeInLeft 0.8s ease both;
@@ -77,6 +78,7 @@ ul{
 .maintenance-hero__visual,
 .installation-hero__visual,
 .negoce-hero__visual,
+.formation-hero__visual,
 .contact-page__grid {
   animation: pageFadeInRight 0.8s ease both;
 }
@@ -86,23 +88,27 @@ ul{
 @media (max-width: 900px) {
   .maintenance-hero__content,
   .installation-hero__content,
-  .negoce-hero__content {
+  .negoce-hero__content,
+  .formation-hero__content {
     text-align: center;
   }
 
   .maintenance-hero__intro,
   .installation-hero__intro,
-  .negoce-hero__intro {
+  .negoce-hero__intro,
+  .formation-hero__intro {
     margin-inline: auto;
   }
 
   .maintenance-hero__actions,
   .installation-hero__actions,
-  .negoce-hero__actions {
+  .negoce-hero__actions,
+  .formation-hero__actions {
     justify-content: center;
   }
 
-  .maintenance-hero__area {
+  .maintenance-hero__area,
+  .formation-hero__area {
     margin-inline: auto;
     padding: var(--space-sm) 0 0;
     border-top: 3px solid var(--secondary);
@@ -143,6 +149,8 @@ ul{
   .installation-hero__visual,
   .negoce-hero__content,
   .negoce-hero__visual,
+  .formation-hero__content,
+  .formation-hero__visual,
   .contact-page__heading,
   .contact-page__grid,
   .catalog-hero .container {

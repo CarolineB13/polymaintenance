@@ -31,15 +31,16 @@ const links = [
     icon: Package
   },
   {
-    href: "/materiel-industriel",
-    label: "Matériel à vendre",
-    icon: ShoppingBag
-  },
-  {
   href: "/formation",
   label: "Formation",
   icon: GraduationCap
-}
+},
+  {
+    href: "/materiel-industriel",
+    label: "Matériel à vendre",
+    icon: ShoppingBag
+  }
+  
 ];
 
 interface Props {

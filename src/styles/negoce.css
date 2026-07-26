@@ -1,5 +1,6 @@
 .negoce-hero,
 .negoce-offer,
+.negoce-suppliers,
 .negoce-choice,
 .negoce-catalogue {
   padding-block: var(--space-xl);
@@ -86,8 +87,14 @@
   object-position: center;
 }
 
-.negoce-offer {
+.negoce-offer,
+.negoce-choice {
   background: var(--white);
+}
+
+.negoce-suppliers,
+.negoce-catalogue {
+  background: var(--light);
 }
 
 .negoce-heading {
@@ -138,7 +145,6 @@
   content: "";
 }
 
-
 .negoce-card h3 {
   color: var(--primary);
   font-size: 1.45rem;
@@ -173,8 +179,231 @@
   content: "";
 }
 
-.negoce-choice {
-  background: var(--light);
+.negoce-suppliers__grid {
+  margin-top: var(--space-lg);
+}
+
+.negoce-suppliers__category-select {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+}
+
+.negoce-suppliers__category-select span {
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.negoce-suppliers__category-select select {
+  width: 100%;
+  min-height: 46px;
+  padding: 9px 42px 9px 14px;
+  color: var(--primary);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  transition: border-color 0.2s ease;
+}
+
+.negoce-suppliers__category-select select:hover {
+  border-color: var(--secondary);
+}
+
+.negoce-suppliers__category-select select:focus-visible {
+  outline: 3px solid rgba(80, 149, 52, 0.32);
+  outline-offset: 3px;
+}
+
+.negoce-suppliers__filters {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.negoce-suppliers__filter {
+  padding: 0.72rem 1rem;
+  border: 1px solid rgba(7, 39, 93, 0.18);
+  border-radius: 999px;
+  color: var(--primary);
+  background: var(--white);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 750;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.negoce-suppliers__filter:hover {
+  border-color: var(--secondary);
+  color: var(--secondary-dark);
+  transform: translateY(-1px);
+}
+
+.negoce-suppliers__filter:focus-visible {
+  outline: 3px solid rgba(80, 149, 52, 0.32);
+  outline-offset: 3px;
+}
+
+.negoce-suppliers__filter.is-active {
+  border-color: var(--primary);
+  color: var(--white);
+  background: var(--primary);
+}
+
+.negoce-suppliers__count {
+  margin-top: var(--space-sm);
+  color: var(--text);
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.negoce-suppliers__cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.negoce-supplier {
+  display: grid;
+  grid-template-rows: 112px minmax(0, 1fr);
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: 0 8px 24px rgba(7, 39, 93, 0.05);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.negoce-supplier[hidden] {
+  display: none;
+}
+
+.negoce-supplier:hover {
+  border-color: rgba(80, 149, 52, 0.45);
+  box-shadow: 0 12px 28px rgba(7, 39, 93, 0.1);
+  transform: translateY(-3px);
+}
+
+.negoce-supplier__logo {
+  display: grid;
+  padding: 1.15rem;
+  place-items: center;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+
+.negoce-supplier--dark .negoce-supplier__logo {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.negoce-supplier--red .negoce-supplier__logo {
+  border-color: #8f1d22;
+  background: linear-gradient(135deg, #8f1d22 0%, #c6202b 100%);
+}
+
+.negoce-supplier__logo img {
+  display: block;
+  width: 100%;
+  max-width: 145px;
+  max-height: 72px;
+  object-fit: contain;
+}
+
+.negoce-supplier__content {
+  padding: 1rem 1.1rem 1.15rem;
+}
+
+.negoce-supplier__content h3 {
+  color: var(--primary);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.negoce-supplier__content p {
+  margin-top: 0.4rem;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.negoce-suppliers__other {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+
+.negoce-suppliers__other h3 {
+  color: var(--primary);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  line-height: 1.25;
+  text-align: center;
+}
+
+.negoce-suppliers__secondary-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: var(--space-md);
+}
+
+.negoce-supplier--secondary {
+  display: grid;
+  flex-basis: 140px;
+  grid-template-rows: 1fr;
+  max-width: 155px;
+  min-height: 95px;
+  padding: 0.85rem;
+  place-items: center;
+  box-shadow: none;
+}
+
+.negoce-supplier--secondary img {
+  display: block;
+  width: 100%;
+  max-width: 115px;
+  height: auto;
+  max-height: 52px;
+  object-fit: contain;
+  filter: saturate(0.82);
+}
+
+.negoce-suppliers__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  align-items: center;
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.negoce-suppliers__cta p {
+  color: var(--primary);
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 .negoce-choice__panel {
@@ -234,10 +463,6 @@
   line-height: 1.55;
 }
 
-.negoce-catalogue {
-  background: var(--white);
-}
-
 .negoce-catalogue__grid {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
@@ -246,7 +471,7 @@
   padding: clamp(1.75rem, 4vw, 3.5rem);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  background: var(--light);
+  background: var(--white);
 }
 
 .negoce-catalogue__content p {
@@ -282,6 +507,16 @@
   transform: translateX(4px);
 }
 
+@media (min-width: 901px) {
+  .negoce-suppliers__category-select {
+    display: none;
+  }
+
+  .negoce-suppliers__filters {
+    display: flex;
+  }
+}
+
 @media (max-width: 900px) {
   .negoce-hero__grid,
   .negoce-choice__panel,
@@ -291,6 +526,10 @@
 
   .negoce-hero__visual {
     aspect-ratio: 16 / 10;
+  }
+
+  .negoce-suppliers__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -303,6 +542,7 @@
 @media (max-width: 600px) {
   .negoce-hero,
   .negoce-offer,
+  .negoce-suppliers,
   .negoce-choice,
   .negoce-catalogue {
     padding-block: var(--space-lg);
@@ -338,8 +578,67 @@
     text-align: left;
   }
 
+  .negoce-heading > p:last-child {
+    margin-inline: 0;
+  }
+
+  .negoce-suppliers__count {
+    text-align: left;
+  }
+
   .negoce-offer__grid {
     gap: var(--space-sm);
+  }
+
+  .negoce-suppliers__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .negoce-supplier {
+    grid-template-columns: minmax(115px, 0.38fr) minmax(0, 0.62fr);
+    grid-template-rows: minmax(118px, auto);
+  }
+
+  .negoce-supplier__logo {
+    padding: 0.9rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 0;
+  }
+
+  .negoce-supplier__logo img {
+    max-width: 120px;
+    max-height: 60px;
+  }
+
+  .negoce-supplier__content {
+    align-self: center;
+    padding: 1rem;
+  }
+
+  .negoce-suppliers__cta {
+    align-items: stretch;
+    padding-inline: 0;
+  }
+
+  .negoce-suppliers__other h3 {
+    text-align: left;
+  }
+
+  .negoce-supplier--secondary {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(85px, 1fr);
+    flex-basis: calc(33.333% - 0.5rem);
+    min-width: 0;
+    min-height: 85px;
+  }
+
+  .negoce-supplier--secondary img {
+    max-width: 100%;
+  }
+
+  .negoce-suppliers__cta,
+  .negoce-suppliers__cta .button {
+    width: 100%;
   }
 
   .negoce-card,
@@ -351,5 +650,12 @@
   .negoce-choice__panel,
   .negoce-catalogue__grid {
     padding: var(--space-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .negoce-supplier,
+  .negoce-suppliers__filter {
+    transition: none;
   }
 }
