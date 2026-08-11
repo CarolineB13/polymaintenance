@@ -237,24 +237,17 @@ a.contact-details__item:hover {
   box-shadow: 0 0 0 3px rgba(80, 149, 52, 0.14);
 }
 
-.contact-form__consent {
-  display: grid;
-  grid-template-columns: 20px minmax(0, 1fr);
-  gap: 0.7rem;
-  align-items: start;
+.contact-form__privacy {
+  padding: var(--space-sm);
+  border-left: 4px solid var(--secondary);
+  border-radius: var(--radius-sm);
+  background: var(--light);
   color: var(--text);
   font-size: 0.86rem;
   line-height: 1.55;
 }
 
-.contact-form__consent input {
-  width: 18px;
-  height: 18px;
-  margin-top: 0.12rem;
-  accent-color: var(--secondary);
-}
-
-.contact-form__consent a {
+.contact-form__privacy a {
   color: var(--primary);
   font-weight: 700;
   text-decoration: underline;

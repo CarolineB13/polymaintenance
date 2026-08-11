@@ -1,0 +1,214 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/ui/Container/Container.astro";
+import { site } from "../config/site";
+
+import "../styles/mentions-legales.css";
+---
+
+<Layout
+  title="Mentions légales et confidentialité"
+  description="Mentions légales, informations sur l’éditeur du site Polymaintenance et politique de protection des données personnelles."
+>
+  <section class="legal-page">
+    <Container>
+      <header class="legal-page__heading">
+        <p class="legal-page__eyebrow">Informations légales</p>
+        <h1>Mentions légales et confidentialité</h1>
+        <p>
+          Cette page présente l’éditeur et l’hébergeur du site ainsi que les
+          modalités de traitement des données personnelles.
+        </p>
+      </header>
+
+      <nav class="legal-page__summary" aria-label="Sommaire de la page">
+        <h2>Accès rapide</h2>
+        <ul>
+          <li><a href="#editeur">Éditeur du site</a></li>
+          <li><a href="#hebergement">Hébergement</a></li>
+          <li>
+            <a href="#propriete-intellectuelle">Propriété intellectuelle</a>
+          </li>
+          <li><a href="#donnees-personnelles">Données personnelles</a></li>
+          <li><a href="#cookies">Cookies</a></li>
+        </ul>
+      </nav>
+
+      <div class="legal-page__content">
+        <section id="editeur" class="legal-section">
+          <h2>Éditeur du site</h2>
+          <p>Le site <strong>{site.name}</strong> est édité par :</p>
+          <address class="legal-details">
+            <p><strong>POLYMAINTENANCE</strong></p>
+            <p>SASU au capital social de 3&nbsp;000&nbsp;€</p>
+            <p>55 route de la Manufacture Royale, 07200 Ucel, France</p>
+            <p>SIREN : 913 979 928</p>
+            <p>SIRET : 913 979 928 00011</p>
+            <p>RCS Aubenas : 913 979 928</p>
+            <p>Numéro de TVA intracommunautaire : FR56 913979928</p>
+            <p>
+              Téléphone : <a href={`tel:${site.phone.replaceAll(" ", "")}`}
+                >{site.phone}</a
+              >
+            </p>
+            <p>E-mail : <a href={`mailto:${site.email}`}>{site.email}</a></p>
+          </address>
+          <p>
+            <strong>Directeur de la publication :</strong> Hervé Giaufret, en qualité
+            de président de POLYMAINTENANCE.
+          </p>
+          <p>
+            <strong>Conception et réalisation : </strong>
+            <a
+              href="https://happyclicks.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Happyclicks</a
+            >.
+          </p>
+        </section>
+
+        <section id="hebergement" class="legal-section">
+          <h2>Hébergement</h2>
+          <p>Le site est hébergé par :</p>
+          <address class="legal-details">
+            <p><strong>OVH SAS</strong></p>
+            <p>SAS au capital de 50&nbsp;000&nbsp;000&nbsp;€</p>
+            <p>RCS Lille Métropole : 424 761 419</p>
+            <p>2 rue Kellermann, 59100 Roubaix, France</p>
+            <p>
+              Site : <a
+                href="https://www.ovhcloud.com/fr/"
+                target="_blank"
+                rel="noopener noreferrer">www.ovhcloud.com</a
+              >
+            </p>
+          </address>
+        </section>
+
+        <section id="propriete-intellectuelle" class="legal-section">
+          <h2>Propriété intellectuelle</h2>
+          <p>
+            Les textes, photographies, graphismes, logos, éléments visuels et
+            plus généralement l’ensemble du contenu présent sur ce site sont
+            protégés par le droit de la propriété intellectuelle. Sauf
+            autorisation écrite préalable, toute reproduction, représentation,
+            modification, publication ou adaptation, totale ou partielle, est
+            interdite.
+          </p>
+          <p>
+            Les marques, noms et logos de fabricants ou de fournisseurs
+            éventuellement présentés restent la propriété de leurs titulaires
+            respectifs.
+          </p>
+        </section>
+
+        <section id="responsabilite" class="legal-section">
+          <h2>Responsabilité</h2>
+          <p>
+            POLYMAINTENANCE s’efforce de fournir des informations exactes et à
+            jour. Celles-ci sont toutefois données à titre indicatif et peuvent
+            être modifiées sans préavis. POLYMAINTENANCE ne peut garantir
+            l’absence totale d’erreur ou l’indisponibilité temporaire du site.
+          </p>
+          <p>
+            Les liens vers des sites tiers sont proposés à titre pratique.
+            POLYMAINTENANCE n’exerce aucun contrôle sur leur contenu et ne peut
+            être tenue responsable de ces ressources externes.
+          </p>
+        </section>
+
+        <section id="donnees-personnelles" class="legal-section">
+          <h2>Données personnelles</h2>
+
+          <h3>Responsable du traitement</h3>
+          <p>
+            POLYMAINTENANCE est responsable du traitement des données transmises
+            depuis ce site. Pour toute question, vous pouvez écrire à <a
+              href={`mailto:${site.email}`}>{site.email}</a
+            >.
+          </p>
+
+          <h3>Données collectées et finalités</h3>
+          <p>
+            Le formulaire de contact peut recueillir vos nom et prénom, votre
+            adresse e-mail, votre numéro de téléphone, le nom de votre société,
+            l’objet de votre demande et le contenu de votre message. Les champs
+            signalés par un astérisque sont nécessaires pour pouvoir traiter et
+            répondre à votre demande ; les autres sont facultatifs.
+          </p>
+          <p>
+            Ces informations sont utilisées uniquement pour répondre à votre
+            demande, échanger au sujet de votre projet et, le cas échéant,
+            préparer un devis ou une proposition commerciale. Elles ne sont ni
+            vendues ni utilisées pour vous adresser une prospection électronique
+            sans base légale appropriée.
+          </p>
+
+          <h3>Base légale</h3>
+          <p>
+            Le traitement repose sur l’intérêt légitime de POLYMAINTENANCE à
+            répondre aux sollicitations reçues. Lorsqu’une demande concerne un
+            devis ou une prestation, il peut également reposer sur l’exécution
+            de mesures précontractuelles prises à votre demande.
+          </p>
+
+          <h3>Destinataires et hébergement</h3>
+          <p>
+            Les données sont accessibles uniquement aux personnes habilitées au
+            sein de POLYMAINTENANCE et aux prestataires techniques nécessaires
+            au fonctionnement et à l’hébergement du site. L’hébergement est
+            assuré par OVH SAS, société établie en France. OVH peut traiter les
+            données techniques nécessaires à la fourniture, à la sécurisation et
+            à la maintenance de son service d’hébergement, conformément à ses
+            engagements contractuels et à sa politique de protection des
+            données.
+          </p>
+
+          <h3>Durée de conservation</h3>
+          <p>
+            Les demandes de contact sont conservées pendant le temps nécessaire
+            à leur traitement, puis au maximum trois ans à compter du dernier
+            échange lorsqu’elles concernent un prospect. Lorsqu’une relation
+            contractuelle est engagée, certaines informations peuvent être
+            conservées plus longtemps afin de respecter les obligations légales,
+            comptables ou probatoires applicables.
+          </p>
+
+          <h3>Vos droits</h3>
+          <p>
+            Vous pouvez demander l’accès à vos données, leur rectification, leur
+            effacement ou la limitation de leur traitement. Vous pouvez aussi
+            vous opposer au traitement fondé sur l’intérêt légitime et exercer,
+            lorsque les conditions sont réunies, votre droit à la portabilité.
+          </p>
+          <p>
+            Pour exercer vos droits, écrivez à <a href={`mailto:${site.email}`}
+              >{site.email}</a
+            > en précisant votre demande. En cas de difficulté non résolue, vous pouvez
+            saisir la <a
+              href="https://www.cnil.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Commission nationale de l’informatique et des libertés (CNIL)</a
+            >.
+          </p>
+        </section>
+
+        <section id="cookies" class="legal-section">
+          <h2>Cookies et traceurs</h2>
+          <p>
+            Le site n’utilise actuellement aucun cookie publicitaire, outil de
+            mesure d’audience ni traceur nécessitant le recueil préalable de
+            votre consentement. Si de tels outils sont ajoutés ultérieurement,
+            cette page sera mise à jour et un dispositif de consentement sera
+            mis en place lorsque la réglementation l’exige.
+          </p>
+        </section>
+      </div>
+
+      <p class="legal-page__updated">Dernière mise à jour : 11 août 2026.</p>
+    </Container>
+  </section>
+</Layout>
