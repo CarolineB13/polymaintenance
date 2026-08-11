@@ -5,14 +5,45 @@ import Hero from "../components/sections/Hero/Hero.astro";
 import Services from "../components/sections/Services/Services.astro";
 import About from "../components/sections/About/About.astro";
 import FeaturedProducts from "../components/sections/FeaturedProducts/FeaturedProducts.astro";
+import Container from "../components/ui/Container/Container.astro";
+import SectionTitle from "../components/ui/SectionTitle/SectionTitle.astro";
+
+import "../styles/home.css";
 ---
 
 <Layout
   title="Maintenance industrielle en Ardèche et Drôme"
-  description="Polymaintenance intervient pour la maintenance industrielle, l’installation de machines et la fourniture de matériel professionnel en Ardèche, dans la Drôme, la vallée du Rhône, partout en France et à l’international."
+  description="À Ucel, près d’Aubenas, Polymaintenance assure maintenance, installation et négoce de matériel industriel en Ardèche, Drôme et vallée du Rhône."
 >
   <Hero />
   <Services />
   <About />
+
+  <section class="service-area" aria-labelledby="service-area-title">
+    <Container>
+      <div class="service-area__content">
+        <div id="service-area-title">
+          <SectionTitle
+            eyebrow="Zone d’intervention"
+            title="Une expertise de proximité, au-delà de l’Ardèche"
+            subtitle="Basée à Ucel, près d’Aubenas, Polymaintenance intervient auprès des professionnels en Ardèche, dans la vallée du Rhône et sur le plateau ardéchois."
+          />
+        </div>
+
+        <div class="service-area__details">
+          <p>
+            Les déplacements sont également possibles dans la Drôme, le Gard et
+            le Vaucluse, notamment autour de Montélimar, Valence, Alès et Nîmes.
+          </p>
+
+          <p>
+            Pour des besoins spécifiques, Polymaintenance étudie aussi les
+            projets à Lyon, partout en France et à l’international.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
   <FeaturedProducts />
 </Layout>

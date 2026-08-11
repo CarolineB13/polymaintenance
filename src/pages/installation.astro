@@ -11,12 +11,28 @@ import "../styles/installation.css";
 
 const phoneDisplay = "06 32 94 23 50";
 const phoneHref = "tel:+33632942350";
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Installation de machines industrielles",
+  serviceType:
+    "Installation de machines, réseaux d’air comprimé, réseaux de fluides, aspiration et transferts d’atelier",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Polymaintenance",
+    telephone: "+33632942350",
+  },
+  areaServed: ["Ardèche", "Drôme", "Vallée du Rhône", "France"],
+};
 ---
 
 <Layout
-  title="Installation de machines industrielles en Drôme et Ardèche | Polymaintenance"
-  description="Polymaintenance installe et adapte vos machines, réseaux d’air comprimé, fluides et aspiration, et accompagne vos transferts d’atelier en Drôme, Ardèche et vallée du Rhône."
+  title="Installation industrielle en Ardèche et Drôme | Polymaintenance"
+  description="Installation de machines industrielles, réseaux d’air comprimé et aspiration, transferts d’atelier en Ardèche, Drôme et dans la vallée du Rhône."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
   <section class="installation-hero">
     <Container>
       <div class="installation-hero__grid">
@@ -25,7 +41,9 @@ const phoneHref = "tel:+33632942350";
             Machines · Réseaux · Transferts d’atelier
           </p>
 
-          <h1>Installation et amélioration de vos process de production</h1>
+          <h1>
+            Installation de machines et amélioration de vos process industriels
+          </h1>
 
           <p class="installation-hero__intro">
             Polymaintenance accompagne les professionnels dans la mise en place
@@ -183,12 +201,20 @@ const phoneHref = "tel:+33632942350";
         </div>
         <div class="installation-area__content">
           <p>
-            Polymaintenance intervient principalement en Ardèche, dans la Drôme
-            et dans la vallée du Rhône. Selon la nature du projet, des
-            déplacements sont également possibles partout en France et à
-            l’international.
+            Basée à Ucel, près d’Aubenas, Polymaintenance intervient
+            principalement en Ardèche, dans la Drôme et dans la vallée du Rhône.
+            Selon la nature du projet, des déplacements sont également possibles
+            partout en France et à l’international.
           </p>
-          <a href={phoneHref}
+          <p>
+            Après l’installation, nous pouvons également assurer la <a
+              class="installation-area__service-link"
+              href="/maintenance"
+            >
+              maintenance de vos équipements industriels</a
+            >.
+          </p>
+          <a class="installation-area__phone" href={phoneHref}
             >Parler de votre projet avec Hervé : {phoneDisplay}</a
           >
         </div>

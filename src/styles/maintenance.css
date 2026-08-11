@@ -266,6 +266,19 @@
   line-height: 1.65;
 }
 
+.maintenance-contact__service-link {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--secondary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.maintenance-contact__service-link:hover {
+  color: var(--secondary-dark);
+}
+
 .maintenance-contact__actions {
   display: flex;
   flex-direction: column;
@@ -375,7 +388,7 @@
     gap: var(--space-md);
   }
 
-    .maintenance-hero__phone {
+  .maintenance-hero__phone {
     display: block;
     width: 100%;
     font-size: 0.95rem;

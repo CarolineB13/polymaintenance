@@ -6,12 +6,34 @@ import { site } from "../config/site";
 import "../styles/contact.css";
 
 const phoneHref = `tel:${site.phone.replaceAll(" ", "")}`;
+
+const contactDescription =
+  "Contactez Polymaintenance pour vos besoins de maintenance, installation, formation ou matériel industriel en Ardèche, Drôme et vallée du Rhône.";
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact et demande de devis – Polymaintenance",
+  url: new URL(Astro.url.pathname, site.url).toString(),
+  description: contactDescription,
+  mainEntity: {
+    "@type": "LocalBusiness",
+    name: site.name,
+    telephone: site.phone,
+    email: site.email,
+  },
+};
 ---
 
 <Layout
   title="Contact et demande de devis | Polymaintenance"
-  description="Contactez Polymaintenance pour un besoin de maintenance industrielle, d’installation de machines, de négoce ou de matériel professionnel en Ardèche, Drôme et vallée du Rhône."
+  description={contactDescription}
 >
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(contactPageSchema)}
+  />
+
   <section class="contact-page">
     <Container>
       <div class="contact-page__heading">
@@ -94,7 +116,9 @@ const phoneHref = `tel:${site.phone.replaceAll(" ", "")}`;
               </span>
               <span>
                 <small>Zone d’intervention</small>
-                <strong>Ardèche, Drôme et vallée du Rhône</strong>
+                <strong>
+                  Ucel, Aubenas, Ardèche, Drôme et vallée du Rhône
+                </strong>
                 <p>Déplacements possibles en France et à l’international.</p>
               </span>
             </div>
@@ -168,6 +192,7 @@ const phoneHref = `tel:${site.phone.replaceAll(" ", "")}`;
                 >
                 <option value="maintenance">Maintenance ou dépannage</option>
                 <option value="installation">Installation ou transfert</option>
+                <option value="formation">Formation professionnelle</option>
                 <option value="negoce">Recherche de matériel</option>
                 <option value="annonce">Matériel proposé à la vente</option>
                 <option value="autre">Autre demande</option>

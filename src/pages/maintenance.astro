@@ -11,12 +11,28 @@ import "../styles/maintenance.css";
 
 const phoneDisplay = "06 32 94 23 50";
 const phoneHref = "tel:+33632942350";
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Maintenance industrielle",
+  serviceType:
+    "Maintenance préventive, maintenance corrective et dépannage de machines industrielles",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Polymaintenance",
+    telephone: "+33632942350",
+  },
+  areaServed: ["Ardèche", "Drôme", "Vallée du Rhône", "France"],
+};
 ---
 
 <Layout
   title="Maintenance industrielle en Drôme et Ardèche | Polymaintenance"
-  description="Polymaintenance intervient pour la maintenance préventive, corrective et le dépannage de machines industrielles en Drôme, Ardèche et dans les départements limitrophes."
+  description="Maintenance préventive, corrective et dépannage de machines industrielles à Ucel, Aubenas, en Ardèche, Drôme et dans la vallée du Rhône."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
   <section class="maintenance-hero">
     <Container>
       <div class="maintenance-hero__grid">
@@ -49,9 +65,9 @@ const phoneHref = "tel:+33632942350";
           </a>
 
           <p class="maintenance-hero__area">
-            Intervention de proximité en Drôme, Ardèche et départements
-            limitrophes, avec déplacements possibles partout en France et à
-            l’international.
+            Basée à Ucel, près d’Aubenas, Polymaintenance intervient en Ardèche,
+            dans la Drôme et la vallée du Rhône, avec des déplacements possibles
+            partout en France et à l’international.
           </p>
         </div>
 
@@ -182,7 +198,11 @@ const phoneHref = "tel:+33632942350";
           </h2>
           <p>
             Présentez votre besoin directement à Hervé pour étudier
-            l’intervention la plus adaptée.
+            l’intervention la plus adaptée. Pour un nouvel équipement ou une
+            nouvelle implantation, découvrez également notre service d’<a
+              class="maintenance-contact__service-link"
+              href="/installation">installation industrielle</a
+            >.
           </p>
         </div>
 

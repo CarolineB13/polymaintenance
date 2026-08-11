@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/ui/Container/Container.astro";
 import ProductCard from "../../components/ui/ProductCard/ProductCard.astro";
+import { site } from "../../config/site";
 import { categoryLabels } from "../../utils/products";
 
 import "./materiel-industriel.css";
@@ -15,89 +16,125 @@ const statusOrder = {
 };
 
 const products = (await getCollection("products")).sort((a, b) => {
-  const statusDifference = statusOrder[a.data.status] - statusOrder[b.data.status];
+  const statusDifference =
+    statusOrder[a.data.status] - statusOrder[b.data.status];
 
   if (statusDifference !== 0) return statusDifference;
 
   return b.data.publishedAt.getTime() - a.data.publishedAt.getTime();
 });
 
-const usedCategories = new Set(products.map((product) => product.data.category));
+const usedCategories = new Set(
+  products.map((product) => product.data.category),
+);
 const categories = Object.entries(categoryLabels).filter(([value]) =>
   usedCategories.has(value as keyof typeof categoryLabels),
 );
+
+const catalogDescription =
+  "Matériel industriel neuf et d’occasion proposé par Polymaintenance : machines à bois, ferronnerie, soudage, air comprimé, manutention et emballage.";
+
+const catalogSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Matériel industriel neuf et d’occasion",
+  url: new URL(Astro.url.pathname, site.url).toString(),
+  description: catalogDescription,
+  isPartOf: {
+    "@type": "WebSite",
+    name: site.name,
+    url: site.url,
+  },
+};
 ---
 
 <Layout
-  title="Matériel industriel neuf et d’occasion"
-  description="Découvrez le matériel professionnel proposé par Polymaintenance : manutention, air comprimé, machines à bois, ferronnerie, soudage et fournitures d’emballage."
+  title="Matériel industriel neuf et d’occasion en Ardèche"
+  description={catalogDescription}
 >
-  <main>
-    <header class="catalog-hero">
-      <Container>
-        <p class="catalog-hero__eyebrow">Négoce et vente de matériel professionnel</p>
-        <h1>Matériel industriel neuf et d’occasion</h1>
-        <p class="catalog-hero__intro">
-          Machines, équipements et consommables pour les professionnels. Polymaintenance
-          vous conseille dans le choix du matériel et peut assurer son installation et sa
-          mise en service.
+  <script type="application/ld+json" set:html={JSON.stringify(catalogSchema)} />
+
+  <header class="catalog-hero">
+    <Container>
+      <p class="catalog-hero__eyebrow">
+        Négoce et vente de matériel professionnel
+      </p>
+      <h1>Matériel industriel neuf et d’occasion</h1>
+      <p class="catalog-hero__intro">
+        Basée à Ucel, près d’Aubenas, Polymaintenance propose des machines,
+        équipements et consommables pour les professionnels. Elle vous conseille
+        dans le choix du matériel et peut assurer son installation et sa mise en
+        service.
+      </p>
+    </Container>
+  </header>
+
+  <section class="catalog" data-catalog aria-labelledby="catalog-title">
+    <Container>
+      <h2 id="catalog-title" class="sr-only">Toutes les annonces</h2>
+
+      <div class="catalog__demo-notice" role="note">
+        <strong>Maquette de démonstration :</strong> les produits et caractéristiques
+        affichés sur cette page sont fictifs et seront remplacés par les véritables
+        annonces.
+      </div>
+
+      <div class="catalog__filters" aria-label="Filtrer les annonces">
+        <label class="catalog__category-select">
+          <span>Catégorie</span>
+          <select data-category-filter>
+            <option value="all">Tout le matériel</option>
+            {
+              categories.map(([value, label]) => (
+                <option value={value}>{label}</option>
+              ))
+            }
+          </select>
+        </label>
+
+        <label class="catalog__availability">
+          <input type="checkbox" data-available-filter />
+          <span>Afficher uniquement le matériel disponible</span>
+        </label>
+      </div>
+
+      <div class="catalog__summary" aria-live="polite">
+        <strong data-results-count>{products.length}</strong>
+        <span data-results-label
+          >{
+            products.length > 1 ? "annonces affichées" : "annonce affichée"
+          }</span
+        >
+      </div>
+
+      <div class="catalog__grid">
+        {products.map((product) => <ProductCard product={product} />)}
+      </div>
+
+      <div class="catalog__empty" data-empty-state hidden>
+        <h2>Aucun matériel ne correspond à ces critères</h2>
+        <p>
+          Modifiez la catégorie sélectionnée ou désactivez le filtre de
+          disponibilité.
         </p>
-      </Container>
-    </header>
-
-    <section class="catalog" data-catalog aria-labelledby="catalog-title">
-      <Container>
-        <h2 id="catalog-title" class="sr-only">Toutes les annonces</h2>
-
-        <div class="catalog__demo-notice" role="note">
-          <strong>Maquette de démonstration :</strong> les produits et caractéristiques
-          affichés sur cette page sont fictifs et seront remplacés par les véritables annonces.
-        </div>
-
-        <div class="catalog__filters" aria-label="Filtrer les annonces">
-          <label class="catalog__category-select">
-            <span>Catégorie</span>
-            <select data-category-filter>
-              <option value="all">Tout le matériel</option>
-              {
-                categories.map(([value, label]) => (
-                  <option value={value}>{label}</option>
-                ))
-              }
-            </select>
-          </label>
-
-          <label class="catalog__availability">
-            <input type="checkbox" data-available-filter />
-            <span>Afficher uniquement le matériel disponible</span>
-          </label>
-        </div>
-
-        <div class="catalog__summary" aria-live="polite">
-          <strong data-results-count>{products.length}</strong>
-          <span data-results-label>{products.length > 1 ? "annonces affichées" : "annonce affichée"}</span>
-        </div>
-
-        <div class="catalog__grid">
-          {products.map((product) => <ProductCard product={product} />)}
-        </div>
-
-        <div class="catalog__empty" data-empty-state hidden>
-          <h2>Aucun matériel ne correspond à ces critères</h2>
-          <p>Modifiez la catégorie sélectionnée ou désactivez le filtre de disponibilité.</p>
-        </div>
-      </Container>
-    </section>
-  </main>
+      </div>
+    </Container>
+  </section>
 </Layout>
 
 <script>
   const catalog = document.querySelector<HTMLElement>("[data-catalog]");
 
   if (catalog) {
-    const categoryFilter = catalog.querySelector<HTMLSelectElement>("[data-category-filter]");
-    const availableFilter = catalog.querySelector<HTMLInputElement>("[data-available-filter]");
-    const cards = Array.from(catalog.querySelectorAll<HTMLElement>("[data-product-card]"));
+    const categoryFilter = catalog.querySelector<HTMLSelectElement>(
+      "[data-category-filter]",
+    );
+    const availableFilter = catalog.querySelector<HTMLInputElement>(
+      "[data-available-filter]",
+    );
+    const cards = Array.from(
+      catalog.querySelectorAll<HTMLElement>("[data-product-card]"),
+    );
     const count = catalog.querySelector<HTMLElement>("[data-results-count]");
     const label = catalog.querySelector<HTMLElement>("[data-results-label]");
     const emptyState = catalog.querySelector<HTMLElement>("[data-empty-state]");
@@ -119,7 +156,9 @@ const categories = Object.entries(categoryLabels).filter(([value]) =>
       });
 
       if (count) count.textContent = String(visibleCount);
-      if (label) label.textContent = visibleCount > 1 ? "annonces affichées" : "annonce affichée";
+      if (label)
+        label.textContent =
+          visibleCount > 1 ? "annonces affichées" : "annonce affichée";
       if (emptyState) emptyState.hidden = visibleCount !== 0;
     };
 

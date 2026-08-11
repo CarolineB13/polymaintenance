@@ -138,7 +138,6 @@
   content: "";
 }
 
-
 .installation-card h3 {
   color: var(--primary);
   font-size: 1.45rem;
@@ -254,7 +253,20 @@
   line-height: 1.7;
 }
 
-.installation-area__content a {
+.installation-area__service-link {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--secondary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.installation-area__service-link:hover {
+  color: var(--secondary-dark);
+}
+
+.installation-area__phone {
   display: inline-block;
   margin-top: var(--space-md);
   color: var(--primary);
@@ -265,7 +277,7 @@
   text-underline-offset: 5px;
 }
 
-.installation-area__content a:hover {
+.installation-area__phone:hover {
   color: var(--secondary-dark);
 }
 

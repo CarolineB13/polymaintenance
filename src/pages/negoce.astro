@@ -69,6 +69,33 @@ import "../styles/negoce.css";
 const phoneDisplay = "06 32 94 23 50";
 const phoneHref = "tel:+33632942350";
 
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Négoce de matériel industriel",
+  serviceType:
+    "Recherche et fourniture de machines, équipements d’atelier et consommables professionnels neufs ou d’occasion",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Polymaintenance",
+    telephone: "+33632942350",
+  },
+  areaServed: ["Ardèche", "Drôme", "Vallée du Rhône", "France"],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Matériel professionnel",
+    itemListElement: [
+      "Machines pour le travail du bois",
+      "Machines pour la ferronnerie",
+      "Soudage et air comprimé",
+      "Fournitures d’emballage",
+    ].map((name) => ({
+      "@type": "OfferCatalog",
+      name,
+    })),
+  },
+};
+
 const suppliers = [
   {
     name: "IMER",
@@ -260,8 +287,10 @@ const otherSuppliers = [
 
 <Layout
   title="Négoce de matériel industriel en Drôme et Ardèche | Polymaintenance"
-  description="Polymaintenance accompagne les professionnels pour la fourniture de machines neuves ou d’occasion, équipements d’atelier et consommables en Drôme, Ardèche et vallée du Rhône."
+  description="Machines neuves ou d’occasion, équipements d’atelier et consommables pour professionnels en Ardèche, Drôme et vallée du Rhône avec Polymaintenance."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
   <section class="negoce-hero">
     <Container>
       <div class="negoce-hero__grid">
@@ -271,9 +300,9 @@ const otherSuppliers = [
           <h1>Négoce et fourniture de matériel professionnel</h1>
 
           <p class="negoce-hero__intro">
-            Polymaintenance accompagne les professionnels dans la recherche de
-            machines neuves ou d’occasion, d’équipements d’atelier et de
-            consommables adaptés à leur activité.
+            Basée à Ucel, près d’Aubenas, Polymaintenance accompagne les
+            professionnels dans la recherche de machines neuves ou d’occasion,
+            d’équipements d’atelier et de consommables adaptés à leur activité.
           </p>
 
           <div class="negoce-hero__actions">
