@@ -4,8 +4,9 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Container from "../components/ui/Container/Container.astro";
 import Button from "../components/ui/Button/Button.astro";
+import { site } from "../config/site";
 
-import negoceImage from "../assets/images/negoce-materiel-professionnel.png";
+import negoceImage from "../assets/images/negoce-materiel-professionnel.webp";
 
 import imerLogo from "../assets/logos/fournisseurs/imer.png";
 import haemmerlinLogo from "../assets/logos/fournisseurs/haemmerlin.png";
@@ -333,7 +334,7 @@ const otherSuppliers = [
 
   <section class="negoce-offer" aria-labelledby="negoce-offer-title">
     <Container>
-      <div class="negoce-heading">
+      <div class="negoce-heading" data-reveal>
         <p class="negoce-eyebrow">Une offre pour les professionnels</p>
         <h2 id="negoce-offer-title">Du matériel adapté à votre métier</h2>
         <p>
@@ -342,8 +343,8 @@ const otherSuppliers = [
         </p>
       </div>
 
-      <div class="negoce-offer__grid">
-        <article class="negoce-card">
+      <div class="negoce-offer__grid" data-reveal-group>
+        <article class="negoce-card" data-reveal="scale">
           <h3>Machines pour le travail du bois</h3>
           <p>
             Équipements neufs ou d’occasion destinés aux menuisiers, ébénistes
@@ -356,7 +357,7 @@ const otherSuppliers = [
           </ul>
         </article>
 
-        <article class="negoce-card">
+        <article class="negoce-card" data-reveal="scale">
           <h3>Machines pour la ferronnerie</h3>
           <p>
             Matériel professionnel pour équiper, compléter ou renouveler un
@@ -369,7 +370,7 @@ const otherSuppliers = [
           </ul>
         </article>
 
-        <article class="negoce-card">
+        <article class="negoce-card" data-reveal="scale">
           <h3>Soudage et air comprimé</h3>
           <p>
             Fourniture de solutions professionnelles pour le soudage et la
@@ -382,7 +383,7 @@ const otherSuppliers = [
           </ul>
         </article>
 
-        <article class="negoce-card">
+        <article class="negoce-card" data-reveal="scale">
           <h3>Fournitures d’emballage</h3>
           <p>
             Consommables pour protéger, maintenir et préparer vos produits avant
@@ -400,7 +401,7 @@ const otherSuppliers = [
 
   <section class="negoce-suppliers" aria-labelledby="negoce-suppliers-title">
     <Container>
-      <div class="negoce-heading">
+      <div class="negoce-heading" data-reveal>
         <p class="negoce-eyebrow">Fournisseurs et marques</p>
         <h2 id="negoce-suppliers-title">
           Des marques professionnelles reconnues
@@ -412,7 +413,7 @@ const otherSuppliers = [
         </p>
       </div>
 
-      <div class="negoce-suppliers__grid">
+      <div class="negoce-suppliers__grid" data-reveal>
         <label class="negoce-suppliers__category-select">
           <span>Catégorie</span>
           <select data-supplier-select>
@@ -481,7 +482,7 @@ const otherSuppliers = [
         </div>
       </div>
 
-      <div class="negoce-suppliers__other">
+      <div class="negoce-suppliers__other" data-reveal>
         <h3>Également disponibles selon vos besoins</h3>
 
         <div class="negoce-suppliers__secondary-grid">
@@ -500,7 +501,7 @@ const otherSuppliers = [
         </div>
       </div>
 
-      <div class="negoce-suppliers__cta">
+      <div class="negoce-suppliers__cta" data-reveal>
         <p>
           Vous recherchez une marque, une machine ou un consommable précis ?
         </p>
@@ -572,7 +573,7 @@ const otherSuppliers = [
 
   <section class="negoce-choice">
     <Container>
-      <div class="negoce-choice__panel">
+      <div class="negoce-choice__panel" data-reveal="scale">
         <div class="negoce-choice__intro">
           <p class="negoce-eyebrow">Neuf ou occasion</p>
           <h2>Une réponse définie à partir de votre besoin</h2>
@@ -614,26 +615,30 @@ const otherSuppliers = [
     </Container>
   </section>
 
-  <section class="negoce-catalogue">
-    <Container>
-      <div class="negoce-catalogue__grid">
-        <div>
-          <p class="negoce-eyebrow">Matériel disponible</p>
-          <h2>Consultez les annonces en cours</h2>
-        </div>
+  {
+    site.features.materialCatalog && (
+        <section class="negoce-catalogue">
+          <Container>
+            <div class="negoce-catalogue__grid">
+              <div>
+                <p class="negoce-eyebrow">Matériel disponible</p>
+                <h2>Consultez les annonces en cours</h2>
+              </div>
 
-        <div class="negoce-catalogue__content">
-          <p>
-            Retrouvez séparément les machines et équipements actuellement
-            proposés à la vente par Polymaintenance, avec leur état et leur
-            disponibilité.
-          </p>
-          <a href="/materiel-industriel">
-            Voir tout le matériel disponible
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
-      </div>
-    </Container>
-  </section>
+              <div class="negoce-catalogue__content">
+                <p>
+                  Retrouvez séparément les machines et équipements actuellement
+                  proposés à la vente par Polymaintenance, avec leur état et leur
+                  disponibilité.
+                </p>
+                <a href="/materiel-industriel">
+                  Voir tout le matériel disponible
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+          </Container>
+        </section>
+    )
+  }
 </Layout>

@@ -1,4 +1,15 @@
-<SEO
-    title="Maintenance industrielle"
-    description="Maintenance industrielle en Ardèche."
-/>
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  robots?: string;
+}
+
+const { title, description, canonical, robots = "index, follow" } = Astro.props;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={robots} />
+{canonical && <link rel="canonical" href={canonical} />}

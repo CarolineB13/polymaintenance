@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import Container from "../components/ui/Container/Container.astro";
 import Button from "../components/ui/Button/Button.astro";
 
-import installationImage from "../assets/images/installation-process-production.png";
+import installationImage from "../assets/images/installation-process-production.webp";
 
 import "../styles/installation.css";
 
@@ -83,7 +83,7 @@ const serviceSchema = {
     aria-labelledby="installation-services-title"
   >
     <Container>
-      <div class="installation-heading">
+      <div class="installation-heading" data-reveal>
         <p class="installation-eyebrow">Nos interventions</p>
         <h2 id="installation-services-title">
           Des installations pensées pour votre outil de production
@@ -95,8 +95,8 @@ const serviceSchema = {
         </p>
       </div>
 
-      <div class="installation-services__grid">
-        <article class="installation-card">
+      <div class="installation-services__grid" data-reveal-group>
+        <article class="installation-card" data-reveal="scale">
           <h3>Machines et moyens de production</h3>
           <p>
             Mise en place de nouvelles machines ou d’un ensemble de moyens de
@@ -109,7 +109,7 @@ const serviceSchema = {
           </ul>
         </article>
 
-        <article class="installation-card">
+        <article class="installation-card" data-reveal="scale">
           <h3>Réseaux d’air comprimé et de fluides</h3>
           <p>
             Création ou adaptation des réseaux nécessaires au fonctionnement de
@@ -122,7 +122,7 @@ const serviceSchema = {
           </ul>
         </article>
 
-        <article class="installation-card">
+        <article class="installation-card" data-reveal="scale">
           <h3>Réseaux d’aspiration</h3>
           <p>
             Mise en place d’un réseau d’aspiration adapté aux besoins de votre
@@ -135,7 +135,7 @@ const serviceSchema = {
           </ul>
         </article>
 
-        <article class="installation-card">
+        <article class="installation-card" data-reveal="scale">
           <h3>Transfert et emménagement d’atelier</h3>
           <p>
             Accompagnement lors d’un déplacement d’atelier ou de l’emménagement
@@ -153,7 +153,7 @@ const serviceSchema = {
 
   <section class="installation-method">
     <Container>
-      <div class="installation-method__panel">
+      <div class="installation-method__panel" data-reveal="scale">
         <div class="installation-method__intro">
           <p class="installation-eyebrow">Une approche adaptée</p>
           <h2>Un projet intégré à votre environnement de travail</h2>
@@ -194,7 +194,7 @@ const serviceSchema = {
 
   <section class="installation-area">
     <Container>
-      <div class="installation-area__grid">
+      <div class="installation-area__grid" data-reveal>
         <div>
           <p class="installation-eyebrow">Zone d’intervention</p>
           <h2>Au plus près de vos ateliers</h2>

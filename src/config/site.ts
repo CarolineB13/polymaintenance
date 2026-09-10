@@ -1,17 +1,21 @@
 export const site = {
-    name: "Polymaintenance",
+  name: "Polymaintenance",
 
-    url: "https://polymaintenance.fr",
+  url: "https://polymaintenance.fr",
 
-    title:
-        "Polymaintenance | Maintenance industrielle en Ardèche",
+  title: "Polymaintenance | Maintenance industrielle en Ardèche",
 
-    ddescription:
-  "Polymaintenance intervient pour la maintenance industrielle, l'installation de machines et la fourniture de matériel professionnel en Ardèche, dans la Drôme, la vallée du Rhône, partout en France et à l'international.",
+  description:
+    "Polymaintenance intervient pour la maintenance industrielle, l'installation de machines et la fourniture de matériel professionnel en Ardèche, dans la Drôme, la vallée du Rhône, partout en France et à l'international.",
 
-    author: "Happyclicks",
+  author: "Happyclicks",
 
-    phone: "06 32 94 23 50",
+  phone: "06 32 94 23 50",
 
-    email: "contact@polymaintenance.fr",
+  email: "contact@polymaintenance.fr",
+
+  features: {
+    // Mettre à true lorsque les véritables annonces seront prêtes.
+    materialCatalog: false,
+  },
 };

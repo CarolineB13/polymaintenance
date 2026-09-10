@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 import Container from "../../ui/Container/Container.astro";
 import { site } from "../../../config/site";
 import logoIcon from "../../../assets/logos/logo-icon.png";
@@ -6,6 +8,7 @@ import logoIcon from "../../../assets/logos/logo-icon.png";
 import "./Footer.css";
 
 const currentYear = new Date().getFullYear();
+const linkedinUrl = "https://www.linkedin.com/in/herve-giaufret-110188107";
 ---
 
 <footer class="site-footer">
@@ -17,7 +20,13 @@ const currentYear = new Date().getFullYear();
           class="footer__symbol"
           aria-label="Retour à l’accueil de Polymaintenance"
         >
-          <img src={logoIcon.src} alt="Symbole Polymaintenance" />
+          <Image
+            src={logoIcon}
+            alt="Symbole Polymaintenance"
+            widths={[76, 152]}
+            sizes="76px"
+            loading="lazy"
+          />
         </a>
 
         <p>
@@ -33,6 +42,7 @@ const currentYear = new Date().getFullYear();
           <ul>
             <li><a href="/maintenance">Maintenance</a></li>
             <li><a href="/installation">Installation</a></li>
+            <li><a href="/formation">Formation</a></li>
             <li><a href="/negoce">Négoce</a></li>
           </ul>
         </div>
@@ -42,7 +52,11 @@ const currentYear = new Date().getFullYear();
 
           <ul>
             <li><a href="/">Accueil</a></li>
-            <li><a href="/materiel-industriel">Matériel à vendre</a></li>
+            {
+              site.features.materialCatalog && (
+                <li><a href="/materiel-industriel">Matériel à vendre</a></li>
+              )
+            }
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
@@ -61,6 +75,15 @@ const currentYear = new Date().getFullYear();
 
           <a href={`mailto:${site.email}`}>
             {site.email}
+          </a>
+
+          <a
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn d’Hervé Giaufret"
+          >
+            LinkedIn — Hervé Giaufret
           </a>
 
           <p>

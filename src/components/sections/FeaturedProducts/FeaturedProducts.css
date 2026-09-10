@@ -32,6 +32,14 @@
   gap: var(--space-md);
 }
 
+.featured-products__grid > [data-reveal] {
+  display: flex;
+}
+
+.featured-products__grid > [data-reveal] .product-card {
+  width: 100%;
+}
+
 .featured-products__actions {
   display: flex;
   justify-content: center;

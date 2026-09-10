@@ -7,6 +7,7 @@ import About from "../components/sections/About/About.astro";
 import FeaturedProducts from "../components/sections/FeaturedProducts/FeaturedProducts.astro";
 import Container from "../components/ui/Container/Container.astro";
 import SectionTitle from "../components/ui/SectionTitle/SectionTitle.astro";
+import { site } from "../config/site";
 
 import "../styles/home.css";
 ---
@@ -22,7 +23,7 @@ import "../styles/home.css";
   <section class="service-area" aria-labelledby="service-area-title">
     <Container>
       <div class="service-area__content">
-        <div id="service-area-title">
+        <div id="service-area-title" data-reveal="left">
           <SectionTitle
             eyebrow="Zone d’intervention"
             title="Une expertise de proximité, au-delà de l’Ardèche"
@@ -30,7 +31,7 @@ import "../styles/home.css";
           />
         </div>
 
-        <div class="service-area__details">
+        <div class="service-area__details" data-reveal="right">
           <p>
             Les déplacements sont également possibles dans la Drôme, le Gard et
             le Vaucluse, notamment autour de Montélimar, Valence, Alès et Nîmes.
@@ -45,5 +46,5 @@ import "../styles/home.css";
     </Container>
   </section>
 
-  <FeaturedProducts />
+  {site.features.materialCatalog && <FeaturedProducts />}
 </Layout>

@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import Container from "../components/ui/Container/Container.astro";
 import Button from "../components/ui/Button/Button.astro";
 
-import formationImage from "../assets/images/formation-industrielle.png";
+import formationImage from "../assets/images/formation-industrielle.webp";
 
 import "../styles/formation.css";
 
@@ -88,7 +88,7 @@ const serviceSchema = {
     aria-labelledby="formation-services-title"
   >
     <Container>
-      <div class="formation-heading">
+      <div class="formation-heading" data-reveal>
         <p class="formation-eyebrow">Nos niveaux de formation</p>
 
         <h2 id="formation-services-title">
@@ -101,8 +101,8 @@ const serviceSchema = {
         </p>
       </div>
 
-      <div class="formation-services__grid">
-        <article class="formation-card">
+      <div class="formation-services__grid" data-reveal-group>
+        <article class="formation-card" data-reveal="scale">
           <p class="formation-card__label">Niveau 1</p>
 
           <h3>Utilisation et entretien courant</h3>
@@ -121,7 +121,7 @@ const serviceSchema = {
           </ul>
         </article>
 
-        <article class="formation-card">
+        <article class="formation-card" data-reveal="scale">
           <p class="formation-card__label">Niveau 2</p>
 
           <h3>Maintenance et diagnostic</h3>
@@ -140,7 +140,7 @@ const serviceSchema = {
           </ul>
         </article>
 
-        <article class="formation-card">
+        <article class="formation-card" data-reveal="scale">
           <p class="formation-card__label">Niveau 3</p>
 
           <h3>Perfectionnement technique</h3>
@@ -165,7 +165,7 @@ const serviceSchema = {
 
   <section class="formation-approach">
     <Container>
-      <div class="formation-approach__panel">
+      <div class="formation-approach__panel" data-reveal="scale">
         <div class="formation-approach__content">
           <p class="formation-eyebrow">Une formation sur mesure</p>
 
@@ -225,7 +225,7 @@ const serviceSchema = {
 
   <section class="formation-contact">
     <Container>
-      <div class="formation-contact__box">
+      <div class="formation-contact__box" data-reveal>
         <div>
           <p class="formation-eyebrow">Parlons de vos besoins</p>
 

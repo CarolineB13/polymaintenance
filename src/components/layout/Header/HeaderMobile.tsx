@@ -1,54 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
+  GraduationCap,
   House,
-  Wrench,
-  Settings,
   Package,
-  ShoppingBag,
   Phone,
-  GraduationCap
+  Settings,
+  ShoppingBag,
+  Wrench,
 } from "lucide-react";
 
-const links = [
-  {
-    href: "/",
-    label: "Accueil",
-    icon: House
-  },
-  {
-    href: "/maintenance",
-    label: "Maintenance",
-    icon: Wrench
-  },
-  {
-    href: "/installation",
-    label: "Installation",
-    icon: Settings
-  },
-  {
-    href: "/negoce",
-    label: "Négoce",
-    icon: Package
-  },
-  {
-  href: "/formation",
-  label: "Formation",
-  icon: GraduationCap
-},
-  {
-    href: "/materiel-industriel",
-    label: "Matériel à vendre",
-    icon: ShoppingBag
-  }
-  
+const baseLinks = [
+  { href: "/", label: "Accueil", icon: House },
+  { href: "/maintenance", label: "Maintenance", icon: Wrench },
+  { href: "/installation", label: "Installation", icon: Settings },
+  { href: "/negoce", label: "Négoce", icon: Package },
+  { href: "/formation", label: "Formation", icon: GraduationCap },
 ];
 
 interface Props {
   phone: string;
+  currentPath: string;
+  showMaterialCatalog: boolean;
 }
 
-export default function HeaderMobile({ phone }: Props) {
+export default function HeaderMobile({
+  phone,
+  currentPath,
+  showMaterialCatalog,
+}: Props) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const links = showMaterialCatalog
+    ? [
+        ...baseLinks,
+        {
+          href: "/materiel-industriel",
+          label: "Matériel à vendre",
+          icon: ShoppingBag,
+        },
+      ]
+    : baseLinks;
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
 
   return (
     <div className="mobile-menu">
@@ -57,45 +59,53 @@ export default function HeaderMobile({ phone }: Props) {
         type="button"
         aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
         aria-expanded={isOpen}
-        onClick={() => setIsOpen(!isOpen)}
+        aria-controls="mobile-navigation"
+        onClick={() => setIsOpen((open) => !open)}
       >
         <span></span>
         <span></span>
         <span></span>
       </button>
 
-      <nav className={isOpen ? "mobile-panel is-open" : "mobile-panel"}>
+      <nav
+        id="mobile-navigation"
+        className={isOpen ? "mobile-panel is-open" : "mobile-panel"}
+        aria-label="Navigation mobile"
+        aria-hidden={!isOpen}
+      >
         {links.map((link) => {
+          const Icon = link.icon;
+          const isCurrent = currentPath === link.href;
 
-  const Icon = link.icon;
-
-  return (
-    <a
-      key={link.href}
-      href={link.href}
-      onClick={() => setIsOpen(false)}
-    >
-      <Icon size={20} />
-
-      <span>{link.label}</span>
-    </a>
-  );
-
-})}
+          return (
+            <a
+              key={link.href}
+              href={link.href}
+              aria-current={isCurrent ? "page" : undefined}
+              tabIndex={isOpen ? 0 : -1}
+              onClick={() => setIsOpen(false)}
+            >
+              <Icon size={20} aria-hidden="true" />
+              <span>{link.label}</span>
+            </a>
+          );
+        })}
 
         <a
-  className="mobile-panel__phone"
-  href={`tel:${phone.replaceAll(" ", "")}`}
-  aria-label={`Appeler Hervé au ${phone}`}
-  onClick={() => setIsOpen(false)}
->
-  <Phone size={20} />
-  <span>{phone}</span>
-</a>
+          className="mobile-panel__phone"
+          href={`tel:${phone.replaceAll(" ", "")}`}
+          aria-label={`Appeler Hervé au ${phone}`}
+          tabIndex={isOpen ? 0 : -1}
+          onClick={() => setIsOpen(false)}
+        >
+          <Phone size={20} aria-hidden="true" />
+          <span>{phone}</span>
+        </a>
 
         <a
           className="mobile-panel__button"
           href="/contact"
+          tabIndex={isOpen ? 0 : -1}
           onClick={() => setIsOpen(false)}
         >
           Demander un devis

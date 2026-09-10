@@ -8,9 +8,14 @@ import { site } from "../config/site";
 interface Props {
   title?: string;
   description?: string;
+  robots?: string;
 }
 
-const { title = site.title, description = site.description } = Astro.props;
+const {
+  title = site.title,
+  description = site.description,
+  robots = "index, follow",
+} = Astro.props;
 
 const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
 
@@ -52,7 +57,7 @@ const localBusinessSchema = {
 
     <meta name="description" content={description} />
 
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
 
     <link rel="canonical" href={canonicalURL} />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -81,6 +86,12 @@ const localBusinessSchema = {
 
     <link rel="icon" href="/favicon.ico" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <script is:inline>
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("motion-enabled");
+      }
+    </script>
   </head>
 
   <body>
@@ -113,5 +124,35 @@ const localBusinessSchema = {
 
       <span>WhatsApp</span>
     </a>
+
+    <script is:inline>
+      (() => {
+        const elements = Array.from(document.querySelectorAll("[data-reveal]"));
+
+        if (!elements.length) return;
+
+        if (
+          !document.documentElement.classList.contains("motion-enabled") ||
+          !("IntersectionObserver" in window)
+        ) {
+          elements.forEach((element) => element.classList.add("is-visible"));
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -7% 0px" },
+        );
+
+        elements.forEach((element) => observer.observe(element));
+      })();
+    </script>
   </body>
 </html>

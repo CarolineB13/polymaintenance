@@ -6,6 +6,7 @@ import { site } from "../config/site";
 import "../styles/contact.css";
 
 const phoneHref = `tel:${site.phone.replaceAll(" ", "")}`;
+const linkedinUrl = "https://www.linkedin.com/in/herve-giaufret-110188107";
 
 const contactDescription =
   "Contactez Polymaintenance pour vos besoins de maintenance, installation, formation ou matériel industriel en Ardèche, Drôme et vallée du Rhône.";
@@ -47,7 +48,7 @@ const contactPageSchema = {
       </div>
 
       <div class="contact-page__grid">
-        <aside class="contact-details" aria-labelledby="contact-details-title">
+        <aside class="contact-details" aria-labelledby="contact-details-title" data-reveal="left">
           <div>
             <p class="contact-eyebrow">Contact direct</p>
             <h2 id="contact-details-title">Échangez avec Hervé</h2>
@@ -99,6 +100,31 @@ const contactPageSchema = {
               </span>
             </a>
 
+
+            <a
+              class="contact-details__item"
+              href={linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Voir le profil LinkedIn d’Hervé Giaufret"
+            >
+              <span class="contact-details__icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M6.94 8.5H3.56V19h3.38V8.5ZM5.25 3a1.96 1.96 0 1 0 0 3.92A1.96 1.96 0 0 0 5.25 3ZM20.44 13c0-3.16-1.69-4.63-3.94-4.63-1.82 0-2.63 1-3.08 1.7V8.5h-3.37c.04 1.04 0 10.5 0 10.5h3.37v-5.86c0-.31.02-.63.11-.85.25-.63.81-1.28 1.76-1.28 1.24 0 1.74.95 1.74 2.34V19h3.37l.04-6Z"
+                  ></path>
+                </svg>
+              </span>
+              <span>
+                <small>LinkedIn</small>
+                <strong>Hervé Giaufret</strong>
+                <p>Retrouvez Hervé sur LinkedIn</p>
+              </span>
+            </a>
+
             <div class="contact-details__item">
               <span class="contact-details__icon" aria-hidden="true">
                 <svg
@@ -125,7 +151,7 @@ const contactPageSchema = {
           </address>
         </aside>
 
-        <div class="contact-form-card">
+        <div class="contact-form-card" data-reveal="right">
           <div class="contact-form-card__heading">
             <h2>Décrivez votre besoin</h2>
             <p>Les champs marqués d’un astérisque sont obligatoires.</p>
@@ -194,7 +220,6 @@ const contactPageSchema = {
                 <option value="installation">Installation ou transfert</option>
                 <option value="formation">Formation professionnelle</option>
                 <option value="negoce">Recherche de matériel</option>
-                <option value="annonce">Matériel proposé à la vente</option>
                 <option value="autre">Autre demande</option>
               </select>
             </div>

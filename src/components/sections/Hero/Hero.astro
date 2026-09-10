@@ -1,10 +1,12 @@
 ---
+import { Image } from "astro:assets";
+
 import Container from "../../ui/Container/Container.astro";
 import SectionTitle from "../../ui/SectionTitle/SectionTitle.astro";
 import Button from "../../ui/Button/Button.astro";
 import { site } from "../../../config/site";
 
-import herve from "../../../assets/images/herve.png";
+import herve from "../../../assets/images/herve.webp";
 
 import "./Hero.css";
 ---
@@ -23,11 +25,21 @@ import "./Hero.css";
         <div class="hero__actions">
           <Button href="/contact" label="Demander un devis" />
 
-          <Button
-            href="/materiel-industriel"
-            label="Voir le matériel disponible"
-            variant="secondary"
-          />
+          {
+            site.features.materialCatalog ? (
+              <Button
+                href="/materiel-industriel"
+                label="Voir le matériel disponible"
+                variant="secondary"
+              />
+            ) : (
+              <Button
+                href="/negoce"
+                label="Découvrir le négoce"
+                variant="secondary"
+              />
+            )
+          }
         </div>
 
         <p class="hero__phone">
@@ -48,9 +60,13 @@ import "./Hero.css";
       </div>
 
       <div class="hero__image">
-        <img
-          src={herve.src}
+        <Image
+          src={herve}
           alt="Hervé Giaufret en intervention de maintenance industrielle"
+          widths={[420, 640, 900]}
+          sizes="(max-width: 850px) 92vw, 46vw"
+          loading="eager"
+          fetchpriority="high"
         />
       </div>
     </div>

@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import Container from "../components/ui/Container/Container.astro";
 import Button from "../components/ui/Button/Button.astro";
 
-import maintenanceImage from "../assets/images/maintenance-industrielle.png";
+import maintenanceImage from "../assets/images/maintenance-industrielle.webp";
 
 import "../styles/maintenance.css";
 
@@ -89,7 +89,7 @@ const serviceSchema = {
     aria-labelledby="maintenance-services-title"
   >
     <Container>
-      <div class="maintenance-heading">
+      <div class="maintenance-heading" data-reveal>
         <p class="maintenance-eyebrow">Nos interventions</p>
         <h2 id="maintenance-services-title">
           Des solutions pour assurer la continuité de votre production
@@ -100,8 +100,8 @@ const serviceSchema = {
         </p>
       </div>
 
-      <div class="maintenance-services__grid">
-        <article class="maintenance-card">
+      <div class="maintenance-services__grid" data-reveal-group>
+        <article class="maintenance-card" data-reveal="scale">
           <p class="maintenance-card__label">Anticiper</p>
           <h3>Maintenance préventive</h3>
           <p>
@@ -115,7 +115,7 @@ const serviceSchema = {
           </ul>
         </article>
 
-        <article class="maintenance-card">
+        <article class="maintenance-card" data-reveal="scale">
           <p class="maintenance-card__label">Diagnostiquer et réparer</p>
           <h3>Maintenance corrective et curative</h3>
           <p>
@@ -129,7 +129,7 @@ const serviceSchema = {
           </ul>
         </article>
 
-        <article class="maintenance-card">
+        <article class="maintenance-card" data-reveal="scale">
           <p class="maintenance-card__label">Remplacer</p>
           <h3>Pièces d’usure et intervention sur site</h3>
           <p>
@@ -148,7 +148,7 @@ const serviceSchema = {
 
   <section class="maintenance-approach">
     <Container>
-      <div class="maintenance-approach__panel">
+      <div class="maintenance-approach__panel" data-reveal="scale">
         <div class="maintenance-approach__content">
           <p class="maintenance-eyebrow">Une expertise de terrain</p>
           <h2>Une intervention adaptée à vos contraintes industrielles</h2>
@@ -190,7 +190,7 @@ const serviceSchema = {
 
   <section class="maintenance-contact">
     <Container>
-      <div class="maintenance-contact__box">
+      <div class="maintenance-contact__box" data-reveal>
         <div>
           <p class="maintenance-eyebrow">Parlons de votre équipement</p>
           <h2>

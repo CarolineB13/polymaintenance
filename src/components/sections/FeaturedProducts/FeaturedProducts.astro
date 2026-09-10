@@ -22,7 +22,7 @@ const products = (
   products.length > 0 && (
     <section class="featured-products" aria-labelledby="featured-products-title">
       <Container>
-        <div class="featured-products__heading" id="featured-products-title">
+        <div class="featured-products__heading" id="featured-products-title" data-reveal>
           <SectionTitle
             eyebrow="Matériel professionnel"
             title="Du matériel industriel sélectionné pour vos besoins"
@@ -30,15 +30,19 @@ const products = (
           />
         </div>
 
-        <div class="featured-products__notice" role="note">
+        <div class="featured-products__notice" role="note" data-reveal>
           Les annonces présentées ci-dessous sont des exemples destinés à valider le futur catalogue.
         </div>
 
-        <div class="featured-products__grid">
-          {products.map((product) => <ProductCard product={product} />)}
+        <div class="featured-products__grid" data-reveal-group>
+          {products.map((product) => (
+            <div data-reveal="scale">
+              <ProductCard product={product} />
+            </div>
+          ))}
         </div>
 
-        <div class="featured-products__actions">
+        <div class="featured-products__actions" data-reveal>
           <Button
             href="/materiel-industriel"
             label="Voir tout le matériel"

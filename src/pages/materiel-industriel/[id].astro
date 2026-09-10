@@ -16,6 +16,8 @@ import {
 import "./product-detail.css";
 
 export async function getStaticPaths() {
+  if (!site.features.materialCatalog) return [];
+
   const products = await getCollection("products");
 
   return products.map((product) => ({

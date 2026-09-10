@@ -31,6 +31,8 @@ const categories = Object.entries(categoryLabels).filter(([value]) =>
   usedCategories.has(value as keyof typeof categoryLabels),
 );
 
+const catalogEnabled = site.features.materialCatalog;
+
 const catalogDescription =
   "Matériel industriel neuf et d’occasion proposé par Polymaintenance : machines à bois, ferronnerie, soudage, air comprimé, manutention et emballage.";
 
@@ -49,77 +51,111 @@ const catalogSchema = {
 ---
 
 <Layout
-  title="Matériel industriel neuf et d’occasion en Ardèche"
-  description={catalogDescription}
+  title={
+    catalogEnabled
+      ? "Matériel industriel neuf et d’occasion en Ardèche"
+      : "Catalogue de matériel industriel en préparation"
+  }
+  description={
+    catalogEnabled
+      ? catalogDescription
+      : "Le catalogue de matériel industriel Polymaintenance est actuellement en préparation."
+  }
+  robots={catalogEnabled ? "index, follow" : "noindex, nofollow"}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(catalogSchema)} />
+  {
+    catalogEnabled && (
+      <script type="application/ld+json" set:html={JSON.stringify(catalogSchema)} />
+    )
+  }
 
-  <header class="catalog-hero">
-    <Container>
-      <p class="catalog-hero__eyebrow">
-        Négoce et vente de matériel professionnel
-      </p>
-      <h1>Matériel industriel neuf et d’occasion</h1>
-      <p class="catalog-hero__intro">
-        Basée à Ucel, près d’Aubenas, Polymaintenance propose des machines,
-        équipements et consommables pour les professionnels. Elle vous conseille
-        dans le choix du matériel et peut assurer son installation et sa mise en
-        service.
-      </p>
-    </Container>
-  </header>
+  {
+    catalogEnabled ? (
+      <>
+          <header class="catalog-hero">
+            <Container>
+              <p class="catalog-hero__eyebrow">
+                Négoce et vente de matériel professionnel
+              </p>
+              <h1>Matériel industriel neuf et d’occasion</h1>
+              <p class="catalog-hero__intro">
+                Basée à Ucel, près d’Aubenas, Polymaintenance propose des machines,
+                équipements et consommables pour les professionnels. Elle vous conseille
+                dans le choix du matériel et peut assurer son installation et sa mise en
+                service.
+              </p>
+            </Container>
+          </header>
 
-  <section class="catalog" data-catalog aria-labelledby="catalog-title">
-    <Container>
-      <h2 id="catalog-title" class="sr-only">Toutes les annonces</h2>
+          <section class="catalog" data-catalog aria-labelledby="catalog-title">
+            <Container>
+              <h2 id="catalog-title" class="sr-only">Toutes les annonces</h2>
 
-      <div class="catalog__demo-notice" role="note">
-        <strong>Maquette de démonstration :</strong> les produits et caractéristiques
-        affichés sur cette page sont fictifs et seront remplacés par les véritables
-        annonces.
-      </div>
+              <div class="catalog__demo-notice" role="note">
+                <strong>Maquette de démonstration :</strong> les produits et caractéristiques
+                affichés sur cette page sont fictifs et seront remplacés par les véritables
+                annonces.
+              </div>
 
-      <div class="catalog__filters" aria-label="Filtrer les annonces">
-        <label class="catalog__category-select">
-          <span>Catégorie</span>
-          <select data-category-filter>
-            <option value="all">Tout le matériel</option>
-            {
-              categories.map(([value, label]) => (
-                <option value={value}>{label}</option>
-              ))
-            }
-          </select>
-        </label>
+              <div class="catalog__filters" aria-label="Filtrer les annonces">
+                <label class="catalog__category-select">
+                  <span>Catégorie</span>
+                  <select data-category-filter>
+                    <option value="all">Tout le matériel</option>
+                    {
+                      categories.map(([value, label]) => (
+                        <option value={value}>{label}</option>
+                      ))
+                    }
+                  </select>
+                </label>
 
-        <label class="catalog__availability">
-          <input type="checkbox" data-available-filter />
-          <span>Afficher uniquement le matériel disponible</span>
-        </label>
-      </div>
+                <label class="catalog__availability">
+                  <input type="checkbox" data-available-filter />
+                  <span>Afficher uniquement le matériel disponible</span>
+                </label>
+              </div>
 
-      <div class="catalog__summary" aria-live="polite">
-        <strong data-results-count>{products.length}</strong>
-        <span data-results-label
-          >{
-            products.length > 1 ? "annonces affichées" : "annonce affichée"
-          }</span
-        >
-      </div>
+              <div class="catalog__summary" aria-live="polite">
+                <strong data-results-count>{products.length}</strong>
+                <span data-results-label
+                  >{
+                    products.length > 1 ? "annonces affichées" : "annonce affichée"
+                  }</span
+                >
+              </div>
 
-      <div class="catalog__grid">
-        {products.map((product) => <ProductCard product={product} />)}
-      </div>
+              <div class="catalog__grid">
+                {products.map((product) => <ProductCard product={product} />)}
+              </div>
 
-      <div class="catalog__empty" data-empty-state hidden>
-        <h2>Aucun matériel ne correspond à ces critères</h2>
-        <p>
-          Modifiez la catégorie sélectionnée ou désactivez le filtre de
-          disponibilité.
-        </p>
-      </div>
-    </Container>
-  </section>
+              <div class="catalog__empty" data-empty-state hidden>
+                <h2>Aucun matériel ne correspond à ces critères</h2>
+                <p>
+                  Modifiez la catégorie sélectionnée ou désactivez le filtre de
+                  disponibilité.
+                </p>
+              </div>
+            </Container>
+          </section>      </>
+    ) : (
+      <header class="catalog-hero">
+        <Container>
+          <p class="catalog-hero__eyebrow">Négoce et matériel professionnel</p>
+          <h1>Catalogue en préparation</h1>
+          <p class="catalog-hero__intro">
+            Les annonces de matériel seront publiées ici dès qu’elles seront
+            prêtes. En attendant, Polymaintenance peut rechercher un équipement
+            précis selon votre besoin.
+          </p>
+          <p class="catalog-hero__intro">
+            <a href="/negoce">Découvrir le service de négoce</a> ·
+            <a href="/contact">Contacter Hervé</a>
+          </p>
+        </Container>
+      </header>
+    )
+  }
 </Layout>
 
 <script>
