@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Container from "../components/ui/Container/Container.astro";
 import Button from "../components/ui/Button/Button.astro";
+import { site } from "../config/site";
 
 import maintenanceImage from "../assets/images/maintenance-industrielle.webp";
 
@@ -19,9 +20,7 @@ const serviceSchema = {
   serviceType:
     "Maintenance préventive, maintenance corrective et dépannage de machines industrielles",
   provider: {
-    "@type": "LocalBusiness",
-    name: "Polymaintenance",
-    telephone: "+33632942350",
+    "@id": `${site.url}/#business`,
   },
   areaServed: ["Ardèche", "Drôme", "Vallée du Rhône", "France"],
 };

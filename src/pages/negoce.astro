@@ -77,9 +77,7 @@ const serviceSchema = {
   serviceType:
     "Recherche et fourniture de machines, équipements d’atelier et consommables professionnels neufs ou d’occasion",
   provider: {
-    "@type": "LocalBusiness",
-    name: "Polymaintenance",
-    telephone: "+33632942350",
+    "@id": `${site.url}/#business`,
   },
   areaServed: ["Ardèche", "Drôme", "Vallée du Rhône", "France"],
   hasOfferCatalog: {
@@ -287,7 +285,7 @@ const otherSuppliers = [
 ---
 
 <Layout
-  title="Négoce de matériel industriel en Drôme et Ardèche | Polymaintenance"
+  title="Négoce industriel en Ardèche et Drôme | Polymaintenance"
   description="Machines neuves ou d’occasion, équipements d’atelier et consommables pour professionnels en Ardèche, Drôme et vallée du Rhône avec Polymaintenance."
 >
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />

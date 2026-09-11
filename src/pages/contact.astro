@@ -6,7 +6,7 @@ import { site } from "../config/site";
 import "../styles/contact.css";
 
 const phoneHref = `tel:${site.phone.replaceAll(" ", "")}`;
-const linkedinUrl = "https://www.linkedin.com/in/herve-giaufret-110188107";
+const linkedinUrl = site.linkedin;
 
 const contactDescription =
   "Contactez Polymaintenance pour vos besoins de maintenance, installation, formation ou matériel industriel en Ardèche, Drôme et vallée du Rhône.";
@@ -141,11 +141,11 @@ const contactPageSchema = {
                 </svg>
               </span>
               <span>
-                <small>Zone d’intervention</small>
+                <small>Adresse et zone d’intervention</small>
                 <strong>
-                  Ucel, Aubenas, Ardèche, Drôme et vallée du Rhône
+                  {site.address.street}, {site.address.postalCode} {site.address.locality}
                 </strong>
-                <p>Déplacements possibles en France et à l’international.</p>
+                <p>Près d’Aubenas · Ardèche, Drôme et vallée du Rhône. Déplacements possibles en France et à l’international.</p>
               </span>
             </div>
           </address>
@@ -157,7 +157,18 @@ const contactPageSchema = {
             <p>Les champs marqués d’un astérisque sont obligatoires.</p>
           </div>
 
-          <form class="contact-form" id="contact-form" novalidate>
+          <form class="contact-form" id="contact-form" action="/contact.php" method="post" accept-charset="UTF-8">
+            <div class="contact-form__honeypot" aria-hidden="true">
+              <label for="website">Votre site internet</label>
+              <input
+                id="website"
+                name="website"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
             <div class="contact-form__row">
               <div class="contact-form__field">
                 <label for="name"
@@ -248,11 +259,11 @@ const contactPageSchema = {
             <p
               class="contact-form__status"
               id="contact-form-status"
-              role="status"
+              role="alert"
+              tabindex="-1"
               hidden
             >
-              L’envoi du formulaire doit encore être activé. En attendant,
-              écrivez directement à
+              L’envoi n’a pas abouti. Vous pouvez réessayer ou écrire directement à
               <a href={`mailto:${site.email}`}>{site.email}</a>.
             </p>
           </form>
@@ -264,18 +275,23 @@ const contactPageSchema = {
   <script>
     const form = document.querySelector<HTMLFormElement>("#contact-form");
     const status = document.querySelector<HTMLElement>("#contact-form-status");
+    const submitButton = form?.querySelector<HTMLButtonElement>(
+      ".contact-form__submit",
+    );
 
-    form?.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
+    if (new URLSearchParams(window.location.search).get("error") === "1") {
       if (status) {
         status.hidden = false;
         status.focus();
+      }
+    }
+
+    form?.addEventListener("submit", () => {
+      if (!form.checkValidity()) return;
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Envoi en cours…";
       }
     });
   </script>

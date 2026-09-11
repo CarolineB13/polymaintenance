@@ -1,0 +1,78 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/ui/Container/Container.astro";
+import Button from "../components/ui/Button/Button.astro";
+import { site } from "../config/site";
+---
+
+<Layout
+  title="Merci pour votre demande"
+  description="Votre demande a bien été transmise à Polymaintenance."
+  robots="noindex, follow"
+>
+  <section class="form-success">
+    <Container>
+      <div class="form-success__card">
+        <p class="form-success__eyebrow">Message envoyé</p>
+        <h1>Merci, votre demande a bien été transmise.</h1>
+        <p>
+          Hervé pourra prendre connaissance de votre message et vous recontacter
+          avec les informations adaptées à votre besoin.
+        </p>
+        <p>
+          Pour une demande urgente, vous pouvez aussi appeler directement le
+          <a href={`tel:${site.phoneInternational}`}>{site.phone}</a>.
+        </p>
+        <Button href="/" label="Retour à l’accueil" variant="primary" />
+      </div>
+    </Container>
+  </section>
+</Layout>
+
+<style>
+  .form-success {
+    min-height: 68vh;
+    display: grid;
+    place-items: center;
+    padding-block: var(--space-xl);
+    background: linear-gradient(180deg, var(--light), var(--white));
+  }
+
+  .form-success__card {
+    width: min(760px, 100%);
+    margin-inline: auto;
+    padding: clamp(2rem, 5vw, 4rem);
+    border: 1px solid rgb(7 39 93 / 10%);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    box-shadow: 0 24px 60px rgb(7 39 93 / 10%);
+    text-align: center;
+  }
+
+  .form-success__eyebrow {
+    color: var(--secondary);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .form-success h1 {
+    margin-block: var(--space-sm);
+    color: var(--primary);
+    font-size: clamp(2rem, 6vw, 3.25rem);
+    line-height: 1.05;
+  }
+
+  .form-success p {
+    max-width: 620px;
+    margin: 0 auto var(--space-md);
+    line-height: 1.7;
+  }
+
+  .form-success a:not([class]) {
+    color: var(--primary);
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

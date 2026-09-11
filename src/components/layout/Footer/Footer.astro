@@ -8,7 +8,7 @@ import logoIcon from "../../../assets/logos/logo-icon.png";
 import "./Footer.css";
 
 const currentYear = new Date().getFullYear();
-const linkedinUrl = "https://www.linkedin.com/in/herve-giaufret-110188107";
+const linkedinUrl = site.linkedin;
 ---
 
 <footer class="site-footer">
@@ -85,6 +85,11 @@ const linkedinUrl = "https://www.linkedin.com/in/herve-giaufret-110188107";
           >
             LinkedIn — Hervé Giaufret
           </a>
+
+          <p>
+            {site.address.street}<br />
+            {site.address.postalCode} {site.address.locality}, {site.address.region}
+          </p>
 
           <p>
             Ardèche, Drôme et vallée du Rhône<br />
