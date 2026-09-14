@@ -1,0 +1,5 @@
+RewriteEngine On
+
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\.polymaintenance\.fr$ [NC]
+RewriteRule ^ https://polymaintenance.fr%{REQUEST_URI} [L,R=301]

@@ -20,8 +20,12 @@ import { site } from "../config/site";
           avec les informations adaptées à votre besoin.
         </p>
         <p>
-          Pour une demande urgente, vous pouvez aussi appeler directement le
-          <a href={`tel:${site.phoneInternational}`}>{site.phone}</a>.
+          Pour une demande urgente, vous pouvez aussi appeler directement le{
+            " "
+          }
+          <a class="phone-link" href={`tel:${site.phoneInternational}`}>
+            {site.phone}
+          </a>
         </p>
         <Button href="/" label="Retour à l’accueil" variant="primary" />
       </div>
@@ -30,6 +34,16 @@ import { site } from "../config/site";
 </Layout>
 
 <style>
+  .phone-link {
+    white-space: nowrap;
+    display: inline-block;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .phone-link:hover {
+    text-decoration: underline;
+  }
   .form-success {
     min-height: 68vh;
     display: grid;

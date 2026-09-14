@@ -222,7 +222,7 @@ html.motion-enabled [data-reveal].is-visible {
   color: var(--white);
   font-weight: 700;
   line-height: 1;
-  background: #25d366;
+  background: #15803d;
   border: 2px solid var(--white);
   border-radius: 999px;
   box-shadow: var(--shadow-md);
@@ -240,7 +240,7 @@ html.motion-enabled [data-reveal].is-visible {
 
 .whatsapp-button:hover {
   color: var(--white);
-  background: #1fba59;
+  background: #116b33;
   box-shadow: 0 8px 26px rgb(0 0 0 / 30%);
   transform: translateY(-2px);
 }
