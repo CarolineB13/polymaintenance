@@ -1,0 +1,500 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/ui/Container/Container.astro";
+import Button from "../../components/ui/Button/Button.astro";
+
+import "./product-detail.css";
+---
+
+<Layout
+  title="Matériel industriel – Polymaintenance"
+  description="Consultez le détail de cette annonce de matériel industriel proposée par Polymaintenance."
+>
+  <section
+    class="product-detail"
+    aria-labelledby="product-title"
+  >
+    <Container>
+      <a
+        href="/materiel-industriel"
+        class="product-detail__back"
+      >
+        ← Retour au matériel
+      </a>
+
+      <div
+        class="product-detail__loading"
+        data-loading
+      >
+        Chargement de l’annonce…
+      </div>
+
+      <div
+        class="product-detail__error"
+        data-error
+        hidden
+      >
+        <h1>Annonce introuvable</h1>
+        <p>
+          Cette annonce n’est plus disponible ou son adresse est incorrecte.
+        </p>
+        <a href="/materiel-industriel">
+          Voir le matériel disponible
+        </a>
+      </div>
+
+      <div
+        data-product
+        hidden
+      >
+        <div class="product-detail__hero">
+          <div
+            class="product-detail__visual"
+            data-visual
+          ></div>
+
+          <div class="product-detail__summary">
+            <div class="product-detail__badges">
+              <span data-category></span>
+              <span
+                class="product-detail__status"
+                data-status
+              ></span>
+            </div>
+
+            <h1
+              id="product-title"
+              data-title
+            ></h1>
+
+            <p
+              class="product-detail__description"
+              data-description
+            ></p>
+
+            <p
+              class="product-detail__price"
+              data-price
+            ></p>
+
+            <dl class="product-detail__facts">
+              <div>
+                <dt>État</dt>
+                <dd data-condition></dd>
+              </div>
+
+              <div data-brand-row hidden>
+                <dt>Marque</dt>
+                <dd data-brand></dd>
+              </div>
+
+              <div data-model-row hidden>
+                <dt>Modèle</dt>
+                <dd data-model></dd>
+              </div>
+
+              <div data-year-row hidden>
+                <dt>Année</dt>
+                <dd data-year></dd>
+              </div>
+            </dl>
+
+            <Button
+              href="/contact"
+              label="Demander des renseignements"
+              variant="primary"
+            />
+          </div>
+        </div>
+
+        <div
+          class="product-detail__content"
+          data-details-wrapper
+          hidden
+        >
+          <h2>À propos de ce matériel</h2>
+
+          <p data-details></p>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>
+
+<script>
+  type Annonce = {
+    id: string;
+    slug: string;
+    titre: string;
+    description: string;
+    categorie: string;
+    condition: string;
+    priceType: string;
+    prix: number | null;
+    status: string;
+    marque: string | null;
+    modele: string | null;
+    annee: number | null;
+    photo: string | null;
+    details: string;
+    created_at: string;
+    updated_at: string;
+  };
+
+  const categoryLabels: Record<string, string> = {
+    "air-comprime": "Air comprimé",
+    manutention: "Manutention",
+    bois: "Machines à bois",
+    ferronnerie: "Ferronnerie",
+    soudage: "Soudage",
+    emballage: "Emballage",
+    autre: "Autre matériel",
+  };
+
+  const conditionLabels: Record<string, string> = {
+    neuf: "Neuf",
+    occasion: "Occasion",
+    reconditionne: "Reconditionné",
+  };
+
+  const statusLabels: Record<string, string> = {
+    available: "Disponible",
+    reserved: "Réservé",
+    sold: "Vendu",
+  };
+
+  const availabilitySchema: Record<string, string> = {
+    available: "https://schema.org/InStock",
+    reserved: "https://schema.org/LimitedAvailability",
+    sold: "https://schema.org/OutOfStock",
+  };
+
+  const conditionSchema: Record<string, string> = {
+    neuf: "https://schema.org/NewCondition",
+    occasion: "https://schema.org/UsedCondition",
+    reconditionne: "https://schema.org/RefurbishedCondition",
+  };
+
+  const formatPrice = (
+    priceType: string,
+    prix: number | null,
+  ) => {
+    if (priceType !== "fixed" || prix === null) {
+      return "Prix sur demande";
+    }
+
+    return new Intl.NumberFormat("fr-FR", {
+      style: "currency",
+      currency: "EUR",
+      maximumFractionDigits: 2,
+    }).format(prix);
+  };
+
+  const segments =
+    window.location.pathname
+      .split("/")
+      .filter(Boolean);
+
+  const slug =
+    decodeURIComponent(
+      segments[segments.length - 1] ?? ""
+    );
+
+  const loading =
+    document.querySelector<HTMLElement>("[data-loading]");
+
+  const error =
+    document.querySelector<HTMLElement>("[data-error]");
+
+  const product =
+    document.querySelector<HTMLElement>("[data-product]");
+
+  const visual =
+    document.querySelector<HTMLElement>("[data-visual]");
+
+  const title =
+    document.querySelector<HTMLElement>("[data-title]");
+
+  const description =
+    document.querySelector<HTMLElement>("[data-description]");
+
+  const price =
+    document.querySelector<HTMLElement>("[data-price]");
+
+  const category =
+    document.querySelector<HTMLElement>("[data-category]");
+
+  const status =
+    document.querySelector<HTMLElement>("[data-status]");
+
+  const condition =
+    document.querySelector<HTMLElement>("[data-condition]");
+
+  const brandRow =
+    document.querySelector<HTMLElement>("[data-brand-row]");
+
+  const brand =
+    document.querySelector<HTMLElement>("[data-brand]");
+
+  const modelRow =
+    document.querySelector<HTMLElement>("[data-model-row]");
+
+  const model =
+    document.querySelector<HTMLElement>("[data-model]");
+
+  const yearRow =
+    document.querySelector<HTMLElement>("[data-year-row]");
+
+  const year =
+    document.querySelector<HTMLElement>("[data-year]");
+
+  const detailsWrapper =
+    document.querySelector<HTMLElement>("[data-details-wrapper]");
+
+  const details =
+    document.querySelector<HTMLElement>("[data-details]");
+
+  const updateMeta = (annonce: Annonce) => {
+    document.title =
+      `${annonce.titre} – Polymaintenance`;
+
+    const metaDescription =
+      document.querySelector<HTMLMetaElement>(
+        'meta[name="description"]'
+      );
+
+    if (metaDescription) {
+      metaDescription.content =
+        annonce.description;
+    }
+
+    let canonical =
+      document.querySelector<HTMLLinkElement>(
+        'link[rel="canonical"]'
+      );
+
+    if (!canonical) {
+      canonical =
+        document.createElement("link");
+
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+
+    canonical.href =
+      `${window.location.origin}/materiel-industriel/${annonce.slug}/`;
+  };
+
+  const addProductSchema = (annonce: Annonce) => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: annonce.titre,
+      description: annonce.description,
+      sku: annonce.id,
+      ...(annonce.marque && {
+        brand: {
+          "@type": "Brand",
+          name: annonce.marque,
+        },
+      }),
+      ...(annonce.modele && {
+        model: annonce.modele,
+      }),
+      itemCondition:
+        conditionSchema[annonce.condition],
+      offers: {
+        "@type": "Offer",
+        url: window.location.href,
+        priceCurrency: "EUR",
+        availability:
+          availabilitySchema[annonce.status],
+        ...(annonce.priceType === "fixed" &&
+          annonce.prix !== null && {
+            price: annonce.prix,
+          }),
+        seller: {
+          "@type": "Organization",
+          name: "Polymaintenance",
+          url: window.location.origin,
+        },
+      },
+    };
+
+    const script =
+      document.createElement("script");
+
+    script.type = "application/ld+json";
+    script.textContent =
+      JSON.stringify(schema);
+
+    document.head.appendChild(script);
+  };
+
+  const renderProduct = (annonce: Annonce) => {
+    if (
+      !visual ||
+      !title ||
+      !description ||
+      !price ||
+      !category ||
+      !status ||
+      !condition
+    ) {
+      return;
+    }
+
+    title.textContent = annonce.titre;
+    description.textContent =
+      annonce.description;
+
+    price.textContent =
+      formatPrice(
+        annonce.priceType,
+        annonce.prix,
+      );
+
+    category.textContent =
+      categoryLabels[annonce.categorie]
+      ?? "Matériel";
+
+    status.textContent =
+      statusLabels[annonce.status] ?? "";
+
+    status.className =
+      `product-detail__status product-detail__status--${annonce.status}`;
+
+    condition.textContent =
+      conditionLabels[annonce.condition] ?? "";
+
+    if (annonce.photo) {
+      const image =
+        document.createElement("img");
+
+      image.src =
+        `${annonce.photo}?v=${encodeURIComponent(
+          annonce.updated_at ?? ""
+        )}`;
+
+      image.alt = annonce.titre;
+
+      visual.appendChild(image);
+    } else {
+      const placeholder =
+        document.createElement("div");
+
+      placeholder.className =
+        "product-detail__placeholder";
+
+      placeholder.innerHTML = `
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          width="70"
+          height="70"
+        >
+          <path
+            fill="currentColor"
+            d="M9 4l1.5-2h3L15 4h3a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h3Zm3 4a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6Z"
+          />
+        </svg>
+        <strong>Photo à venir</strong>
+      `;
+
+      visual.appendChild(placeholder);
+    }
+
+    if (annonce.marque && brandRow && brand) {
+      brand.textContent = annonce.marque;
+      brandRow.hidden = false;
+    }
+
+    if (annonce.modele && modelRow && model) {
+      model.textContent = annonce.modele;
+      modelRow.hidden = false;
+    }
+
+    if (annonce.annee && yearRow && year) {
+      year.textContent =
+        String(annonce.annee);
+
+      yearRow.hidden = false;
+    }
+
+    if (
+      annonce.details.trim() !== "" &&
+      detailsWrapper &&
+      details
+    ) {
+      details.textContent =
+        annonce.details;
+
+      detailsWrapper.hidden = false;
+    }
+
+    updateMeta(annonce);
+    addProductSchema(annonce);
+
+    if (loading) {
+      loading.hidden = true;
+    }
+
+    if (product) {
+      product.hidden = false;
+    }
+  };
+
+  const loadProduct = async () => {
+    try {
+      const response =
+        await fetch(
+          "/api/annonces.php",
+          {
+            cache: "no-store",
+          }
+        );
+
+      if (!response.ok) {
+        throw new Error("Erreur API");
+      }
+
+      const annonces: Annonce[] =
+        await response.json();
+
+      if (!Array.isArray(annonces)) {
+        throw new Error(
+          "Réponse invalide"
+        );
+      }
+
+      const annonce =
+        annonces.find(
+          (item) => item.slug === slug
+        );
+
+      if (!annonce) {
+        throw new Error(
+          "Annonce introuvable"
+        );
+      }
+
+      renderProduct(annonce);
+
+    } catch (err) {
+      console.error(err);
+
+      if (loading) {
+        loading.hidden = true;
+      }
+
+      if (error) {
+        error.hidden = false;
+      }
+
+      document.title =
+        "Annonce introuvable – Polymaintenance";
+    }
+  };
+
+  loadProduct();
+</script>

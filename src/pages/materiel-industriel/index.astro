@@ -1,37 +1,10 @@
 ---
-import { getCollection } from "astro:content";
-
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/ui/Container/Container.astro";
-import ProductCard from "../../components/ui/ProductCard/ProductCard.astro";
 import { site } from "../../config/site";
-import { categoryLabels } from "../../utils/products";
 
+import "../../components/ui/ProductCard/ProductCard.css";
 import "./materiel-industriel.css";
-
-const statusOrder = {
-  available: 0,
-  reserved: 1,
-  sold: 2,
-};
-
-const products = (await getCollection("products")).sort((a, b) => {
-  const statusDifference =
-    statusOrder[a.data.status] - statusOrder[b.data.status];
-
-  if (statusDifference !== 0) return statusDifference;
-
-  return b.data.publishedAt.getTime() - a.data.publishedAt.getTime();
-});
-
-const usedCategories = new Set(
-  products.map((product) => product.data.category),
-);
-const categories = Object.entries(categoryLabels).filter(([value]) =>
-  usedCategories.has(value as keyof typeof categoryLabels),
-);
-
-const catalogEnabled = site.features.materialCatalog;
 
 const catalogDescription =
   "Matériel industriel neuf et d’occasion proposé par Polymaintenance : machines à bois, ferronnerie, soudage, air comprimé, manutention et emballage.";
@@ -51,154 +24,454 @@ const catalogSchema = {
 ---
 
 <Layout
-  title={
-    catalogEnabled
-      ? "Matériel industriel neuf et d’occasion en Ardèche"
-      : "Catalogue de matériel industriel en préparation"
-  }
-  description={
-    catalogEnabled
-      ? catalogDescription
-      : "Le catalogue de matériel industriel Polymaintenance est actuellement en préparation."
-  }
-  robots={catalogEnabled ? "index, follow" : "noindex, nofollow"}
+  title="Matériel industriel neuf et d’occasion en Ardèche"
+  description={catalogDescription}
 >
-  {
-    catalogEnabled && (
-      <script type="application/ld+json" set:html={JSON.stringify(catalogSchema)} />
-    )
-  }
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(catalogSchema)}
+  />
 
-  {
-    catalogEnabled ? (
-      <>
-          <header class="catalog-hero">
-            <Container>
-              <p class="catalog-hero__eyebrow">
-                Négoce et vente de matériel professionnel
-              </p>
-              <h1>Matériel industriel neuf et d’occasion</h1>
-              <p class="catalog-hero__intro">
-                Basée à Ucel, près d’Aubenas, Polymaintenance propose des machines,
-                équipements et consommables pour les professionnels. Elle vous conseille
-                dans le choix du matériel et peut assurer son installation et sa mise en
-                service.
-              </p>
-            </Container>
-          </header>
+  <header class="catalog-hero">
+    <Container>
+      <p class="catalog-hero__eyebrow">
+        Négoce et vente de matériel professionnel
+      </p>
 
-          <section class="catalog" data-catalog aria-labelledby="catalog-title">
-            <Container>
-              <h2 id="catalog-title" class="sr-only">Toutes les annonces</h2>
+      <h1>Matériel industriel neuf et d’occasion</h1>
 
-              <div class="catalog__demo-notice" role="note">
-                <strong>Maquette de démonstration :</strong> les produits et caractéristiques
-                affichés sur cette page sont fictifs et seront remplacés par les véritables
-                annonces.
-              </div>
+      <p class="catalog-hero__intro">
+        Basée à Ucel, près d’Aubenas, Polymaintenance propose des machines,
+        équipements et consommables pour les professionnels. Elle vous conseille
+        dans le choix du matériel et peut assurer son installation et sa mise en
+        service.
+      </p>
+    </Container>
+  </header>
 
-              <div class="catalog__filters" aria-label="Filtrer les annonces">
-                <label class="catalog__category-select">
-                  <span>Catégorie</span>
-                  <select data-category-filter>
-                    <option value="all">Tout le matériel</option>
-                    {
-                      categories.map(([value, label]) => (
-                        <option value={value}>{label}</option>
-                      ))
-                    }
-                  </select>
-                </label>
+  <section
+    class="catalog"
+    data-catalog
+    aria-labelledby="catalog-title"
+  >
+    <Container>
+      <h2 id="catalog-title" class="sr-only">Toutes les annonces</h2>
 
-                <label class="catalog__availability">
-                  <input type="checkbox" data-available-filter />
-                  <span>Afficher uniquement le matériel disponible</span>
-                </label>
-              </div>
+      <div
+        class="catalog__filters"
+        data-filters
+        aria-label="Filtrer les annonces"
+        hidden
+      >
+        <label class="catalog__category-select">
+          <span>Catégorie</span>
 
-              <div class="catalog__summary" aria-live="polite">
-                <strong data-results-count>{products.length}</strong>
-                <span data-results-label
-                  >{
-                    products.length > 1 ? "annonces affichées" : "annonce affichée"
-                  }</span
-                >
-              </div>
+          <select data-category-filter>
+            <option value="all">Tout le matériel</option>
+          </select>
+        </label>
 
-              <div class="catalog__grid">
-                {products.map((product) => <ProductCard product={product} />)}
-              </div>
+        <label class="catalog__availability">
+          <input type="checkbox" data-available-filter />
+          <span>Afficher uniquement le matériel disponible</span>
+        </label>
+      </div>
 
-              <div class="catalog__empty" data-empty-state hidden>
-                <h2>Aucun matériel ne correspond à ces critères</h2>
-                <p>
-                  Modifiez la catégorie sélectionnée ou désactivez le filtre de
-                  disponibilité.
-                </p>
-              </div>
-            </Container>
-          </section>      </>
-    ) : (
-      <header class="catalog-hero">
-        <Container>
-          <p class="catalog-hero__eyebrow">Négoce et matériel professionnel</p>
-          <h1>Catalogue en préparation</h1>
-          <p class="catalog-hero__intro">
-            Les annonces de matériel seront publiées ici dès qu’elles seront
-            prêtes. En attendant, Polymaintenance peut rechercher un équipement
-            précis selon votre besoin.
-          </p>
-          <p class="catalog-hero__intro">
-            <a href="/negoce">Découvrir le service de négoce</a> ·
-            <a href="/contact">Contacter Hervé</a>
-          </p>
-        </Container>
-      </header>
-    )
-  }
+      <div
+        class="catalog__summary"
+        data-summary
+        aria-live="polite"
+        hidden
+      >
+        <strong data-results-count>0</strong>
+        <span data-results-label>annonce affichée</span>
+      </div>
+
+      <div class="catalog__loading" data-loading>
+        Chargement du matériel disponible…
+      </div>
+
+      <div class="catalog__grid" data-products-grid></div>
+
+      <div class="catalog__empty" data-empty-state hidden>
+        <h2>Aucun matériel disponible actuellement</h2>
+        <p>
+          De nouvelles annonces seront publiées prochainement.
+          Vous recherchez un équipement particulier ?
+          <a href="/contact">Contactez Hervé</a>.
+        </p>
+      </div>
+
+      <div class="catalog__error" data-error-state hidden>
+        <h2>Les annonces ne peuvent pas être affichées</h2>
+        <p>
+          Vous pouvez contacter directement Polymaintenance pour connaître le
+          matériel actuellement disponible.
+        </p>
+        <a href="/contact">Contacter Hervé</a>
+      </div>
+    </Container>
+  </section>
 </Layout>
 
 <script>
-  const catalog = document.querySelector<HTMLElement>("[data-catalog]");
+  type Annonce = {
+    id: string;
+    slug: string;
+    titre: string;
+    description: string;
+    categorie: string;
+    condition: string;
+    priceType: string;
+    prix: number | null;
+    status: string;
+    marque: string | null;
+    modele: string | null;
+    annee: number | null;
+    photo: string | null;
+    details: string;
+    created_at: string;
+    updated_at: string;
+  };
 
-  if (catalog) {
-    const categoryFilter = catalog.querySelector<HTMLSelectElement>(
-      "[data-category-filter]",
-    );
-    const availableFilter = catalog.querySelector<HTMLInputElement>(
-      "[data-available-filter]",
-    );
-    const cards = Array.from(
-      catalog.querySelectorAll<HTMLElement>("[data-product-card]"),
-    );
-    const count = catalog.querySelector<HTMLElement>("[data-results-count]");
-    const label = catalog.querySelector<HTMLElement>("[data-results-label]");
-    const emptyState = catalog.querySelector<HTMLElement>("[data-empty-state]");
+  const categoryLabels: Record<string, string> = {
+    "air-comprime": "Air comprimé",
+    manutention: "Manutention",
+    bois: "Machines à bois",
+    ferronnerie: "Ferronnerie",
+    soudage: "Soudage",
+    emballage: "Emballage",
+    autre: "Autre matériel",
+  };
 
-    const updateCatalog = () => {
-      const activeCategory = categoryFilter?.value ?? "all";
-      const availableOnly = availableFilter?.checked ?? false;
-      let visibleCount = 0;
+  const conditionLabels: Record<string, string> = {
+    neuf: "Neuf",
+    occasion: "Occasion",
+    reconditionne: "Reconditionné",
+  };
 
-      cards.forEach((card) => {
-        const matchesCategory =
-          activeCategory === "all" || card.dataset.category === activeCategory;
-        const matchesAvailability =
-          !availableOnly || card.dataset.status === "available";
-        const isVisible = matchesCategory && matchesAvailability;
+  const statusLabels: Record<string, string> = {
+    available: "Disponible",
+    reserved: "Réservé",
+    sold: "Vendu",
+  };
 
-        card.hidden = !isVisible;
-        if (isVisible) visibleCount += 1;
+  const catalog =
+    document.querySelector<HTMLElement>("[data-catalog]");
+
+  const grid =
+    catalog?.querySelector<HTMLElement>("[data-products-grid]");
+
+  const categoryFilter =
+    catalog?.querySelector<HTMLSelectElement>("[data-category-filter]");
+
+  const availableFilter =
+    catalog?.querySelector<HTMLInputElement>("[data-available-filter]");
+
+  const filters =
+    catalog?.querySelector<HTMLElement>("[data-filters]");
+
+  const summary =
+    catalog?.querySelector<HTMLElement>("[data-summary]");
+
+  const count =
+    catalog?.querySelector<HTMLElement>("[data-results-count]");
+
+  const label =
+    catalog?.querySelector<HTMLElement>("[data-results-label]");
+
+  const loading =
+    catalog?.querySelector<HTMLElement>("[data-loading]");
+
+  const emptyState =
+    catalog?.querySelector<HTMLElement>("[data-empty-state]");
+
+  const errorState =
+    catalog?.querySelector<HTMLElement>("[data-error-state]");
+
+  const formatPrice = (
+    priceType: string,
+    prix: number | null,
+  ) => {
+    if (priceType !== "fixed" || prix === null) {
+      return "Prix sur demande";
+    }
+
+    return new Intl.NumberFormat("fr-FR", {
+      style: "currency",
+      currency: "EUR",
+      maximumFractionDigits: 2,
+    }).format(prix);
+  };
+
+  const createProductCard = (annonce: Annonce) => {
+    const article = document.createElement("article");
+
+    article.className = `product-card product-card--${annonce.status}`;
+    article.dataset.productCard = "";
+    article.dataset.category = annonce.categorie;
+    article.dataset.status = annonce.status;
+
+    const detailUrl = annonce.slug
+      ? `/materiel-industriel/${annonce.slug}/`
+      : "/contact";
+
+    /* Visuel */
+    const visual = document.createElement("a");
+    visual.className = "product-card__visual";
+    visual.href = detailUrl;
+    visual.setAttribute("aria-label", `Voir ${annonce.titre}`);
+
+    if (annonce.photo) {
+      const image = document.createElement("img");
+
+      image.src = `${annonce.photo}?v=${encodeURIComponent(
+        annonce.updated_at ?? ""
+      )}`;
+
+      image.alt = annonce.titre;
+      image.loading = "lazy";
+
+      visual.appendChild(image);
+    } else {
+      const placeholder = document.createElement("div");
+      placeholder.className = "product-card__placeholder";
+
+      placeholder.innerHTML = `
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          width="50"
+          height="50"
+        >
+          <path
+            fill="currentColor"
+            d="M9 4l1.5-2h3L15 4h3a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h3Zm3 4a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6Z"
+          />
+        </svg>
+        <strong>Photo à venir</strong>
+      `;
+
+      visual.appendChild(placeholder);
+    }
+
+    const badges = document.createElement("div");
+    badges.className = "product-card__badges";
+
+    const statusBadge = document.createElement("span");
+    statusBadge.className =
+      `product-card__badge product-card__badge--${annonce.status}`;
+
+    statusBadge.textContent =
+      statusLabels[annonce.status] ?? "";
+
+    badges.appendChild(statusBadge);
+    visual.appendChild(badges);
+    article.appendChild(visual);
+
+    /* Contenu */
+    const content = document.createElement("div");
+    content.className = "product-card__content";
+
+    const meta = document.createElement("div");
+    meta.className = "product-card__meta";
+
+    const category = document.createElement("span");
+    category.textContent =
+      categoryLabels[annonce.categorie] ?? "Matériel";
+
+    const separator = document.createElement("span");
+    separator.setAttribute("aria-hidden", "true");
+    separator.textContent = "•";
+
+    const condition = document.createElement("span");
+    condition.textContent =
+      conditionLabels[annonce.condition] ?? "";
+
+    meta.appendChild(category);
+    meta.appendChild(separator);
+    meta.appendChild(condition);
+
+    const title = document.createElement("h3");
+    title.className = "product-card__title";
+
+    const titleLink = document.createElement("a");
+    titleLink.href = detailUrl;
+    titleLink.textContent = annonce.titre;
+
+    title.appendChild(titleLink);
+
+    const description = document.createElement("p");
+    description.className = "product-card__description";
+    description.textContent = annonce.description;
+
+    const footer = document.createElement("div");
+    footer.className = "product-card__footer";
+
+    const price = document.createElement("strong");
+    price.className = "product-card__price";
+    price.textContent =
+      formatPrice(annonce.priceType, annonce.prix);
+
+    const detailLink = document.createElement("a");
+    detailLink.className = "product-card__link";
+    detailLink.href = detailUrl;
+    detailLink.innerHTML =
+      `Voir l’annonce <span aria-hidden="true">→</span>`;
+
+    footer.appendChild(price);
+    footer.appendChild(detailLink);
+
+    content.appendChild(meta);
+    content.appendChild(title);
+    content.appendChild(description);
+    content.appendChild(footer);
+
+    article.appendChild(content);
+
+    return article;
+  };
+
+  const updateCatalog = () => {
+    if (!catalog) return;
+
+    const cards =
+      Array.from(
+        catalog.querySelectorAll<HTMLElement>("[data-product-card]")
+      );
+
+    const activeCategory =
+      categoryFilter?.value ?? "all";
+
+    const availableOnly =
+      availableFilter?.checked ?? false;
+
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const matchesCategory =
+        activeCategory === "all" ||
+        card.dataset.category === activeCategory;
+
+      const matchesAvailability =
+        !availableOnly ||
+        card.dataset.status === "available";
+
+      const isVisible =
+        matchesCategory && matchesAvailability;
+
+      card.hidden = !isVisible;
+
+      if (isVisible) {
+        visibleCount += 1;
+      }
+    });
+
+    if (count) {
+      count.textContent = String(visibleCount);
+    }
+
+    if (label) {
+      label.textContent =
+        visibleCount > 1
+          ? "annonces affichées"
+          : "annonce affichée";
+    }
+
+    if (emptyState) {
+      emptyState.hidden =
+        cards.length === 0 || visibleCount !== 0;
+    }
+  };
+
+  const loadProducts = async () => {
+    try {
+      const response =
+        await fetch("/api/annonces.php", {
+          cache: "no-store",
+        });
+
+      if (!response.ok) {
+        throw new Error("Erreur API");
+      }
+
+      const annonces = await response.json();
+
+      if (!Array.isArray(annonces)) {
+        throw new Error("Réponse invalide");
+      }
+
+      if (loading) {
+        loading.hidden = true;
+      }
+
+      if (annonces.length === 0) {
+        if (emptyState) {
+          emptyState.hidden = false;
+        }
+
+        return;
+      }
+
+      const categories =
+        Array.from(
+          new Set(
+            annonces.map(
+              (annonce: Annonce) => annonce.categorie
+            )
+          )
+        );
+
+      categories.forEach((category) => {
+        if (!categoryFilter) return;
+
+        const option =
+          document.createElement("option");
+
+        option.value = category;
+        option.textContent =
+          categoryLabels[category] ?? category;
+
+        categoryFilter.appendChild(option);
       });
 
-      if (count) count.textContent = String(visibleCount);
-      if (label)
-        label.textContent =
-          visibleCount > 1 ? "annonces affichées" : "annonce affichée";
-      if (emptyState) emptyState.hidden = visibleCount !== 0;
-    };
+      annonces.forEach((annonce: Annonce) => {
+        grid?.appendChild(
+          createProductCard(annonce)
+        );
+      });
 
-    categoryFilter?.addEventListener("change", updateCatalog);
-    availableFilter?.addEventListener("change", updateCatalog);
-  }
+      if (filters) {
+        filters.hidden = false;
+      }
+
+      if (summary) {
+        summary.hidden = false;
+      }
+
+      updateCatalog();
+    } catch (error) {
+      console.error(error);
+
+      if (loading) {
+        loading.hidden = true;
+      }
+
+      if (errorState) {
+        errorState.hidden = false;
+      }
+    }
+  };
+
+  categoryFilter?.addEventListener(
+    "change",
+    updateCatalog
+  );
+
+  availableFilter?.addEventListener(
+    "change",
+    updateCatalog
+  );
+
+  loadProducts();
 </script>

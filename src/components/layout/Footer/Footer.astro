@@ -52,11 +52,13 @@ const linkedinUrl = site.linkedin;
 
           <ul>
             <li><a href="/">Accueil</a></li>
-            {
-              site.features.materialCatalog && (
-                <li><a href="/materiel-industriel">Matériel à vendre</a></li>
-              )
-            }
+
+            <li data-material-catalog-link hidden>
+              <a href="/materiel-industriel">
+                Matériel à vendre
+              </a>
+            </li>
+
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>

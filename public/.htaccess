@@ -1,5 +1,19 @@
 RewriteEngine On
 
+# HTTPS + domaine canonique sans www
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} ^www\.polymaintenance\.fr$ [NC]
 RewriteRule ^ https://polymaintenance.fr%{REQUEST_URI} [L,R=301]
+
+# Ancienne adresse de l'espace de gestion
+RewriteRule ^gestion-test/?$ /gestion/ [R=302,L]
+RewriteRule ^gestion-test/(.*)$ /gestion/$1 [R=302,L]
+
+# Ne jamais réécrire un vrai fichier ou un vrai dossier
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Fiches dynamiques de matériel :
+# /materiel-industriel/mon-annonce/
+# utilise en interne la page générique Astro
+RewriteRule ^materiel-industriel/([^/.]+)/?$ /materiel-industriel/annonce/index.html [L]

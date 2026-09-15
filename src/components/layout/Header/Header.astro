@@ -1,53 +1,30 @@
 ---
-import { Image } from "astro:assets";
-
 import logo from "../../../assets/logos/logo.png";
 import Button from "../../ui/Button/Button.astro";
 import HeaderMobile from "./HeaderMobile";
 import { site } from "../../../config/site";
 import "./Header.css";
-
-const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
-
-const navLinks = [
-  { href: "/maintenance", label: "Maintenance" },
-  { href: "/installation", label: "Installation" },
-  { href: "/negoce", label: "Négoce" },
-  { href: "/formation", label: "Formation" },
-  ...(site.features.materialCatalog
-    ? [{ href: "/materiel-industriel", label: "Matériel à vendre" }]
-    : []),
-];
 ---
 
 <header class="site-header">
   <div class="header-container">
     <a href="/" class="logo-link" aria-label="Accueil Polymaintenance">
-      <Image
-        src={logo}
-        alt="Logo Polymaintenance"
-        class="logo"
-        widths={[230, 460]}
-        sizes="230px"
-        loading="eager"
-      />
+      <img src={logo.src} alt="Logo Polymaintenance" class="logo" />
     </a>
 
     <nav class="desktop-nav" aria-label="Navigation principale">
       <ul class="nav">
-        {
-          navLinks.map((link) => (
-            <li>
-              <a
-                class="nav-link"
-                href={link.href}
-                aria-current={currentPath === link.href ? "page" : undefined}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))
-        }
+        <li><a class="nav-link" href="/maintenance">Maintenance</a></li>
+        <li><a class="nav-link" href="/installation">Installation</a></li>
+        <li><a class="nav-link" href="/negoce">Négoce</a></li>
+        <li><a class="nav-link" href="/formation">Formation</a></li>
+
+        <li data-material-catalog-link hidden>
+          <a class="nav-link" href="/materiel-industriel">
+            Matériel à vendre
+          </a>
+        </li>
+
         <li>
           <a
             class="header-phone"
@@ -58,17 +35,13 @@ const navLinks = [
             <strong>{site.phone}</strong>
           </a>
         </li>
+
         <li>
           <Button href="/contact" label="Demander un devis" />
         </li>
       </ul>
     </nav>
 
-    <HeaderMobile
-      client:load
-      phone={site.phone}
-      currentPath={currentPath}
-      showMaterialCatalog={site.features.materialCatalog}
-    />
+    <HeaderMobile client:load phone={site.phone} />
   </div>
 </header>

@@ -90,7 +90,10 @@ const websiteSchema = {
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Polymaintenance – maintenance et services industriels" />
+    <meta
+      property="og:image:alt"
+      content="Polymaintenance – maintenance et services industriels"
+    />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
@@ -101,6 +104,7 @@ const websiteSchema = {
       type="application/ld+json"
       set:html={JSON.stringify(localBusinessSchema)}
     />
+
     <script
       type="application/ld+json"
       set:html={JSON.stringify(websiteSchema)}
@@ -152,7 +156,39 @@ const websiteSchema = {
 
     <script is:inline>
       (() => {
-        const elements = Array.from(document.querySelectorAll("[data-reveal]"));
+        const materialLinks = Array.from(
+          document.querySelectorAll("[data-material-catalog-link]"),
+        );
+
+        if (materialLinks.length) {
+          fetch("/api/annonces.php", {
+            cache: "no-store",
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Erreur API");
+              }
+
+              return response.json();
+            })
+            .then((annonces) => {
+              const hasPublishedAnnouncements =
+                Array.isArray(annonces) && annonces.length > 0;
+
+              materialLinks.forEach((element) => {
+                element.hidden = !hasPublishedAnnouncements;
+              });
+            })
+            .catch(() => {
+              materialLinks.forEach((element) => {
+                element.hidden = true;
+              });
+            });
+        }
+
+        const elements = Array.from(
+          document.querySelectorAll("[data-reveal]"),
+        );
 
         if (!elements.length) return;
 
@@ -173,7 +209,10 @@ const websiteSchema = {
               observer.unobserve(entry.target);
             });
           },
-          { threshold: 0.12, rootMargin: "0px 0px -7% 0px" },
+          {
+            threshold: 0.12,
+            rootMargin: "0px 0px -7% 0px",
+          },
         );
 
         elements.forEach((element) => observer.observe(element));

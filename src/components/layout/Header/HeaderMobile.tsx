@@ -1,56 +1,94 @@
 import { useEffect, useState } from "react";
 import {
-  GraduationCap,
   House,
-  Package,
-  Phone,
-  Settings,
-  ShoppingBag,
   Wrench,
+  Settings,
+  Package,
+  ShoppingBag,
+  Phone,
+  GraduationCap,
 } from "lucide-react";
 
-const baseLinks = [
-  { href: "/", label: "Accueil", icon: House },
-  { href: "/maintenance", label: "Maintenance", icon: Wrench },
-  { href: "/installation", label: "Installation", icon: Settings },
-  { href: "/negoce", label: "Négoce", icon: Package },
-  { href: "/formation", label: "Formation", icon: GraduationCap },
+const links = [
+  {
+    href: "/",
+    label: "Accueil",
+    icon: House,
+    requiresCatalog: false,
+  },
+  {
+    href: "/maintenance",
+    label: "Maintenance",
+    icon: Wrench,
+    requiresCatalog: false,
+  },
+  {
+    href: "/installation",
+    label: "Installation",
+    icon: Settings,
+    requiresCatalog: false,
+  },
+  {
+    href: "/negoce",
+    label: "Négoce",
+    icon: Package,
+    requiresCatalog: false,
+  },
+  {
+    href: "/formation",
+    label: "Formation",
+    icon: GraduationCap,
+    requiresCatalog: false,
+  },
+  {
+    href: "/materiel-industriel",
+    label: "Matériel à vendre",
+    icon: ShoppingBag,
+    requiresCatalog: true,
+  },
 ];
 
 interface Props {
   phone: string;
-  currentPath: string;
-  showMaterialCatalog: boolean;
 }
 
-export default function HeaderMobile({
-  phone,
-  currentPath,
-  showMaterialCatalog,
-}: Props) {
+export default function HeaderMobile({ phone }: Props) {
   const [isOpen, setIsOpen] = useState(false);
-
-  const links = showMaterialCatalog
-    ? [
-        ...baseLinks,
-        {
-          href: "/materiel-industriel",
-          label: "Matériel à vendre",
-          icon: ShoppingBag,
-        },
-      ]
-    : baseLinks;
+  const [catalogAvailable, setCatalogAvailable] = useState(false);
 
   useEffect(() => {
-    if (!isOpen) return;
+    let active = true;
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsOpen(false);
+    fetch("/api/annonces.php", {
+      cache: "no-store",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erreur API");
+        }
+
+        return response.json();
+      })
+      .then((annonces) => {
+        if (!active) return;
+
+        setCatalogAvailable(
+          Array.isArray(annonces) && annonces.length > 0,
+        );
+      })
+      .catch(() => {
+        if (!active) return;
+        setCatalogAvailable(false);
+      });
+
+    return () => {
+      active = false;
     };
+  }, []);
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
+  const visibleLinks = links.filter(
+    (link) => !link.requiresCatalog || catalogAvailable,
+  );
 
   return (
     <div className="mobile-menu">
@@ -59,33 +97,24 @@ export default function HeaderMobile({
         type="button"
         aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
         aria-expanded={isOpen}
-        aria-controls="mobile-navigation"
-        onClick={() => setIsOpen((open) => !open)}
+        onClick={() => setIsOpen(!isOpen)}
       >
         <span></span>
         <span></span>
         <span></span>
       </button>
 
-      <nav
-        id="mobile-navigation"
-        className={isOpen ? "mobile-panel is-open" : "mobile-panel"}
-        aria-label="Navigation mobile"
-        aria-hidden={!isOpen}
-      >
-        {links.map((link) => {
+      <nav className={isOpen ? "mobile-panel is-open" : "mobile-panel"}>
+        {visibleLinks.map((link) => {
           const Icon = link.icon;
-          const isCurrent = currentPath === link.href;
 
           return (
             <a
               key={link.href}
               href={link.href}
-              aria-current={isCurrent ? "page" : undefined}
-              tabIndex={isOpen ? 0 : -1}
               onClick={() => setIsOpen(false)}
             >
-              <Icon size={20} aria-hidden="true" />
+              <Icon size={20} />
               <span>{link.label}</span>
             </a>
           );
@@ -95,17 +124,15 @@ export default function HeaderMobile({
           className="mobile-panel__phone"
           href={`tel:${phone.replaceAll(" ", "")}`}
           aria-label={`Appeler Hervé au ${phone}`}
-          tabIndex={isOpen ? 0 : -1}
           onClick={() => setIsOpen(false)}
         >
-          <Phone size={20} aria-hidden="true" />
+          <Phone size={20} />
           <span>{phone}</span>
         </a>
 
         <a
           className="mobile-panel__button"
           href="/contact"
-          tabIndex={isOpen ? 0 : -1}
           onClick={() => setIsOpen(false)}
         >
           Demander un devis
