@@ -158,6 +158,8 @@ const contactPageSchema = {
           </div>
 
           <form class="contact-form" id="contact-form" action="/contact.php" method="post" accept-charset="UTF-8">
+            <input id="form-started-at" name="form_started_at" type="hidden" value="" />
+
             <div class="contact-form__honeypot" aria-hidden="true">
               <label for="website">Votre site internet</label>
               <input
@@ -252,6 +254,12 @@ const contactPageSchema = {
               >.
             </p>
 
+            <div
+              class="cf-turnstile"
+              data-sitekey="0x4AAAAAAFLBjG4zUQ61q1jf"
+              data-appearance="interaction-only"
+            ></div>
+
             <button class="contact-form__submit" type="submit">
               Envoyer ma demande
             </button>
@@ -272,12 +280,19 @@ const contactPageSchema = {
     </Container>
   </section>
 
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
   <script>
     const form = document.querySelector<HTMLFormElement>("#contact-form");
     const status = document.querySelector<HTMLElement>("#contact-form-status");
     const submitButton = form?.querySelector<HTMLButtonElement>(
       ".contact-form__submit",
     );
+    const startedAt = form?.querySelector<HTMLInputElement>("#form-started-at");
+
+    if (startedAt) {
+      startedAt.value = String(Math.floor(Date.now() / 1000));
+    }
 
     if (new URLSearchParams(window.location.search).get("error") === "1") {
       if (status) {
